@@ -80,31 +80,32 @@ val rdd3 = rdd1.cartesian(rdd2)
 ###################################################################################################
 
 # spark action
+action执行后不返回RDD，返回结果
 val rdd1 = sc.parallelize(List(1,2,3,4,5), 2)
 
-# collect
+## collect
 rdd1.collect
 
-# reduce
+## reduce
 val r = rdd1.reduce(_+_)
 
-# count
+## count
 rdd1.count
 
-# top
+## top
 rdd1.top(2)
 
-# take
+## take
 rdd1.take(2)
 
-# first(similer to take(1))
+## first(similer to take(1))
 rdd1.first
 
-# takeOrdered
+## takeOrdered
 rdd1.takeOrdered(3)
 
 
-# k v 转换
+## k v 转换
 ```
 rdd2.map(x=>(x._2,x._1)).collect
 ```
