@@ -1,0 +1,44 @@
+{
+    "schema_version": 1,
+    "name": "FLINK",
+    "version": "1.9.0",
+    "setActiveSymlink": true,
+
+
+    "depends": "",
+    "replaces": "FLINK",
+    "conflicts": "",
+
+    "provides": ["flink"],
+
+    "scripts": {
+        "defines": "flink_env.sh"
+    },
+
+
+    "packages": [{
+            "name": "flink-master",
+            "version": "1.9.0+flink1.9.0"
+        },
+        {
+            "name": "flink-worker",
+            "version": "1.9.0+flink1.9.0"
+        }
+    ],
+    "components": [{
+        "name": "flink",
+        "version": "1.9.0+flink1.9.0",
+        "pkg_version": "1.9.0+flink1.9.0",
+        "pkg_release": "1.9.0"
+    }],
+
+    "users": {
+        "flink": {
+            "longname": "Flink",
+            "home": "/var/lib/flink",
+            "shell": "/bin/bash",
+            "extra_groups": []
+        }
+    },
+    "groups": ["flink"]
+}
