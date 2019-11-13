@@ -13,3 +13,8 @@ rdd.partitions.length
 
 
 分区中记录哪部分数据，每个分区对应一个task，一个executer中含有多个task,task会去读取真正的数据
+
+# 更改分区
+1. 创建rdd时指定分区
+2. 进行shuffle时指定分区
+进行shuffle时，需要指定一个partitioner，同时将其余参数传入
