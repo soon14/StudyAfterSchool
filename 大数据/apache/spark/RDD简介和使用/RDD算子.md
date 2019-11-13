@@ -109,3 +109,46 @@ rdd1.takeOrdered(3)
 ```
 rdd2.map(x=>(x._2,x._1)).collect
 ```
+
+## mapValues(_ * 100)
+对value 进行操作
+
+
+
+
+
+RDD| 说明|  类型
+-|-|-
+mapPartitionsWithIndex(func)| 一次拿出一个分区（分区中并没有数据，而是记录要读取哪些数据，真正生成的Task会读取多条数据），并且可以将分区的编号取出来<br>取分区中对应的数据时，还可以将分区的编号取出来，这样就可以知道数据是属于哪个分区的（哪个区分对应的Task的数据）| Transformation
+aggregate(init_value)(_ + _, _ + _)| 聚合函数<br>init_value 表示聚合操作的初始值<br>(_ + _, _ + _) 逗号前分区内叠加，逗号后全局叠加，并且分区操作，全局操作都会累加初始值| Action
+aggregateByKey(0)(_ + _, _ + _)| 只会在分区中累加初始值，不会在全局累加初始值|  Transformation
+countByKey()| 按key进行计数|Action
+filterByRange(min,max)| 对元组中的key进行过滤（按范围进行过滤，[]）| 
+flatMapValues()|对value进行map操作|
+foldByKey(init_value)(_ + _)| 进行聚合，并传入一个初始值| Transformation
+
+
+aggregateByKey   是Transformation
+reduceByKey      是Transformation
+filter           是Transformation
+flatMap			 是Transformation
+map              是Transformation
+mapPartition     是Transformation
+mapPartitionWithIndex 是Transformation
+
+
+collect          是Action
+aggregate        是Action
+saveAsTextFile   是Action
+foreach          是Action
+foreachPartition 是Action
+
+# foreach vs foreachPartition
+foreach 一条一条进行操作
+foreachPartition 对一个分区进行操作
+业务场景：将数据输出到数据库，若使用foreach ，则每条数据建立一个连接，而使用foreachPartition 则每个分区建立一条连接
+
+val rdd = sc.parallelize(List(("cat", 2),("cat", 5), ("mouse", 4), ("mouse",1)))
+
+
+

@@ -2,7 +2,8 @@
 Resilient Distributed DataSet  
 弹性分布式数据集  
 Resilient   弹性的，可恢复的  
-
+提交任务时，集群核数不够可以提交，内存不够无法提交
+一个 application 中包含多个job
 
 /**
  * A Resilient Distributed Dataset (RDD), the basic abstraction in Spark. Represents an immutable,
@@ -50,3 +51,8 @@ RDD的Transformation的特点
 
 1. lazy
 2. 生成新的RDD
+
+# collect 方法执行过程
+collect 会将所有数据收集到driver端（慎用）=> 最好将executer的结果数据直接输出
+
+![image](https://github.com/wjn0918/Study/blob/master/%E5%A4%A7%E6%95%B0%E6%8D%AE/images/apache/spark/collect.png)

@@ -15,7 +15,7 @@ python /opt/parcel_cs/cm_ext/make_manifest/make_manifest.py parcel-el7/
 
 
 ## [CSD: Managing and monitoring services](https://github.com/cloudera/cm_ext/wiki/CSD-Overview)
-
+ service descriptor language (SDL)
 
 jar -cvf FLINK-1.9.0.jar *
 mv FLINK-1.9.0.jar /opt/cloudera/csd/
