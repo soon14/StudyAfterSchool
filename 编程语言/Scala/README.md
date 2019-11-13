@@ -1,0 +1,3 @@
+Scala默认导入的是不可变集合
+使用ListBuffer 需要导包
+import scala.collection.mutable.ListBuffer

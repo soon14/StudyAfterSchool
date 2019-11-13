@@ -5,34 +5,16 @@ Resilient   弹性的，可恢复的
 提交任务时，集群核数不够可以提交，内存不够无法提交
 一个 application 中包含多个job
 
-/**
- * A Resilient Distributed Dataset (RDD), the basic abstraction in Spark. Represents an immutable,
- * partitioned collection of elements that can be operated on in parallel. This class contains the
- * basic operations available on all RDDs, such as `map`, `filter`, and `persist`. In addition,
- * [[org.apache.spark.rdd.PairRDDFunctions]] contains operations available only on RDDs of key-value
- * pairs, such as `groupByKey` and `join`;
- * [[org.apache.spark.rdd.DoubleRDDFunctions]] contains operations available only on RDDs of
- * Doubles; and
- * [[org.apache.spark.rdd.SequenceFileRDDFunctions]] contains operations available on RDDs that
- * can be saved as SequenceFiles.
- * All operations are automatically available on any RDD of the right type (e.g. RDD[(Int, Int)]
- * through implicit.
- *
- * Internally, each RDD is characterized by five main properties:
- *
- *  - A list of partitions
- *  - A function for computing each split
- *  - A list of dependencies on other RDDs
- *  - Optionally, a Partitioner for key-value RDDs (e.g. to say that the RDD is hash-partitioned)
- *  - Optionally, a list of preferred locations to compute each split on (e.g. block locations for
- *    an HDFS file)
- *
- * All of the scheduling and execution in Spark is done based on these methods, allowing each RDD
- * to implement its own way of computing itself. Indeed, users can implement custom RDDs (e.g. for
- * reading data from a new storage system) by overriding these functions. Please refer to the
- * <a href="http://people.csail.mit.edu/matei/papers/2012/nsdi_spark.pdf">Spark paper</a>
- * for more details on RDD internals.
- */
+RDD里面记录的是描述信息（从哪里读取数据，对数据进行什么操作）
+
+RDD的方法分为两类：Transformation（lazy），Action（生成task，并将task发送到executor中执行）
+
+* 一系列分区（A list of partitions）
+* 每一个输入切片会有一个函数作用在上面（A function for computing each split）
+* RDD和RDD之间存在依赖关系（A list of dependencies on other RDDs）
+* (可选)RDD中如果存储的是ｋｖ，shuffle时会有一个分区器（hash partitioner），Optionally, a Partitioner for key-value RDDs (e.g. to say that the RDD is hash-partitioned)Optionally, a Partitioner for key-value RDDs (e.g. to say that the RDD is hash-partitioned)
+* (可选)如果RDD读取的HDFS中的数据，那么会有一个最优位置Optionally, a list of preferred locations to compute each split on (e.g. block locations for an HDFS file)
+
 # RDD产生背景
 ![image](https://github.com/wjn0918/Study/blob/master/%E5%A4%A7%E6%95%B0%E6%8D%AE/images/apache/spark/RDD产生背景.png)
 

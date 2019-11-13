@@ -151,4 +151,16 @@ foreachPartition 对一个分区进行操作
 val rdd = sc.parallelize(List(("cat", 2),("cat", 5), ("mouse", 4), ("mouse",1)))
 
 
+reduceByKey vs groupByKey
+reduceByKey首先会局部聚合，再进行全局聚合
+groupByKey会有大量shuffle
+
+
+# combineByKey
+import scala.collection.mutable.ListBuffer
+combineByKey(x => ListBuffer(x),(m: ListBuffer[String],n:String) => m += n ,(a:ListBuffer[String],b:ListBuffer[String]) => a ++= b)
+
+![image](https://github.com/wjn0918/Study/blob/master/%E5%A4%A7%E6%95%B0%E6%8D%AE/images/apache/spark/combineByKey.png)
+
+
 
