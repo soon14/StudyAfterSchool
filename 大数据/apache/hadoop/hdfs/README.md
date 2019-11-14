@@ -1,0 +1,1 @@
+RPC server is binding to node1:8020，用于访问hdfs上的数据
