@@ -17,4 +17,6 @@ rdd.partitions.length
 # 更改分区
 1. 创建rdd时指定分区
 2. 进行shuffle时指定分区
-进行shuffle时，需要指定一个partitioner，同时将其余参数传入
+> 进行shuffle时，需要指定一个partitioner，同时将其余参数传入  
+需要指定函数的参数类型  
+reducedRDD.groupBy((t : ((String,String), Int)) => t._1._1,1)

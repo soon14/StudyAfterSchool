@@ -164,4 +164,16 @@ combineByKey(x => ListBuffer(x),(m: ListBuffer[String],n:String) => m += n ,(a:L
 ![image](https://github.com/wjn0918/Study/blob/master/%E5%A4%A7%E6%95%B0%E6%8D%AE/images/apache/spark/combineByKey.png)
 
 
+# 迭代器转数组
+方法| 业务场景| 缺点
+-|-|-
+toList| 迭代器中数据量小可以使用|如果使用toList 会将迭代器中所有数据加载到内存，数据量大会内存溢出
+  
+# sortBy
+使用内存 + 磁盘的方式进行排序
+
+# take
+在集群中排好序将前n个收集到driver端，而不是将所有结果收集到driver端后再去取前n个
+
+
 
