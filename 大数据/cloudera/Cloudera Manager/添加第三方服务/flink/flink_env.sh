@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-FLINK_DIRNAME=${PARCEL_DIRNAME:-"FLINK-1.9.0"}
-export FLINK_HOME=$PARCELS_ROOT/$FLINK_DIRNAME/lib/flink
