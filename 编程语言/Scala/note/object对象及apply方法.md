@@ -3,6 +3,7 @@ object 类是静态类（单例对象，不能new）
 
 # apply 语法糖(suger)
 
+<font color=red>注意： 只能是静态类使用apply</font>  
 List(1,2,3) 就是调用了List.apply(1,2,3)
 
 类() 默认调用的是类.apply()

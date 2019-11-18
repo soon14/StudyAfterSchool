@@ -1,0 +1,1 @@
+Makefile中的include命令与C语言中的include命令类似，命令include file.dep，即把file.dep文件在当前Makefile文件中展开，亦即把file.dep文件的内容包含进当前Makefile文件；如果Makefile中有以file.dep为目标的规则，make会先使用规则对file.dep文件进行更新，然后将更新后的file.dep文件包含进当前Makefile文件。
