@@ -1,5 +1,7 @@
 # notes
 
+* [基础语法](https://github.com/wjn0918/Study/blob/master/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C/makefile/notes/基础语法.md)
+
 * [常用变量](https://github.com/wjn0918/Study/blob/master/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C/makefile/notes/%E5%B8%B8%E7%94%A8%E5%8F%98%E9%87%8F.md)
 
 * [.PHONY](https://github.com/wjn0918/Study/blob/master/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C/makefile/notes/.PHONY.md)
