@@ -1,0 +1,1 @@
+[Solr](https://lucene.apache.org/solr/) is the popular, blazing-fast, open source enterprise search platform built on Apache Lucene™.
