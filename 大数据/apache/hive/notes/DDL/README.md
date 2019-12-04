@@ -1,1 +1,13 @@
-alter table test01 set serdeproperties('field.delim'='\t');
+```
+CREATE EXTERNAL TABLE t_dic_list(
+id int,
+lb string,
+name string,
+code string
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\001'
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE
+
+```

@@ -1,0 +1,1 @@
+alter table test01 set serdeproperties('field.delim'='\t');
