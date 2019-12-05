@@ -1,0 +1,1 @@
+[官网](https://index.scala-lang.org/scalaj/scalaj-http/scalaj-http/2.4.1?target=_2.12)
