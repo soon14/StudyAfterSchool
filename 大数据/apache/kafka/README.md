@@ -1,0 +1,1 @@
+[QucikStart](http://kafka.apache.org/quickstart#quickstart_startserver)
