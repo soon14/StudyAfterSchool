@@ -16,3 +16,8 @@
 ```
 sc.textFile("hdfs://node-4:9000/wc").flatMap(_.split(" ")).map((_, 1)).reduceByKey(_+_).sortBy(_._2, false).collect
 ```
+
+
+# PI
+
+ --class org.apache.spark.examples.SparkPi 
