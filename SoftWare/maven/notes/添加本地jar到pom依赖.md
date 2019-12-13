@@ -15,3 +15,19 @@ mvn install:install-file -Dfile=Dm7JdbcDriver17.jar -DgroupId=dm -DartifactId=dm
             <version>7</version>
             <!--<scope>provided</scope>-->
         </dependency>
+
+
+
+2. 
+
+项目下创建lib目录，将jar包放入该目录
+
+```
+<dependency>
+	<groupId>org.dm.jdbc</groupId>
+	<artifactId>dm-jdbc</artifactId>
+	<version>7.0.0</version>
+	<systemPath>${project.basedir}/lib/Dm7JdbcDriver17.jar</systemPath>
+	<scope>system</scope>
+</dependency>
+```
