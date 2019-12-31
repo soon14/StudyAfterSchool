@@ -3,10 +3,39 @@ https://github.com/WeBankFinTech/Linkis
 
 [安装文档](https://github.com/WeBankFinTech/Linkis/wiki/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8Linkis)
 
+```
+>logs/start.log 2>logs/error.log
+```
+
+组件| 是否安装| 说明
+-|-|-
+APPJOINTENTRANCE| (已安装)| DSS
+BML-SERVER| (已安装)
+CLOUD-DATASOURCE|(已安装) | 安装包位于/opt/linkis/share/linkis
+CLOUD-PUBLICSERVICE| (已安装) | ./bin/start-publicservice.sh >linkis.log 2>linkis.out
+DATAWORKCLOUD| (已安装)
+DATAWORKCLOUD-GATEWAY| (已安装)| 端口改为9009
+DSS-SERVER| (已安装)|DSS
+FLOWEXECUTIONENTRANCE| (已安装)| DSS
+HIVEENGINEMANAGER| (已安装)
+HIVEENTRANCE| (已安装)
+JDBCENTRANCE| (已安装)
+PYTHONENGINEMANAGER| (已安装)
+PYTHONENTRANCE| (已安装)
+RESOURCEMANAGER|(已安装)
+SPARKENGINEMANAGER|
+SPARKENTRANCE|
+VISUALIS| | DSS 
+
+
+
+
 
 # linkis-appjoint-entrance DSS
 
 1. com.webank.wedatasphere.linkis.storage.exception.StorageFatalException: errCode: 50001 ,desc: HDFS configuration was not read, please configure hadoop.config.dir or add env:HADOOP_CONF_DIR ,ip: slave2 ,port: 9005 ,serviceKind: appjointEntrance
+
+查看配置信息（默认hadoopconf的路径为/appcom/config/hadoop-config）
 
 环境变量中添加HADOOP_CONF_DIR地址
 ```
@@ -14,6 +43,15 @@ HADOOP_CONF_DIR=/opt/cloudera/parcels/CDH-5.16.2-1.cdh5.16.2.p0.8/lib/hadoop/etc
 export PATH=$PATH:${HADOOP_CONF_DIR}
 ```
 重启linkis
+
+```
+mkdir -p /appcom/config/hadoop-config
+
+cd  /opt/cloudera/parcels/CDH-5.16.2-1.cdh5.16.2.p0.8/lib/hadoop/etc/hadoop/
+
+cp core-site.xml hdfs-site.xml yarn-site.xml mapred-site.xml /appcom/config/hadoop-config
+```
+
 
 
 # *CLOUDER-DATASOURCE
@@ -49,6 +87,8 @@ export PATH=$PATH:${HADOOP_CONF_DIR}
 # HIVEENTRANCE
 
 # JDBCENTRANCE
+
+同linkis-appjoint-entrance
 
 # PYTHONEGINEMANAGER
 
@@ -109,6 +149,18 @@ Native memory allocation (mmap) failed to map 4294967296 bytes for committing re
 
 
 tail -200 logs/linkis.log
+
+
+
+# 前端部署
+
+```
+mkdir -p /appcom/Install/DSS/FRONT
+unzip -d /appcom/Install/DSS/FRONT wedatasphere-dss-web-0.6.0-dist.zip
+```
+
+
+
 
 
 
