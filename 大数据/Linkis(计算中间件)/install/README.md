@@ -7,6 +7,38 @@ https://github.com/WeBankFinTech/Linkis
 >logs/start.log 2>logs/error.log
 ```
 
+
+
+curator-client 版本更新到4.0.1
+
+
+
+```
+#JDK
+export JAVA_HOME=/usr/java/jdk1.8.0_181-amd64/
+#CDH
+CDH_HOME=/opt/cloudera/parcels/CDH-5.16.2-1.cdh5.16.2.p0.8/
+#HADOOP  
+export HADOOP_HOME=$CDH_HOME/lib/hadoop
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+#Hive
+export HIVE_HOME=$CDH_HOME/lib/hive
+export HIVE_CONF_DIR=$HIVE_HOME/conf
+#Spark
+export SPARK_HOME=$CDH_HOME/lib/spark
+export SPARK_CONF_DIR=$SPARK_HOME/bin/spark-submit
+export PYSPARK_ALLOW_INSECURE_GATEWAY=1  # Pyspark必须加的参数
+
+
+```
+
+
+
+
+
+
+
+
 组件| 是否安装| 说明
 -|-|-
 APPJOINTENTRANCE| (已安装)| DSS
