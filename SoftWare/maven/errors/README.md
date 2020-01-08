@@ -8,3 +8,20 @@
 mvn clean install -Dmaven.test.skip=true
 ```
 
+3. maven 不能下载jar包 jar.lastUpdated
+
+原因: 该版本的jar包在中央仓库没有
+
+解决办法: 更改maven资源库,从新下载jar包
+
+在 maven 的 settings.xml文件中添加如下配置
+```
+	   <mirrors>
+			<mirror>
+			      <id>mirrorId</id>
+			      <mirrorOf>repositoryId</mirrorOf>
+			      <name>Human Readable Name for this Mirror.</name>
+			      <url>http://mvnrepository.com/</url>
+		    </mirror>
+	   </mirrors>
+```
