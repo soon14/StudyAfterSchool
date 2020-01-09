@@ -1,14 +1,14 @@
 
 [安装文档](https://github.com/azkaban/azkaban)
 
-# 解压
+# 下载源码 解压
 
 ```
 tar zxvf **.tar.gz -C /opt/azkaban 
 unzip -d /opt/azkaban **.zip
 ```
 # 编译
-
+## 注意编译跳过测试
 ```
 跳过测试
 ./gradlew clean
@@ -204,7 +204,7 @@ cp -r azkaban-web-server-0.1.0-SNAPSHOT/plugins azkaban-exec-server-0.1.0-SNAPSH
 ./bin/start-web.sh >logs/start.log 2>logs/error.log
 ```
 
-error 
+# error总结
 1. lineNumber: 1; columnNumber: 1; Content is not allowed in prolog.
 
 azkaban-users.xml 文件 开头添加(手动输入)
@@ -236,15 +236,15 @@ azkaban-users.xml 文件 开头添加(手动输入)
 
 
 
-1. Could not find Linker 'g++' in system path
+4. Could not find Linker 'g++' in system path
 
 >yum install -y gcc-c++*
 
-2. Cannot run program "git" (in directory "/opt/azkaban/azkaban-master"): error=2, No such file or directory
+5. Cannot run program "git" (in directory "/opt/azkaban/azkaban-master"): error=2, No such file or directory
 
 > yum install git 
 
-3. azkaban.utils.UtilsTest > testValidCronExpressionV FAILED
+6. azkaban.utils.UtilsTest > testValidCronExpressionV FAILED
 
 跳过测试
 ./gradlew clean
