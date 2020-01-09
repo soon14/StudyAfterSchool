@@ -1,14 +1,14 @@
 
 [安装文档](https://github.com/azkaban/azkaban)
 
-# 解压
+# 下载源码 解压
 
 ```
 tar zxvf **.tar.gz -C /opt/azkaban 
 unzip -d /opt/azkaban **.zip
 ```
 # 编译
-
+## 注意编译跳过测试
 ```
 跳过测试
 ./gradlew clean
