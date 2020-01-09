@@ -222,20 +222,13 @@ olcRootPW: {SSHA}Bz3GE/98rwk3cEOEDnpTKMsvNSBPYm40
 systemctl start slapd  
 systemctl status slapd
 
-# [CURD]()
+# [CURD](https://github.com/wjn0918/Study/blob/master/SoftWare/LDAP/CRUD.md)
 
 
 
 # [客户端安装](http://www.ldapadmin.org/download/ldapadmin.html)
 
 # [客户端使用](https://cloud.tencent.com/developer/article/1380076)
-
-
-
-
-
-
-
 
 
 
