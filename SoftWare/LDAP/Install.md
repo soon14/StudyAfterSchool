@@ -222,40 +222,13 @@ olcRootPW: {SSHA}Bz3GE/98rwk3cEOEDnpTKMsvNSBPYm40
 systemctl start slapd  
 systemctl status slapd
 
-# 测试 ROOT 搜索
-
-ldapsearch  -xWD 'cn=admin,dc=wjn,dc=com' -b "dc=wjn,dc=com"
+# [CURD]()
 
 
-# 建立企业的目录结构
 
-注意后面不能有空格
+# [客户端安装](http://www.ldapadmin.org/download/ldapadmin.html)
 
-    vim example.ldif
-```
-# root node
-dn: dc=wjn,dc=com
-dc: wjn
-o:  wjn.com
-objectClass: top
-objectClass: dcObject
-objectclass: organization
-
-# admin 
-dn: cn=admin,dc=wjn,dc=com 
-objectClass: organizationalRole
-cn: admin
-description: Directory Manager
-
-# beijing 
-dn: uid=zhang3,ou=beijing,dc=wjn,dc=com
-ou: beijing
-objectClass: organizationalUnit
-#这里同样要注意空行，每个dn要空一行，不能多也不能少。
-```
-* 导入目录结构
-
-    ldapadd -x -D cn=admin,dc=wjn,dc=com -W -f example.ldif 
+# [客户端使用](https://cloud.tencent.com/developer/article/1380076)
 
 
 
@@ -266,5 +239,5 @@ objectClass: organizationalUnit
 
 
 
-[参考地址](https://www.cnblogs.com/HIBIKILinux/p/9799408.html)
-https://www.cnblogs.com/lfdblog/p/9798004.html
+[参考地址1](https://www.cnblogs.com/HIBIKILinux/p/9799408.html)  
+[参考地址2](https://www.cnblogs.com/lfdblog/p/9798004.html)
