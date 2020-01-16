@@ -1,12 +1,12 @@
 https://docs.ansible.com/ansible/latest/modules/yum_module.html?highlight=yum
 
-# 安装jdk
+# ??jdk
 
 ```
 ---
 - hosts: bigdata
   tasks:
-  - name: 安装jdk
+  - name: installjdk
     yum:
       name: "{{ packages }}"
     vars:
