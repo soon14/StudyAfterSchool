@@ -13,6 +13,7 @@ import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
 
 依赖包
+
 <dependency>
 <groupId>commons-httpclient</groupId>
 <artifactId>commons-httpclient</artifactId>
@@ -22,3 +23,9 @@ import org.apache.commons.httpclient.HttpMethod;
 2. Caused by: java.lang.ClassNotFoundException: org.eclipse.jetty.util.ProcessorUtils
 
 jetty-util-9.3.25.v20180904.jar 需要升级到 jetty-util-9.4.11.v20180605.jar
+
+
+
+3. java.lang.NoClassDefFoundError: Lorg/apache/hadoop/hive/ql/plan/TableDesc;
+
+集群运行spark sql缺失hive包，将hive依赖包添加到spark路径下(http://www.bubuko.com/infodetail-930271.html)

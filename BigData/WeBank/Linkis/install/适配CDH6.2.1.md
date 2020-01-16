@@ -53,6 +53,21 @@ linkis-hive-engine
                     <artifactId>*</artifactId>
                 </exclusion>
 
+    hive-hbase-handler
+
+                    <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+
+
+linkis-hive-entrance
+
+
+
+
+
+
 
 linkis-metadata
 
@@ -97,3 +112,15 @@ hadoop
 hive
 
 2.1.1-cdh6.2.1
+
+
+
+排除assembly中的依赖
+
+    <exclude>org.eclipse.jetty*</exclude>
+
+
+
+1. 提交hive  java.lang.ClassNotFoundException: org.apache.hadoop.hive.ql.plan.TableDesc
+
+移除jasper-相关包，还有javax.servlet.jsp相关包
