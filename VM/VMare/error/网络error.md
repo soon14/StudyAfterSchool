@@ -18,3 +18,11 @@ systemctl stop network
 systemctl start network
 systemctl enable  network
 ```
+
+
+
+4. destination host unreachable
+
+ping 8.8.8.8 
+
+如果接受不到数据则网关设置错误，调整网关和宿主机的Vmware 8 的网关一致
