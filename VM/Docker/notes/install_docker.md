@@ -1,4 +1,4 @@
-https://www.funtl.com/zh/docs-docker/Ubuntu-%E5%AE%89%E8%A3%85-Docker.html#%E4%BD%BF%E7%94%A8-apt-%E5%AE%89%E8%A3%85
+[参考地址](https://www.funtl.com/zh/docs-docker/Ubuntu-%E5%AE%89%E8%A3%85-Docker.html#%E4%BD%BF%E7%94%A8-apt-%E5%AE%89%E8%A3%85)
 
 
 
@@ -37,6 +37,7 @@ https://www.funtl.com/zh/docs-docker/Ubuntu-%E5%AE%89%E8%A3%85-Docker.html#%E4%B
 
     $ docker run hello-world
 
+```
 Unable to find image 'hello-world:latest' locally
 latest: Pulling from library/hello-world
 ca4f61b1923c: Pull complete
@@ -63,6 +64,8 @@ Share images, automate workflows, and more with a free Docker ID:
 
 For more examples and ideas, visit:
  https://docs.docker.com/engine/userguide/
+
+```
 若能正常输出以上信息，则说明安装成功。
 
 # 镜像加速
@@ -87,8 +90,18 @@ For more examples and ideas, visit:
 
 注意：如果您之前查看旧教程，修改了 docker.service 文件内容，请去掉您添加的内容（--registry-mirror=https://registry.docker-cn.com），这里不再赘述。
 
+# 查看镜像是否配置成功
 
-# 添加内核参数
+    docker info 
+
+出现下面内容跟表示配置成功
+```
+Registry Mirrors:
+    https://registry.docker-cn.com/
+```        
+
+
+# *添加内核参数
 
 默认配置下，如果在 CentOS 使用 Docker CE 看到下面的这些警告信息：
 
