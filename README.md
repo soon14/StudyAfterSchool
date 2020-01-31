@@ -4,7 +4,7 @@
 ## [Excel使用](https://github.com/wjn0918/Study/tree/master/EXECL)
 ## [Idea(开发工具使用)](https://github.com/wjn0918/Study/tree/master/Idea)
 ## [OS(操作系统)](https://github.com/wjn0918/Study/tree/master/OS)
-## [Database(数据库)](https://github.com/wjn0918/Study/tree/master/database)
+## [Database(数据库)](https://github.com/wjn0918/Study/tree/master/Database)
 ## [SoftWare(工作中使用的软件)](https://github.com/wjn0918/Study/tree/master/SoftWare)
 ## [Front(前端学习)](https://github.com/wjn0918/Study/tree/master/Front)
 ## [Pro(项目)](https://github.com/wjn0918/Study/tree/master/Pro)
