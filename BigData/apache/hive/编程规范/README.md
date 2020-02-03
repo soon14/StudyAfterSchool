@@ -1,0 +1,13 @@
+1. 将hive设置为“strict(严格)”模式，这样如果对分区表进行查询而WHERE 子句没有加分区过滤的话，将会禁止提交这个任务，也可按下面语句将属性值设置为nostrict（非严格）
+
+set hive.mapred.mode=strict;
+
+set hive.mapred.more=nostrict;
+
+2. 配置Hadoop回收站功能
+
+删除的数据会转移到/user/$USER/.Trash 目录中
+该功能默认是关闭的
+
+配置
+fs.trash.interval  回收站的检查点时间间隔，单位为分钟  1440（24小时）

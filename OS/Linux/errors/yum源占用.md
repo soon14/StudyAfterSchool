@@ -1,0 +1,1 @@
+sudo rm -rf /var/run/yum.pid

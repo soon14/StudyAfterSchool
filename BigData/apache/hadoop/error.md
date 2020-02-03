@@ -1,0 +1,1 @@
+HADOOP_HOME and hadoop.home.dir are unset.
