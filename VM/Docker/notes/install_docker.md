@@ -88,7 +88,6 @@ For more examples and ideas, visit:
     $ sudo systemctl daemon-reload
     $ sudo systemctl restart docker
 
-注意：如果您之前查看旧教程，修改了 docker.service 文件内容，请去掉您添加的内容（--registry-mirror=https://registry.docker-cn.com），这里不再赘述。
 
 # 查看镜像是否配置成功
 

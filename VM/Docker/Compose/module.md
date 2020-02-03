@@ -21,3 +21,24 @@ volumes:
 
 [参考地址](https://blog.csdn.net/u010931295/article/details/100098205)
 
+
+# env_file
+
+从文件中获取环境变量，可以为单独的文件路径或列表。
+
+如果通过 docker-compose -f FILE 方式来指定 Compose 模板文件，则 env_file 中变量的路径会基于模板文件路径。
+
+如果有变量名称与 environment 指令冲突，则按照惯例，以后者为准。
+
+env_file: .env
+
+env_file:
+  - ./common.env
+  - ./apps/web.env
+  - /opt/secrets.env
+环境变量文件中每一行必须符合格式，支持 # 开头的注释行。
+
+```
+# common.env: Set development environment
+PROG_ENV=development
+```
