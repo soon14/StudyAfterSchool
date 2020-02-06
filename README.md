@@ -21,6 +21,16 @@ controller| tableName
 -|-
 /menu| 菜单表
 
+__注意：__ 
+
+
+String -> bean -> 处理 -> String 
+
+
+* 添加图片
+
+![添加项目图片](/Images/Me.jpg)
+
 
 
 

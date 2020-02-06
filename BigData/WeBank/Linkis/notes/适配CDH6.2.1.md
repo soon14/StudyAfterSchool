@@ -124,3 +124,18 @@ hive
 1. 提交hive  java.lang.ClassNotFoundException: org.apache.hadoop.hive.ql.plan.TableDesc
 
 移除jasper-相关包，还有javax.servlet.jsp相关包
+
+
+
+    <repositories>
+        <repository>
+            <id>cloudera</id>
+            <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
