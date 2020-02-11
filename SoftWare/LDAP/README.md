@@ -104,3 +104,15 @@ Entry:Directry中最基本的信息单元，Entry中所包含的信息描述了�
 
 
 https://www.cnblogs.com/wilburxu/p/9174353.html
+
+
+
+# 
+
+ldap  用户与linux用户是绑定的
+使用migrationtools自动生成ldif文件进行用户添加
+
+tail -n 1 /etc/passwd > system  
+/usr/share/migrationtools/migrate_passwd.pl system people.ldif  
+ tail -n 1 /etc/group > group  
+ /usr/share/migrationtools/migrate_group.pl group group.ldif 

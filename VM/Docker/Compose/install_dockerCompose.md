@@ -8,7 +8,7 @@
 
 ## 添加权限
 
-    chmod +x /usr/local/bin/docker-compose
+    chmod +x /usr/  /bin/docker-compose
 
 
 # 2. 手动安装

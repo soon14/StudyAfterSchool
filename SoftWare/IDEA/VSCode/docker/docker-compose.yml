@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  code-server:
+    container_name: code-server
+    image: codercom/code-server
+    ports:
+      - 8080:8080
+    volumes:
+      - "/usr/local/vscode/project:/home/coder/project"
+      - "/usr/local/vscode/.local/share/code-server:/home/coder/.local/share/code-server"
+    environment:
+      - PASSWORD:123456

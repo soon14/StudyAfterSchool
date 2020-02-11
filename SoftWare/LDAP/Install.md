@@ -2,7 +2,7 @@
 
 ## 安装
 
-> yum -y install openldap openldap-servers openldap-clients openldap-devel db4 db4-devel  pam_ldap nss-pam-ldapd
+    yum -y install openldap openldap-servers openldap-clients openldap-devel db4 db4-devel  pam_ldap nss-pam-ldapd
 
 
 ## 配置
@@ -15,6 +15,7 @@
         rm -f  /var/lib/ldap/*  
         cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG  
         chown -R ldap:ldap /var/lib/ldap
+
 * 准备密码
         
     slappasswd
@@ -22,14 +23,16 @@
     New password:
 
     Re-enter new password: #123456
-
-{SSHA}Bz3GE/98rwk3cEOEDnpTKMsvNSBPYm40
+    
+{SSHA}USua/StMDEDZR6oPm2Xrgzna1UPGNewl
 
 * 拷贝默认配置文件
 
         cp /usr/share/openldap-servers/slapd.ldif ./slapd.ldif 
 
-<font color=red>进行适当修改,记得注销 tls 相关的配置,否则会报错啊!!! </font>
+**进行适当修改,记得注销 tls 相关的配置,否则会报错啊!!!**
+
+134 144 145
 
 ```
 #
@@ -222,7 +225,7 @@ olcRootPW: {SSHA}Bz3GE/98rwk3cEOEDnpTKMsvNSBPYm40
 systemctl start slapd  
 systemctl status slapd
 
-# [CURD](https://github.com/wjn0918/Study/blob/master/SoftWare/LDAP/CRUD.md)
+# [CURD](/Study/blob/master/SoftWare/LDAP/CRUD.md)
 
 
 

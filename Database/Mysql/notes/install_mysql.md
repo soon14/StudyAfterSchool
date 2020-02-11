@@ -7,30 +7,41 @@ https://downloads.mysql.com/archives/community/
 rpm -ivh **.rpm
 
 
-shutdown -r now
+1. 移除mariadb依赖
+    
+    yum remove mariadb-libs-*.el7.x86_64
 
-rpm -ivh mysql-community-common-5.7.25-1.el7.x86_64.rpm 
-rpm -ivh mysql-community-libs-5.7.25-1.el7.x86_64.rpm 
-rpm -ivh mysql-community-client-5.7.25-1.el7.x86_64.rpm 
-rpm -ivh mysql-community-server-5.7.25-1.el7.x86_64.rpm
-rpm -ivh mysql-community-libs-compat-5.7.29-1.el7.x86_64.rpm
-rpm -ivh mysql-community-devel-5.7.29-1.el7.x86_64.rpm
-rpm -ivh mysql-community-embedded-5.7.29-1.el7.x86_64.rpm
-rpm -ivh mysql-community-embedded-compat-5.7.29-1.el7.x86_64.rpm
-rpm -ivh mysql-community-embedded-devel-5.7.29-1.el7.x86_64.rpm
+2. 上传依赖包解压并安装
 
-yum remove mariadb-libs-1:5.5.64-1.el7.x86_64
+    rpm -ivh mysql-community-common-5.7.29-1.el7.x86_64.rpm 
+    rpm -ivh mysql-community-libs-5.7.29-1.el7.x86_64.rpm 
+    rpm -ivh mysql-community-client-5.7.29-1.el7.x86_64.rpm 
+    rpm -ivh mysql-community-server-5.7.29-1.el7.x86_64.rpm
+    rpm -ivh mysql-community-libs-compat-5.7.29-1.el7.x86_64.rpm
+    rpm -ivh mysql-community-devel-5.7.29-1.el7.x86_64.rpm
+    rpm -ivh mysql-community-embedded-5.7.29-1.el7.x86_64.rpm
+    rpm -ivh mysql-community-embedded-compat-5.7.29-1.el7.x86_64.rpm
+    rpm -ivh mysql-community-embedded-devel-5.7.29-1.el7.x86_64.rpm
 
 
-A temporary password is generated for root@localhost:
+
+
+
 
 # 设置密码等级
 
+    systemctl start mysqld
+
 ## 查看初始密码
 
-    more /var/log/mysqld.log
+A temporary password is generated for root@localhost:
+
+    more /var/log/mysqld.log | grep root@localhost
+
+Lon4rswe:Js:
 
 ## 更改初始密码
+
 ALTER USER USER() IDENTIFIED BY 'Wjn@@1234';
 
 ## 设置密码等级
@@ -69,3 +80,10 @@ grant all on *.* to root@'%' identified by '123456' with grant option;
 flush privileges;
 
 
+
+
+# 错误
+
+1. /usr/bin/perl is needed by mysql-community-server
+
+        yum -y install perl

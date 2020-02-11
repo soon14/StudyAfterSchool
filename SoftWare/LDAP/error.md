@@ -19,3 +19,10 @@ objectClass: （空格）organizationalUnit（结尾无空格）
 解决LDAP出现ldap_bind: Invalid credentials (49)错误
 
 https://www.zhukun.net/archives/7969
+
+
+
+
+3. LDAP: error code 34 - invalid DN
+
+ldap客户端添加用户 objectclass:value #0 invalid per syntax
