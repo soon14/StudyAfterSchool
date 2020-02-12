@@ -157,24 +157,6 @@ under the License.
           <url>http://my.repository.com/repo/path</url>
         </mirror>
          -->
-
-        <!-- 阿里云仓库 -->
-        <mirror>
-            <id>alimaven</id>
-            <mirrorOf>central</mirrorOf>
-            <name>aliyun maven</name>
-            <url>http://maven.aliyun.com/nexus/content/repositories/central/</url>
-        </mirror>
-
-        <mirror>
-            <id>nexus-aliyun</id>
-            <mirrorOf>*,!cloudera</mirrorOf>
-            <name>Nexus aliyun</name>
-            <url>
-                http://maven.aliyun.com/nexus/content/groups/public
-            </url>
-        </mirror>
-
     </mirrors>
 
     <!-- profiles
