@@ -1,0 +1,1 @@
+注释掉.bashrc 中的alias cp 行

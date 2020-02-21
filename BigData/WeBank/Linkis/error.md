@@ -29,3 +29,35 @@ jetty-util-9.3.25.v20180904.jar 需要升级到 jetty-util-9.4.11.v20180605.jar
 3. java.lang.NoClassDefFoundError: Lorg/apache/hadoop/hive/ql/plan/TableDesc;
 
 集群运行spark sql缺失hive包，将hive依赖包添加到spark路径下(http://www.bubuko.com/infodetail-930271.html)
+
+ClassNotFoundException: org.apache.spark.SparkConf
+
+
+
+
+# spark
+
+1. 报找不到hive相关jar包
+
+只将hive-exec* 相关jar包放到spark依赖中
+
+2. 报404 
+
+只将hive-exec* 相关jar包放到spark依赖中，多余hivejar包会报异常
+
+# work-flow
+
+1. Failed to execute node of hql java.lang.NoSuchMethodError: org.jboss.netty.handler.codec.http.setHeader(Ljava/lang/String;Ljava/lang/Object;)V
+
+async-http-client-1.8.10.jar 问题 netty* 问题
+
+netty 版本过高，使用netty-3.2.4.Final.jar
+
+        <!-- https://mvnrepository.com/artifact/org.jboss.netty/netty -->
+        <dependency>
+            <groupId>org.jboss.netty</groupId>
+            <artifactId>netty</artifactId>
+            <version>3.2.4.Final</version>
+        </dependency>
+
+

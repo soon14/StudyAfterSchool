@@ -24,7 +24,26 @@ rpm -ivh **.rpm
     rpm -ivh mysql-community-embedded-devel-5.7.29-1.el7.x86_64.rpm
 
 
+systemctl start mysqld
+more /var/log/mysqld.log | grep root@localhost
 
+
+    ALTER USER USER() IDENTIFIED BY 'Wjn@@1234';
+    set global validate_password_policy=0;
+    set global validate_password_length=1;
+    set global validate_password_mixed_case_count=0;
+    set global validate_password_number_count=3;
+    ALTER USER USER() IDENTIFIED BY '123456';
+    grant all on *.* to root@'%' identified by '123456' with grant option;
+    flush privileges;
+
+
+# 创建数据库和用户
+
+    create database linkis default character set utf8;
+    CREATE USER 'linkis'@'%' IDENTIFIED BY '123456';
+    GRANT ALL PRIVILEGES ON linkis. * TO 'linkis'@'%' IDENTIFIED by '123456';
+    FLUSH PRIVILEGES;
 
 
 
@@ -38,7 +57,7 @@ A temporary password is generated for root@localhost:
 
     more /var/log/mysqld.log | grep root@localhost
 
-Lon4rswe:Js:
+xp!JlcTfF2(D
 
 ## 更改初始密码
 

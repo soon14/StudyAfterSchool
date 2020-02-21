@@ -6,6 +6,7 @@ docker run -dit \
 --env LDAP_TLS=false \
 --env LDAP_ORGANISATION="fd" \
 --env LDAP_DOMAIN="fd.com" \
+--env LDAP_BASE_DN="dc=fd,dc=com" \
 --env LDAP_ADMIN_PASSWORD="123456" \
 --env LDAP_CONFIG_PASSWORD="123456" \
 --restart always \

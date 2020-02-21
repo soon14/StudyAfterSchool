@@ -29,3 +29,7 @@ pom.xml文件中添加
         </pluginRepository>
     </pluginRepositories>
 ```
+
+# assembly打包失败
+
+注释掉distribution.xml警告中的类

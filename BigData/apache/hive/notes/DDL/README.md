@@ -119,3 +119,6 @@ STORED AS INPUTFORMAT...OUTPUTFORMAT.. --分别指定输入格式和输出格式
 ## 修改表名
 
 ALTER TABLE log_messages RENAME TO logmsgs;
+
+
+alter table employee set serdeproperties('filed.delim'=',')
