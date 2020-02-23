@@ -1,4 +1,11 @@
-# spark学习笔记
+<!--
+ * @Author: wjn
+ * @Date: 2020-01-31 10:00:10
+ * @LastEditors: wjn
+ * @LastEditTime: 2020-02-23 11:41:18
+ -->
+
+# 大数据计算组件（批处理，流处理，机器学习）
 
 # spark vs MR
 spark和MR都会将Shuffle的结果写入磁盘，不同的是，spark是将结果写入到本地磁盘，MR是写入到hdfs  
