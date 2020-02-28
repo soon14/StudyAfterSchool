@@ -107,7 +107,7 @@ https://www.cnblogs.com/wilburxu/p/9174353.html
 
 
 
-# 
+# 将linux用户与ldap进行绑定
 
 ldap  用户与linux用户是绑定的
 使用migrationtools自动生成ldif文件进行用户添加

@@ -1,3 +1,11 @@
+<!--
+ * @Author: wjn
+ * @Date: 2020-02-19 10:18:36
+ * @LastEditors: wjn
+ * @LastEditTime: 2020-02-28 10:27:12
+ -->
+yum install migrationtools -y
+
 # 创建组
 
 groupadd bd
