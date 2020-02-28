@@ -1,6 +1,14 @@
+<!--
+ * @Author: wjn
+ * @Date: 2020-01-31 10:00:10
+ * @LastEditors: wjn
+ * @LastEditTime: 2020-02-28 19:00:38
+ -->
 # 创建工程
 
 1. add scheduler project failederrCode: 90019 ,desc: Connect to 172.16.42.10:8091 [/172.16.42.10] failed: Connection refused (Connection refused) ,ip: slave2 ,port: 9004 ,serviceKind: dss-server"
+
+dss-server 的conf 目录 有个token.properties 你添加下用户，另外azkaban的配置中也要添加对应的用户
 
 DSS-SERVER需要配置azkaban
 

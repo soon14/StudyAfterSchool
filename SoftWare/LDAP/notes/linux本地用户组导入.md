@@ -2,9 +2,10 @@
  * @Author: wjn
  * @Date: 2020-02-19 10:18:36
  * @LastEditors: wjn
- * @LastEditTime: 2020-02-28 10:27:12
+ * @LastEditTime: 2020-02-28 11:04:12
  -->
 yum install migrationtools -y
+yum install openldap-clients -y
 
 # 创建组
 
@@ -16,13 +17,13 @@ useradd -g bd wjn
 
 # 导出用户
 
-tail -1 /etc/passwd > people
+tail -1 /etc/passwd > people  
 tail -1 /etc/group > group
 
 # 使用migrationtools工具生成用户和组ldif文件
 
-/usr/share/migrationtools/migrate_passwd.pl people people.ldif
-/usr/share/migrationtools/migrate_group.pl group group.ldif
+/usr/share/migrationtools/migrate_passwd.pl people people.ldif  
+/usr/share/migrationtools/migrate_group.pl group group.ldif  
 
 # 安装客户端
 
