@@ -1,6 +1,25 @@
-LDAP（Light Directory Access Portocol），它是基于X.500标准的轻量级目录访问协议。
+<!--
+ * @Author: wjn
+ * @Date: 2020-01-31 10:00:10
+ * @LastEditors: wjn
+ * @LastEditTime: 2020-02-29 10:24:57
+ -->
+**LDAP（Light Directory Access Portocol），它是基于X.500标准的轻量级目录访问协议**
 
-# 产生背景
+# [产生背景](#1)
+# [概念](#2)
+# [基础操作](notes/基础操作.md)
+
+
+
+
+
+
+
+
+
+
+# <span id = 1>产生背景</span>
 
 1. 我们日常的办公系统是不是有多个？
 
@@ -14,7 +33,7 @@ LDAP（Light Directory Access Portocol），它是基于X.500标准的轻量级�
 
 **So LDAP统一认证服务 产生**
 
-# 概念
+# <span id=2>概念</span>
 
 ## 什么是LDAP？
 
@@ -106,13 +125,9 @@ Entry:Directry中最基本的信息单元，Entry中所包含的信息描述了�
 https://www.cnblogs.com/wilburxu/p/9174353.html
 
 
+# docker安装LDAP
+
 
 # 将linux用户与ldap进行绑定
 
-ldap  用户与linux用户是绑定的
-使用migrationtools自动生成ldif文件进行用户添加
 
-tail -n 1 /etc/passwd > system  
-/usr/share/migrationtools/migrate_passwd.pl system people.ldif  
- tail -n 1 /etc/group > group  
- /usr/share/migrationtools/migrate_group.pl group group.ldif 
