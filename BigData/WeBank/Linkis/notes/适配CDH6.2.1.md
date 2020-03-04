@@ -1,3 +1,58 @@
+
+# 适配CDH
+
+# 编译
+
+**版本修改**
+
+    <hadoop.version>3.0.0-cdh6.2.1</hadoop.version>
+    <hive.version>2.1.1-cdh6.2.1</hive.version>
+
+
+    linkis-ujes-spark-engine模块
+
+    <spark.version>2.4.0-cdh6.2.1</spark.version>
+**添加cloudera库**
+
+    <repositories>
+        <repository>
+            <id>cloudera</id>
+            <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+**更改配置**
+
+conf/db.sh
+
+    MYSQL_HOST=192.168.10.190
+    MYSQL_PORT=3306
+    MYSQL_DB=linkis
+    MYSQL_USER=linkis
+    MYSQL_PASSWORD=123456
+
+conf/config.sh
+
+    gateway端口更改为9101
+
+
+# 更改ldap逻辑
+
+com.webank.wedatasphere.linkis.common.utils.LDAPUtils  
+适配ldap前端，只需传入用户名即可，**baseDN需要定位到ou=People**
+>val bindDN = userID 
+
+更改为
+> val bindDN = s"uid=$userID," + baseDN
+
+# old
+
                 <exclusion>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>*</artifactId>

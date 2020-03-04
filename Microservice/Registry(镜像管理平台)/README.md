@@ -1,6 +1,17 @@
-# [安装Registry](https://github.com/wjn0918/Study/blob/master/Microservice/Registry(%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0)/notes/install.md)
+<!--
+ * @Author: wjn
+ * @Date: 2020-01-31 23:24:34
+ * @LastEditors: wjn
+ * @LastEditTime: 2020-03-03 13:58:13
+ -->
+**镜像管理平台**
 
-# [安装Registry webUI](https://github.com/wjn0918/Study/blob/master/Microservice/Registry(%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0)/Frontend/docker-compose.yml)
+
+服务端web ui 一般使用python开发，Java较重
+
+# [安装Registry后台服务及webUI](notes/install.md)
+
+# [常用操作](notes/common.md)
 
 
 

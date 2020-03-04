@@ -1,31 +1,39 @@
-https://registry.hub.docker.com/_/registry
+<!--
+ * @Author: wjn
+ * @Date: 2020-01-31 19:50:33
+ * @LastEditors: wjn
+ * @LastEditTime: 2020-03-03 13:53:42
+ -->
 
-# 配置registry 客户端
+# docker-registry(docker-compose.yml)
 
-配置/etc/docker/daemon.json
-添加
+```
+version: '3'
+services: 
+  registry:
+    restart: always
+    image: registry
+    container_name: registry
+    ports: 
+        - 5000:5000
+    volumes:
+        - /registry/data:/var/lib/registry
+```
 
-"insecure-registries": [
-    "192.168.137.100:5000"
-]
+# docker-registry-front(docker-compose.yml)
 
-重启docker
-
-systemctl restart docker
-
-检查是否配置成功
-
-docker info 
-
-# 上传镜像到私服
-
-    docker tag tomcat 192.168.137.100:5000/tomcat
-
-tag  --标记本地tomcat镜像
-192.168.137.100:5000  --私服地址（官方默认添加ip和端口）
-
-    docker push 192.168.137.100:5000/tomcat
-
-# 查看私服镜像
-    
-http://master:5000/v2/tomcat/tags/list
+```
+version: '3'
+services: 
+    frontend:
+        restart: always
+        image: konradkleine/docker-registry-frontend:v2
+        ports:
+            - 80:80
+        volumes:
+          - ./certs/frontend.crt:/etc/apache2/server.crt:ro
+          - ./certs/frontend.key:/etc/apache2/server.key:ro
+        environment:
+            - ENV_DOCKER_REGISTRY_HOST=192.168.137.100
+            - ENV_DOCKER_REGISTRY_PORT=5000
+```

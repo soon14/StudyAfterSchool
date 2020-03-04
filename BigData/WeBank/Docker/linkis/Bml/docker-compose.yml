@@ -1,0 +1,21 @@
+version: '3'
+services: 
+  linkis-bml:
+    restart: always
+    image: linkis-bml
+    container_name: linkis-bml
+    extra_hosts:
+        - "eureka.fd.com:192.168.137.60"
+    volumes: 
+        - /usr/local/linkis/linkis-bml/logs:/usr/local/linkis-bml/logs
+    
+  linkis-bml1:
+    restart: always
+    image: linkis-bml
+    container_name: linkis-bml1
+    extra_hosts:
+        - "eureka.fd.com:192.168.137.60"
+    volumes: 
+        - /usr/local/linkis/linkis-bml1/logs:/usr/local/linkis-bml/logs
+
+        

@@ -1,0 +1,11 @@
+version: '3'
+services: 
+  linikis:
+    restart: always
+    image: openjdk
+    container_name: linkis
+    # ports: 
+    #   - 8080:8080
+    # volumes:
+    #   - /usr/local/docker/tomcat/ROOT:/usr/local/tomcat/webapps/ROOT
+

@@ -1,3 +1,10 @@
+<!--
+ * @Author: wjn
+ * @Date: 2020-03-03 12:42:16
+ * @LastEditors: wjn
+ * @LastEditTime: 2020-03-03 12:42:32
+ -->
+
 docker run -p 3306:3306 --name mysql \
 -v /usr/local/docker/mysql/conf:/etc/mysql \
 -v /usr/local/docker/mysql/data:/var/lib/mysql \

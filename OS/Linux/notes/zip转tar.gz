@@ -1,0 +1,4 @@
+将text.zip解压
+　　unzip text.zip　　会得到text文件夹
+将text压缩成tar.gz 　　
+    tar  -czf  text.tar.gz  text　

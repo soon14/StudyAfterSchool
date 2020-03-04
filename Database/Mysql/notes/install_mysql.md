@@ -65,6 +65,12 @@ ALTER USER USER() IDENTIFIED BY 'Wjn@@1234';
 
 ## 设置密码等级
 
+
+		set global validate_password_policy=0;
+		set global validate_password_length=1;
+		set global validate_password_mixed_case_count=0;
+		set global validate_password_number_count=3;
+
 * 密码等级
 select @@validate_password_policy;
 set global validate_password_policy=0;

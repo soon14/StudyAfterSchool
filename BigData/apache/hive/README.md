@@ -2,9 +2,11 @@
  * @Author: wjn
  * @Date: 2020-01-31 10:00:10
  * @LastEditors: wjn
- * @LastEditTime: 2020-02-23 11:25:16
+ * @LastEditTime: 2020-03-03 15:22:04
  -->
-# 数仓
+**数仓**
+
+# [常用操作](notes/common.md)
 
 hive 为“读时模式”
 

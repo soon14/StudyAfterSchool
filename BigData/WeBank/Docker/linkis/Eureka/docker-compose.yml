@@ -1,0 +1,15 @@
+version: '3'
+services: 
+  eureka:
+    restart: always
+    image: eureka
+    container_name: eureka
+    ports: 
+        - 20303:20303
+    extra_hosts:
+        - "eureka.fd.com:127.0.0.1"
+    volumes: 
+        - /usr/local/linkis/eureka/conf:/usr/local/eureka/conf
+        - /usr/local/linkis/eureka/bin:/usr/local/eureka/bin
+        - /usr/local/linkis/eureka/logs:/usr/local/eureka/logs
+        
