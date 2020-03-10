@@ -1,0 +1,12 @@
+version: '3'
+services: 
+  linkis-ujes-spark-enginemanager:
+    restart: always
+    image: linkis-ujes-spark-enginemanager
+    container_name: linkis-ujes-spark-enginemanager
+    ports: 
+        - 9105:9105
+    extra_hosts:
+        - "eureka.fd.com:192.168.137.60"
+    volumes: 
+        - /usr/local/linkis/linkis-ujes-spark-enginemanager/logs:/usr/local/linkis-ujes-spark-enginemanager/logs

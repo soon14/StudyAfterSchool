@@ -4,6 +4,7 @@ services:
     restart: always
     image: openjdk
     container_name: linkis
+    
     # ports: 
     #   - 8080:8080
     # volumes:

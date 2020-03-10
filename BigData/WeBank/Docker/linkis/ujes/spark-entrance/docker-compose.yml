@@ -1,0 +1,12 @@
+version: '3'
+services: 
+  linkis-ujes-spark-entrance:
+    restart: always
+    image: linkis-ujes-spark-entrance
+    container_name: linkis-ujes-spark-entrance
+    ports: 
+        - 9106:9106
+    extra_hosts:
+        - "eureka.fd.com:192.168.137.60"
+    volumes: 
+        - /usr/local/linkis/linkis-ujes-spark-entrance/logs:/usr/local/linkis-ujes-spark-entrance/logs

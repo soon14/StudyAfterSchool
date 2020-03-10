@@ -1,0 +1,12 @@
+version: '3'
+services: 
+  linkis-publicservice:
+    restart: always
+    image: linkis-publicservice
+    container_name: linkis-publicservice
+    ports: 
+        - 9102:9102
+    extra_hosts:
+        - "eureka.fd.com:192.168.137.60"
+    volumes: 
+        - /usr/local/linkis/linkis-publicservice/logs:/usr/local/linkis-publicservice/logs

@@ -1,0 +1,15 @@
+version: '3'
+services: 
+  dss-flow-execution-entrance:
+    restart: always
+    image: flow
+    container_name: dss-flow-execution-entrance
+    ports: 
+        - 9006:9006
+    extra_hosts:
+        - "eureka.fd.com:192.168.137.60"
+    volumes: 
+        # - ./conf:/usr/local/dss-flow-execution-entrance/conf
+        # - ./bin:/usr/local/dss-flow-execution-entrance/bin
+        - ./logs:/usr/local/dss-flow-execution-entrance/logs
+        

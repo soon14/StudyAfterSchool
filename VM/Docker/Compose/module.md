@@ -1,3 +1,9 @@
+<!--
+ * @Author: wjn
+ * @Date: 2020-01-31 11:41:24
+ * @LastEditors: wjn
+ * @LastEditTime: 2020-03-05 13:18:55
+ -->
 [参考地址](https://www.funtl.com/zh/docs-docker/Docker-Compose-%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6.html#extra-hosts)
 
 # volumes 
@@ -19,7 +25,7 @@ volumes:
 
 ```
 
-[参考地址](https://blog.csdn.net/u010931295/article/details/100098205)
+[参考地址](volumns_info.md)
 
 
 # env_file

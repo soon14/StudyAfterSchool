@@ -1,0 +1,15 @@
+version: '3'
+services: 
+  linkis-appjoint-entrance:
+    restart: always
+    image: appjoint
+    container_name: linkis-appjoint-entrance
+    ports: 
+        - 9005:9005
+    extra_hosts:
+        - "eureka.fd.com:192.168.137.60"
+    volumes: 
+        # - ./conf:/usr/local/linkis-appjoint-entrance/conf
+        # - ./bin:/usr/local/linkis-appjoint-entrance/bin
+        - ./logs:/usr/local/linkis-appjoint-entrance/logs
+        

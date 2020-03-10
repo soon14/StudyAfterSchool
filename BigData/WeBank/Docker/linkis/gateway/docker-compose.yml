@@ -1,0 +1,14 @@
+version: '3'
+services: 
+  gateway:
+    restart: always
+    image: wjn0918/webank-linkis:linkis-gateway
+    container_name: linkis-gateway
+    ports: 
+        - 9101:9101
+    extra_hosts:
+        - "eureka.fd.com:192.168.137.60"
+    volumes: 
+        - /usr/local/linkis/linkis-gateway/logs:/usr/local/linkis-gateway/logs
+        - /usr/local/linkis/linkis-gateway/conf:/usr/local/linkis-gateway/conf
+        

@@ -1,0 +1,12 @@
+version: '3'
+services: 
+  linkis-ujes-python-enginemanager:
+    restart: always
+    image: linkis-ujes-python-enginemanager
+    container_name: linkis-ujes-python-enginemanager
+    ports: 
+        - 9109:9109
+    extra_hosts:
+        - "eureka.fd.com:192.168.137.60"
+    volumes: 
+        - /usr/local/linkis/linkis-ujes-python-enginemanager/logs:/usr/local/linkis-ujes-python-enginemanager/logs

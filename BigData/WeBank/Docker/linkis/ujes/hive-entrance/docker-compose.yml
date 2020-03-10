@@ -1,0 +1,12 @@
+version: '3'
+services: 
+  linkis-ujes-hive-entrance:
+    restart: always
+    image: linkis-ujes-hive-entrance
+    container_name: linkis-ujes-hive-entrance
+    ports: 
+        - 9108:9108
+    extra_hosts:
+        - "eureka.fd.com:192.168.137.60"
+    volumes: 
+        - /usr/local/linkis/linkis-ujes-hive-entrance/logs:/usr/local/linkis-ujes-hive-entrance/logs

@@ -1,0 +1,13 @@
+version: '3'
+services: 
+  metadata:
+    restart: always
+    image: linkis-metadata
+    container_name: linkis-metadata
+    ports: 
+        - 9103:9103
+    extra_hosts:
+        - "eureka.fd.com:192.168.137.60"
+    volumes: 
+        - /usr/local/linkis/linkis-metadata/logs:/usr/local/linkis-metadata/logs
+        
