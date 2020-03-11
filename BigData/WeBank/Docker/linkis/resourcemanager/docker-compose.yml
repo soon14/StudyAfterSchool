@@ -1,0 +1,15 @@
+version: '3'
+services: 
+  linkis-resourcemanager:
+    restart: always
+    image: linkis-resourcemanager
+    container_name: linkis-resourcemanager
+    ports: 
+        - 9104:9104
+    extra_hosts:
+        - "eureka.fd.com:192.168.137.60"
+    volumes: 
+        # - ./conf:/usr/local/linkis-resourcemanager/conf
+        # - ./bin:/usr/local/linkis-resourcemanager/bin
+        - ./logs:/usr/local/linkis-resourcemanager/logs
+        

@@ -9,4 +9,5 @@ services:
     extra_hosts:
         - "eureka.fd.com:192.168.137.60"
     volumes: 
-        - /usr/local/linkis/linkis-ujes-hive-entrance/logs:/usr/local/linkis-ujes-hive-entrance/logs
+        - ./conf:/usr/local/linkis-ujes-hive-entrance/conf
+        - ./logs:/usr/local/linkis-ujes-hive-entrance/logs

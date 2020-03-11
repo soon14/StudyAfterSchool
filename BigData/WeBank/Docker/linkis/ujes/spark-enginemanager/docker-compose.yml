@@ -9,4 +9,5 @@ services:
     extra_hosts:
         - "eureka.fd.com:192.168.137.60"
     volumes: 
-        - /usr/local/linkis/linkis-ujes-spark-enginemanager/logs:/usr/local/linkis-ujes-spark-enginemanager/logs
+        - ./logs:/usr/local/linkis-ujes-spark-enginemanager/logs
+        - ./conf:/usr/local/linkis-ujes-spark-enginemanager/conf

@@ -2,7 +2,7 @@
  * @Author: wjn
  * @Date: 2020-01-31 11:41:24
  * @LastEditors: wjn
- * @LastEditTime: 2020-03-05 13:18:55
+ * @LastEditTime: 2020-03-10 15:57:17
  -->
 [参考地址](https://www.funtl.com/zh/docs-docker/Docker-Compose-%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6.html#extra-hosts)
 
@@ -27,6 +27,10 @@ volumes:
 
 [参考地址](volumns_info.md)
 
+```
+    environment:
+      - MYSQL_ROOT_PASSWORD=xxx0209
+```
 
 # env_file
 

@@ -9,4 +9,4 @@ services:
     extra_hosts:
         - "eureka.fd.com:192.168.137.60"
     volumes: 
-        - /usr/local/linkis/linkis-ujes-jdbc-entrance/logs:/usr/local/linkis-ujes-jdbc-entrance/logs
+        - ./logs:/usr/local/linkis-ujes-jdbc-entrance/logs

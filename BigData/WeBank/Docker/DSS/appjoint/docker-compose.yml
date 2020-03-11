@@ -2,7 +2,7 @@ version: '3'
 services: 
   linkis-appjoint-entrance:
     restart: always
-    image: appjoint
+    image: linkis-appjoint-entrance
     container_name: linkis-appjoint-entrance
     ports: 
         - 9005:9005

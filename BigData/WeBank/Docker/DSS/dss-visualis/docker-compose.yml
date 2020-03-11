@@ -1,0 +1,18 @@
+version: '3'
+services: 
+  visualis-server:
+    restart: always
+    image: visualis-server
+    container_name: visualis-server
+    ports: 
+        
+        - 9088:9088
+        - 8088:8088
+    extra_hosts:
+        - "eureka.fd.com:192.168.137.60"
+        - "visualis.fd.com:192.168.137.60"
+    volumes: 
+        - ./conf:/usr/local/visualis-server/conf
+        - ./logs:/usr/local/visualis-server/logs
+        - ./conf.cloudera.hdfs:/usr/local/visualis-server/conf.cloudera.hdfs
+        

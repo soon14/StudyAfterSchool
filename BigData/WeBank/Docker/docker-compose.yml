@@ -1,8 +1,0 @@
-version: "3"
-services:
-   db:
-     image: nginx
-     ports:
-       - "80:80"
-     restart: always
-     container_name: myNginx2

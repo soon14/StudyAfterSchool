@@ -9,5 +9,21 @@ services:
     extra_hosts:
         - "eureka.fd.com:192.168.137.60"
     volumes: 
-        - /usr/local/linkis/linkis-metadata/logs:/usr/local/linkis-metadata/logs
-        
+        - /usr/local/linkis/linkis-metadata/logs:/usr/local/linkis-metadata/logs    
+    
+    environment:
+      - MYSQL_HOST: 192.168.137.70
+      - MYSQL_PORT: 3306
+      - MYSQL_DB: linkis
+      - MYSQL_USER: linkis
+      - MYSQL_PASSWD=123456
+
+      - HIVE_META_HOST=
+      - HIVE_META_PORT=
+      - HIVE_META_DB=
+      - HIVE_META_USER=
+      - HIVE_META_PASSWD=
+
+      - HADOOP_CONF_DIR=
+      - SPARK_CONF_DIR=
+      - HIVE_CONF_DIR=

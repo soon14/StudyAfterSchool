@@ -2,7 +2,7 @@ version: '3'
 services: 
   web:
     restart: always
-    image: dss-front
+    image: wjn0918/webank-linkis:dss-front
     container_name: dss-front
     ports: 
         - 80:80

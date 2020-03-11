@@ -1,0 +1,14 @@
+version: '3'
+services: 
+  qualitis:
+    restart: always
+    image: qualitis
+    container_name: qualitis
+    ports:         
+        - 8090:8090
+    extra_hosts:
+        - "eureka.fd.com:192.168.137.60"
+    volumes: 
+        # - ./conf:/usr/local/qualitis-0.7.0/conf
+        - ./logs:/usr/local/qualitis-0.7.0/logs
+        

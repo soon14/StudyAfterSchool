@@ -2,7 +2,7 @@ version: '3'
 services: 
   dss-flow-execution-entrance:
     restart: always
-    image: flow
+    image: dss-flow-execution-entrance
     container_name: dss-flow-execution-entrance
     ports: 
         - 9006:9006
