@@ -2,11 +2,10 @@ version: '3'
 services: 
   visualis-server:
     restart: always
-    image: visualis-server
+    image: wjn0918/webank-linkis:visualis-server
     container_name: visualis-server
     ports: 
-        
-        - 9088:9088
+        - 9007:9007
         - 8088:8088
     extra_hosts:
         - "eureka.fd.com:192.168.137.60"

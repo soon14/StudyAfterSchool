@@ -2,7 +2,7 @@ version: '3'
 services: 
   dss:
     restart: always
-    image: dss
+    image: wjn0918/webank-linkis:dss-server
     container_name: dss
     ports: 
         - 9004:9004

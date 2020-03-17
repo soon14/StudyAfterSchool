@@ -2,7 +2,7 @@ version: '3'
 services: 
   qualitis:
     restart: always
-    image: qualitis
+    image: wjn0918/webank-linkis:qualitis
     container_name: qualitis
     ports:         
         - 8090:8090
