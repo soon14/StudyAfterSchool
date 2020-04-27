@@ -2,7 +2,7 @@
  * @Author: wjn
  * @Date: 2020-03-01 11:56:01
  * @LastEditors: wjn
- * @LastEditTime: 2020-03-01 15:08:05
+ * @LastEditTime: 2020-03-30 12:02:10
  -->
 
  # 各类文件转换为思维导图
@@ -33,6 +33,8 @@
       input <- paste0(目录, "文件夹")[1]
       mm(from = input, type = "dir")
       mm(from = input, type = "dir", widget_name = "mindrtest.html")
+
+      mm(from = file_path, type = "file", widget_name = "cs.html")
 
    **directory -> mm(目录转mm文件)**
 

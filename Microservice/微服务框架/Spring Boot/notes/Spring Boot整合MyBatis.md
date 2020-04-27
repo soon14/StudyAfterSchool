@@ -74,16 +74,17 @@ jdbc.password=123456
        MyBatis3：豪华版，复杂多条件查询
        MyBatis3Simple：helloWorld -->
     <context id="mysql" targetRuntime="MyBatis3" defaultModelType="flat">
+
+
+        <!--配置tk.mybatis插件-->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.MyMapper"/> <!--继承接口-->
+        </plugin>
+
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true:是;false:否 -->
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
-
-        <!--配置tk.mybatis插件-->
-        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
-            <property name="mappers" value="com.tonghang.configure.BaseMapper"/> <!--继承接口-->
-        </plugin>
-
 
         <jdbcConnection driverClass="${jdbc.driverClass}"
                         connectionURL="${jdbc.connectionURL}"
@@ -91,25 +92,26 @@ jdbc.password=123456
                         password="${jdbc.password}">
         </jdbcConnection>
 
-        <!-- targetProject:生成Entity类的路径 -->
-        <javaModelGenerator targetProject="src/main/java"
-                            targetPackage="com.example.demo.spring.boot.mybatis.entity">
-        </javaModelGenerator>
-
-        <!-- targetProject:XxxMapper.xml映射文件生成的路径 -->
-        <sqlMapGenerator targetProject="/src/main/resources"
-                         targetPackage="mapper">
-        </sqlMapGenerator>
-
-        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL
+      <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL
            和 NUMERIC 类型解析为java.math.BigDecimal -->
         <javaTypeResolver>
             <property name="forceBigDecimals" value="true"/>
         </javaTypeResolver>
 
+        <!-- targetProject:生成Entity类的路径 -->
+        <javaModelGenerator targetProject="src/main/java"
+                            targetPackage="com.fd.spring.cloud.tk.mybatis.entity">
+        </javaModelGenerator>
+
+        <!-- targetProject:XxxMapper.xml映射文件生成的路径 -->
+        <sqlMapGenerator targetProject="src/main/resources"
+                         targetPackage="mapper">
+        </sqlMapGenerator>
+
+  
         <!-- targetPackage：Mapper接口生成的位置 -->
-        <javaClientGenerator targetProject="/src/main/java"
-                             targetPackage="com.example.demo.spring.boot.mybatis.mapper"
+        <javaClientGenerator targetProject="src/main/java"
+                             targetPackage="com.fd.spring.cloud.tk.mybatis.dao"
                              type="XMLMAPPER">
         </javaClientGenerator>
 
@@ -120,4 +122,20 @@ jdbc.password=123456
     </context>
 </generatorConfiguration>
 
+```
+
+
+
+
+# 错误
+
+```
+XML Parser Error on line 46: Ԫ������Ϊ "context" �����ݱ���ƥ�� "(property*,plugin*,commentGenerator?,jdbcConnection,javaTypeResolver?,javaModelGenerator,sqlMapGenerator?,javaClientGenerator?,table+)"��
+```
+
+**注意 : 所有配置一定要放在规定顺序的位置,,mybatis-generator-config中规定配置的顺序** 如下
+
+```
+<!ELEMENT context (property*, plugin*, commentGenerator?, (connectionFactory | jdbcConnection), javaTypeResolver?,
+                         javaModelGenerator, sqlMapGenerator?, javaClientGenerator?, table+)>
 ```

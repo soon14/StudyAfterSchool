@@ -2,7 +2,7 @@
  * @Author: wjn
  * @Date: 2020-03-01 13:06:38
  * @LastEditors: wjn
- * @LastEditTime: 2020-03-01 13:12:31
+ * @LastEditTime: 2020-03-30 11:58:32
  -->
 # R基础操作
 
@@ -15,3 +15,7 @@ setwd(wk_path)
 .libPaths()
 
 
+# 变量定义
+
+> library(stringr)
+> str1<-"I love cat, cat cat !"
