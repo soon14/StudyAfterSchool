@@ -2,7 +2,7 @@
  * @Author: wjn
  * @Date: 2020-04-27 14:37:02
  * @LastEditors: wjn
- * @LastEditTime: 2020-04-27 14:52:01
+ * @LastEditTime: 2020-04-27 15:21:18
  -->
 
 # unsigned int mysql中的unsigned
@@ -39,3 +39,6 @@ Hash索引基于Hash表实现，只有查询条件精确匹配Hash索引中的�
 存储引擎会为Hash索引中的每一列都计算hash码，Hash索引中存储的即hash码，所以每次读取都会进行两次查询
 Hash索引无法用于排序
 Hash不适用于区分度小的列上，如性别字段
+
+# gmt_create
+GMT(Greenwich Mean Time)——格林尼治标准时间,格林尼治标准时间是19 世纪中叶大英帝国的基准时间,同时也是事实上的世界基准时间。让开发注意时区
