@@ -122,3 +122,15 @@ ALTER TABLE log_messages RENAME TO logmsgs;
 
 
 alter table employee set serdeproperties('filed.delim'=',')
+
+## 新增字段
+
+alter table detail_flow_test add columns(original_union_id string COMMENT '注释');
+
+## 修改表字段
+
+Alter table 表名  change column 原字段名称  现字段名称  数据类型
+
+## 
+// 删除字段(使用新schema替换原有的)
+ALTER TABLE test REPLACE COLUMNS(id BIGINT, name STRING);

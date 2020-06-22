@@ -2,27 +2,22 @@
  * @Author: wjn
  * @Date: 2020-04-22 14:38:21
  * @LastEditors: wjn
- * @LastEditTime: 2020-04-22 15:09:03
+ * @LastEditTime: 2020-04-29 11:50:25
  -->
 
 
 ```
+<!-- swagger核心组件，在代码配置swagger时会依赖到它 -->
 <dependency>
     <groupId>io.springfox</groupId>
     <artifactId>springfox-swagger2</artifactId>
-    <version>2.6.1</version>
-    <exclusions>
-        <exclusion>
-            <artifactId>guava</artifactId>
-            <groupId>com.google.guava</groupId>
-        </exclusion>
-    </exclusions>
+    <version>2.7.0</version>
 </dependency>
-
+<!-- swagger的用户界面，用于展示api接口文档 -->
 <dependency>
     <groupId>io.springfox</groupId>
     <artifactId>springfox-swagger-ui</artifactId>
-    <version>2.6.1</version>
+    <version>2.7.0</version>
 </dependency>
 ```
 
@@ -122,3 +117,9 @@ public @interface SwaggerCustomIgnore {
 }
 
 ```
+
+
+
+报错405  
+
+查看是否所有的controller都添加了@RestMapping
