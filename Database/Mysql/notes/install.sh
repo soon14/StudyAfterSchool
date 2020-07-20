@@ -2,14 +2,14 @@
  # @Author: wjn
  # @Date: 2020-03-05 16:35:58
  # @LastEditors: wjn
- # @LastEditTime: 2020-03-05 16:48:48
+ # @LastEditTime: 2020-07-08 15:45:09
  ###
 #!/bin/bash
-
+####  将安装包mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar.tar放到/tmp/mysql目录下
 yum remove -y mariadb-libs-*.el7.x86_64
 
 # mkdir
-dir=/opt/mysql
+dir=/usr/local/mysql
 function run_mkcurrent_dir(){
 my_dir="$dir"
 
@@ -26,9 +26,9 @@ run_mkcurrent_dir;
 
 # 解压
 
-tar -xvf mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar.tar -C /opt/mysql
+tar -xvf /tmp/mysql/mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar.tar -C /usr/local/mysql
 
-cd /opt/mysql
+cd $dir
 
 # install mysql start
 
@@ -48,5 +48,5 @@ rpm -ivh mysql-community-embedded-devel-5.7.29-1.el7.x86_64.rpm
 
 
 systemctl start mysqld
-passwd=`cat /var/log/mysqld.log | grep root@localhost`
-echo "password is"${passwd} 
+passwd=`cat /var/log/mysqld.log | grep root@localhost | awk -F "root@localhost: " '{print $2}'`
+mysql -u root -p${passwd} 

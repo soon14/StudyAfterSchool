@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\.."
+		},
+		{
+			"path": "..\\..\\..\\..\\cm_ext"
+		}
+	],
+	"settings": {
+		"terminal.integrated.shell.windows": "D:\\soft\\git\\Git\\bin\\bash.exe"
+	}
+}

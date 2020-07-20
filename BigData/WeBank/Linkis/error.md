@@ -1,3 +1,9 @@
+<!--
+ * @Author: wjn
+ * @Date: 2020-01-31 10:00:10
+ * @LastEditors: wjn
+ * @LastEditTime: 2020-07-15 14:39:01
+--> 
 1. Caused by: java.lang.ClassNotFoundException: org.eclipse.jetty.util.ProcessorUtils
 
 缺少jetty-util* 
@@ -28,10 +34,9 @@ jetty-util-9.3.25.v20180904.jar 需要升级到 jetty-util-9.4.11.v20180605.jar
 
 3. java.lang.NoClassDefFoundError: Lorg/apache/hadoop/hive/ql/plan/TableDesc;
 
-集群运行spark sql缺失hive包，将hive依赖包添加到spark路径下(http://www.bubuko.com/infodetail-930271.html)
+集群运行spark sql缺失hive包，将hive依赖包添加到spark路径下
 
-ClassNotFoundException: org.apache.spark.SparkConf
-
+cp /opt/cloudera/parcels/CDH-6.2.1-1.cdh6.2.1.p0.1425774/lib/spark/hive/hive-exec-2.1.1-cdh6.2.1.jar /opt/cloudera/parcels/CDH-6.2.1-1.cdh6.2.1.p0.1425774/lib/spark/jars/
 
 
 
@@ -60,4 +65,10 @@ netty 版本过高，使用netty-3.2.4.Final.jar
             <version>3.2.4.Final</version>
         </dependency>
 
+
+
+
+java.lang.NoSuchMethodError: org.eclipse.jetty.util.Loader.loadClass(Ljava/lang/String;)Ljava/lang/Class;
+
+mv jetty-util-9.3.25.v20180904.jar jetty-util-9.3.25.v20180904.jar.bak
 

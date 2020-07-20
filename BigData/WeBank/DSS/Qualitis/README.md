@@ -2,7 +2,7 @@
  * @Author: wjn
  * @Date: 2020-01-31 10:00:10
  * @LastEditors: wjn
- * @LastEditTime: 2020-02-28 21:03:59
+ * @LastEditTime: 2020-07-16 09:49:20
  -->
 [网址](https://github.com/WeBankFinTech/Qualitis/tree/master/docs/zh_CN/ch1)
 
@@ -11,3 +11,10 @@ Qualitis基于Spring Boot，依赖于Linkis进行数据计算，提供数据质�
 
 
  spark.network.timeout
+
+
+
+ 1.Caused by: java.net.ConnectException: Connection refused (Connection refused)
+
+ application-dev.yml 文件中两处jdbc连接更改为IP地址
+

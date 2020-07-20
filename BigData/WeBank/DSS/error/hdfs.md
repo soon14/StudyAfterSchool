@@ -1,3 +1,9 @@
+<!--
+ * @Author: wjn
+ * @Date: 2020-01-31 10:00:10
+ * @LastEditors: wjn
+ * @LastEditTime: 2020-07-15 15:18:21
+--> 
 Class org.apache.hadoop.hdfs.DistributedFileSystem not found
 
 https://blog.csdn.net/Xurui_Luo/article/details/84545815
@@ -10,3 +16,7 @@ https://github.com/WeBankFinTech/Linkis/wiki/%E9%83%A8%E7%BD%B2%E5%92%8C%E7%BC%9
 
 org.apache.hadoop.fs.UnsupportedFileSystemException: No FileSystem for scheme "hdfs"
 这个是因为hadoop版本从2升级到3后，hdfsclient的包有做改变，在2的版本为hadoop-hdfs，到3后改为hadoop-hdfs-client开头，拷贝到对应的目录即可。另外hadoop3还需要在core-site.xml里面配置：fs.hdfs.impl=org.apache.hadoop.hdfs.DistributedFileSystem
+
+cp hadoop-hdfs-client-3.0.0-cdh6.2.1.jar /usr/local/webank/linkis/linkis-ujes-python-enginemanager/lib
+
+gateway

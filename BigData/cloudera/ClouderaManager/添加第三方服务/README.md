@@ -13,6 +13,8 @@ sha1sum  FLINK-1.9.0-el7.parcel | awk '{ print $1 }' > FLINK-1.9.0-el7.parcel.sh
 manifest.json
 python /opt/parcel_cs/cm_ext/make_manifest/make_manifest.py parcel-el7/
 
+https://github.com/cloudera/cm_ext/wiki/The-parcel-repository-format
+
 
 ## [CSD: Managing and monitoring services](https://github.com/cloudera/cm_ext/wiki/CSD-Overview)
 
@@ -97,6 +99,16 @@ scripts| 指定cloudera manager使用的脚本
 
 
 分配错误后需要删除/opt/cloudera/parcels/.flood 下之前分配的安装包
+
+
+
+# 分配
+
+及将.parcel安装包分配到集群中服务器
+
+# 激活
+
+及将.parcel安装包创建链接指定到安装包
 
 
 

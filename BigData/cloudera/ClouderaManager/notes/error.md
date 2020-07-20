@@ -1,3 +1,9 @@
+<!--
+ * @Author: wjn
+ * @Date: 2020-01-31 10:00:10
+ * @LastEditors: wjn
+ * @LastEditTime: 2020-07-17 15:57:54
+--> 
 # 错误
 
 parcels 加载不出来
@@ -72,10 +78,10 @@ NodeManager 恢复目录下文件删除
 
 10. The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
 
-检查mysql是否能连上
-重启mysql
-systemctl restart mysqld
+使用qualitis时报这个错误，由于配置文件中的mysql连接地址配的是localhost，更改为具体IP
 
+
+11. libselinux 冲突
 
 
 

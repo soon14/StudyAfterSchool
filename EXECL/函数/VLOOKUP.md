@@ -3,11 +3,11 @@
 ## 场景1：根据Sheet1的姓名，填充Sheet2中相同姓名的成绩
 
 
-![image](https://github.com/wjn0918/Study/blob/master/EXECL/images/%E5%87%BD%E6%95%B0/VLOOKUP_Sheet1.png)
+![image](/EXECL/images/%E5%87%BD%E6%95%B0/VLOOKUP_Sheet1.png)
 
-![image](https://github.com/wjn0918/Study/blob/master/EXECL/images/%E5%87%BD%E6%95%B0/VLOOKUP_Sheet2.png)
+![image](/EXECL/images/%E5%87%BD%E6%95%B0/VLOOKUP_Sheet2.png)
 
-![image](https://github.com/wjn0918/Study/blob/master/EXECL/images/%E5%87%BD%E6%95%B0/VLOOKUP_R.png)
+![image](/EXECL/images/%E5%87%BD%E6%95%B0/VLOOKUP_R.png)
 
 
 =VLOOKUP(A2,Sheet1!A:B,2,0)

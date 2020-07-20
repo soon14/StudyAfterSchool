@@ -31,7 +31,7 @@ cp /opt/azkaban/azkaban-master/azkaban-*/build/distributions/*.tar.gz /opt/azkab
 初始化MySQL的库、用户、权限、表、数据：
 
 ```
-mysql -u root -p
+mysql -u root -p123456
 CREATE DATABASE azkaban CHARACTER SET utf8 COLLATE utf8_general_ci;
 CREATE USER 'azkaban'@'%' IDENTIFIED BY '填实际密码';
 grant all privileges on azkaban.* to 'azkaban'@'%' identified by '123456';
