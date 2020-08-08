@@ -1,0 +1,1 @@
+https://docs.cloudera.com/documentation/enterprise/latest/topics/cm_ig_reqs_space.html#concept_tjd_4yc_gr
