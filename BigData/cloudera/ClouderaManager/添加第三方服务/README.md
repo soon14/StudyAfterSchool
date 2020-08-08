@@ -115,6 +115,16 @@ scripts| 指定cloudera manager使用的脚本
 
 
 
+# 流程
+
+parcel 会先下载到server的/opt/cloudera/parcel-repo 中，
+分配后会放到每个节点的/opt/cludera/parcel-cache中，
+激活后会在每个节点/opt/cloudera/parcels中解压
+
+
+
+
+
 
 
 

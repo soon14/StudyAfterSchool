@@ -2,7 +2,7 @@
  * @Author: wjn
  * @Date: 2020-01-31 10:00:10
  * @LastEditors: wjn
- * @LastEditTime: 2020-07-13 15:09:22
+ * @LastEditTime: 2020-08-07 09:47:44
 --> 
 错误| 原因| 解决
 -|-|-
@@ -12,3 +12,5 @@
  parcel.name custom.validation.constraints.ParcelName.message| parcel.json文件错误|
  部署了parcels找不到| manifest.json 文件缺失| python /opt/parcel_cs/cm_ext/make_manifest/make_manifest.py parcels所在目录
  .parcel 的错误：哈希验证失败。| httpd服务的问题|vim /etc/httpd/conf/httpd.conf <br>  添加<br>AddType application/x-gzip .gz .tgz .parcel #此处添加.parcel  <br>重启systemctl restart httpd
+忽略命名不一致的包裹parcel|parcel 目录名称和parcel.json中定义的不一致|
+Src file /opt/cloudera/parcels/.flood/  不存在 | 移除parcel-cache中分配失败的parcel|
