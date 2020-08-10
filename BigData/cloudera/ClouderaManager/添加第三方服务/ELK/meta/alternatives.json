@@ -1,0 +1,68 @@
+{
+    "elasticsearch-cli" : {
+        "destination" : "/usr/bin/elasticsearch-cli",
+        "source": "elasticsearch/bin/elasticsearch-cli",
+        "priority" : 10,
+        "isDirectory": false
+    },
+    "elasticsearch-sql-cli" : {
+        "destination" : "/usr/bin/elasticsearch-sql-cli",
+        "source": "elasticsearch/bin/elasticsearch-sql-cli",
+        "priority" : 10,
+        "isDirectory": false
+    },
+    "kibana-keystore" : {
+        "destination" : "/usr/bin/kibana-keystore",
+        "source": "kibana/bin/kibana-keystore",
+        "priority" : 10,
+        "isDirectory": false
+    },
+    "kibana-plugin" : {
+        "destination" : "/usr/bin/kibana-plugin",
+        "source": "kibana/bin/kibana-plugin",
+        "priority" : 10,
+        "isDirectory": false
+    },
+    "dependencies-report" : {
+        "destination" : "/usr/bin/dependencies-report",
+        "source": "logstash/bin/dependencies-report",
+        "priority" : 10,
+        "isDirectory": false
+    },
+    "ingest-convert" : {
+        "destination" : "/usr/bin/ingest-convert",
+        "source": "logstash/bin/ingest-convert",
+        "priority" : 10,
+        "isDirectory": false
+    },
+    "cpdump" : {
+        "destination" : "/usr/bin/cpdump",
+        "source": "logstash/bin/cpdump",
+        "priority" : 10,
+        "isDirectory": false
+    },
+    "logstash-plugin" : {
+        "destination" : "/usr/bin/logstash-plugin",
+        "source": "logstash/bin/logstash-plugin",
+        "priority" : 10,
+        "isDirectory": false
+    },
+    "logstash-keystore" : {
+        "destination" : "/usr/bin/logstash-keystore",
+        "source": "logstash/bin/logstash-keystore",
+        "priority" : 10,
+        "isDirectory": false
+    },
+    "pqcheck" : {
+        "destination" : "/usr/bin/pqcheck",
+        "source": "logstash/bin/pqcheck",
+        "priority" : 10,
+        "isDirectory": false
+    },
+    "pqrepair" : {
+        "destination" : "/usr/bin/pqrepair",
+        "source": "logstash/bin/pqrepair",
+        "priority" : 10,
+        "isDirectory": false
+    }
+}
