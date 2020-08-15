@@ -25,3 +25,15 @@ cat>/etc/docker/daemon.json<<EOF
 ]
 }
 EOF
+
+
+1. warning: here-document at line 11 delimited by end-of-file (wanted `EOF')
+EOF前后不能有任何字符
+```
+sql=$(cat <<EOF
+
+12321321
+EOF
+)
+
+```

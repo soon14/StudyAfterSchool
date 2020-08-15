@@ -12,3 +12,9 @@
 
      容器虚拟 CPU 内核（yarn.nodemanager.resource.cpu-vcores）    最大允许分配核数
      容器内存（yarn.nodemanager.resource.memory-mb）最大允许分配内存
+
+
+
+2. hive on spark 卡住不动
+
+查看yarn资源，核数 和内存是否不够
