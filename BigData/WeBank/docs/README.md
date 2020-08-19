@@ -1,0 +1,1 @@
+Linkis 编译需要scala环境

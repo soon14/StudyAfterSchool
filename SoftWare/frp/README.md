@@ -16,3 +16,7 @@ local_ip = 127.0.0.1
 local_port = 8899
 custom_domains = 120.27.240.227
 ```
+
+
+
+nohup ./frpc -c frpc.ini &

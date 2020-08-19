@@ -9,7 +9,8 @@ rpm -ivh **.rpm
 
 1. 移除mariadb依赖
     
-    yum remove mariadb-libs-*.el7.x86_64
+    yum -y remove mariadb-libs-*.el7.x86_64
+    yum -y install 
 
 2. 上传依赖包解压并安装
 
@@ -23,9 +24,22 @@ rpm -ivh **.rpm
     rpm -ivh mysql-community-embedded-compat-5.7.29-1.el7.x86_64.rpm
     rpm -ivh mysql-community-embedded-devel-5.7.29-1.el7.x86_64.rpm
 
+/etc/yum.repos.d/mysql.repo
+```
+[mysql]
+name=mysql
+baseurl=file:///home/mysql
+gpgcheck=0
+enabled=1
+```
+
+createrepo .
+yum install mysql-server
+
 
 systemctl start mysqld
 more /var/log/mysqld.log | grep root@localhost
+more /var/log/mysqld.log | grep root@localhost | awk -F 'root@localhost: ' '{print $2}'
 
 
     ALTER USER USER() IDENTIFIED BY 'Wjn@@1234';

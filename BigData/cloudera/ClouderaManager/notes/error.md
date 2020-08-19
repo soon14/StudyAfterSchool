@@ -48,6 +48,8 @@ yum remove cloudera-manager-agent
 
 /var/lib/cloudera-scm-agent/
 
+从集群中移除主机，从cloudear manager管理中移除主机，重新添加主机到cloudera manager,
+
 
 6. ERROR    Error, CM server guid updated, expected
 
@@ -82,6 +84,10 @@ NodeManager 恢复目录下文件删除
 
 
 11. libselinux 冲突
+
+
+
+12. 主机 192.168.10.190 上的 IP 192.168.10.192 的 DNS 反向查找花了 5055 毫秒。缓慢的 DNS 查找速度通常是由 /etc/resolv.conf 中错误的 DNS 设置造成的。
 
 
 

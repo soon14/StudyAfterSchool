@@ -35,3 +35,8 @@
 # 查看是否安装成功
 
     docker-compose
+
+
+    无效
+
+    source ~/.bash_profile

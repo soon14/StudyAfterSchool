@@ -15,8 +15,8 @@ echo $1"开始执行："${CMD}"...."
 set timeout 2
 spawn ssh $1
 expect {
-        "(yes/no)" {send "yes\r"; exp_continue}
-        "password:" {send "$PASSWORD\r"}
+    "(yes/no)" {send "yes\r"; exp_continue}
+    "password:" {send "$PASSWORD\r"}
 }
 sleep 2
 expect "root@*"  {send "${CMD}\r"}
@@ -32,4 +32,3 @@ for host in ${HOSTS[@]}
 do
     exec_cmd $host
 done
-

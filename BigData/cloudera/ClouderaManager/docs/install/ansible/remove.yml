@@ -1,0 +1,41 @@
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: 停止cloudera-scm-agent
+      shell: systemctl stop cloudera-scm-agent
+    - name: umount cm_processes 移除挂载
+      shell: umount cm_processes && umount /var/run/cloudera-scm-agent/process
+      ignore_errors: yes
+    - name: 所有节点删除Cloudera Manager数据。
+      shell: rm -Rf /usr/share/cmf /var/lib/cloudera* /var/cache/yum/cloudera* /var/log/cloudera* /var/run/cloudera*
+      ignore_errors: yes
+    - name: 移除Cloudera Manager Lock文件
+      shell: rm /tmp/.scm_prepare_node.lock
+      ignore_errors: yes
+    - name: 移除用户数据
+      shell: rm -rf /var/lib/flume-ng /var/lib/hadoop* /var/lib/hue /var/lib/navigator /var/lib/oozie /var/lib/solr /var/lib/sqoop* /var/lib/zookeeper /var/lib/hbase /var/lib/hive* /var/lib/impala /var/lib/llama /var/lib/sentry /var/lib/spark* /var/lib/kafka /var/lib/kudu
+      ignore_errors: yes
+    - name: 删除Hadoop相关数据
+      shell: rm -rf /dfs /yarn /impala /opt/dfs /opt/yarn
+      ignore_errors: yes
+    - name: 删除/etc下的配置文件
+      shell: rm -rf /etc/cloudera* /etc/flume* /etc/hadoop* /etc/zookeeper* /etc/hive* /etc/hue /etc/impala /etc/sqoop* /etc/oozie /etc/hbase* /etc/kafka /etc/kudu /etc/mahout /etc/spark* /etc/llama /etc/solr /etc/sentry
+      ignore_errors: yes
+    - name: 删除/var/log下的日志文件夹
+      shell: rm -rf /var/log/cloudera* /var/log/hadoop* /var/log/hbase /var/log/hive /var/log/hue* /var/log/impala* /var/log/kudu /var/log/oozie /var/log/spark* /var/log/zookeeper /var/log/kafka
+      ignore_errors: yes
+    - name: 删除/opt/cloudera下的安装文件
+      shell: rm -rf /opt/cloudera*
+      ignore_errors: yes
+    - name: 移除cloudera-manager-agent
+      shell: yum -y remove cloudera-manager-agent
+    - name: 移除cloudera-manager-daemons
+      shell: yum -y remove cloudera-manager-daemons
+- hosts: cm
+  remote_user: root
+  tasks:  
+    - name: CM 停止cloudera-scm-server
+      shell: systemctl stop cloudera-scm-server
+    - name: 移除cloudera-manager-server
+      shell: yum -y remove cloudera-manager-agent
+

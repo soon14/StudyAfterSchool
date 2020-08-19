@@ -1,0 +1,421 @@
+自动化部署cdh
+
+# 前期准备
+## 所有节点
+
+## 修改的主机名  
+
+# 警告一定要配置主机名，不然hdfs会启动不了
+    
+    hostname node0
+    echo "HOSTNAME=node0" >> /etc/sysconfig/network  
+
+## 域名映射
+
+    for i in {0..2};
+    do
+    scp  /etc/hosts root@192.168.137.11${i}:/etc/;
+    done
+
+
+## 安装jdk
+
+```
+yum install -y java-1.8.0-openjdk.x86_64 java-1.8.0-openjdk-demo  java-1.8.0-openjdk-devel java-1.8.0-openjdk-javadoc
+```
+
+
+
+
+
+
+
+##  添加mysql-connect.jar
+
+将jar包放到/usr/share/java目录下,将文件改名为mysql-connector-java.jar
+
+
+## 禁用SELinux
+在所有节点执行
+
+> sudo setenforce 0
+
+修改集群所有节点的/etc/selinux/config文件，内容如下：
+
+> vim /etc/selinux/config 
+
+```
+SELINUX=disabled
+# SELINUXTYPE= can take one of these twovalues:
+#     targeted - Targeted processes areprotected,
+#     mls - Multi Level Securityprotection.
+SELINUXTYPE=targeted
+
+```
+
+
+## 关闭防火墙
+
+在集群所有节点执行如下操作，并永久关闭防火墙
+
+> systemctl stop firewalld
+systemctl disable firewalld
+
+4. 配置操作系统本地yum源
+
+## 安装http服务
+
+在集群其中一节点上安装http服务，执行如下命令：
+
+> yum -y install httpd
+
+* 将httpd服务加入系统自启动服务并设置开机启动
+
+## 集群时钟同步  最好设置两台
+
+**主服务器停止了，注意重启后关闭防火墙，其他服务器需要先停止ntpd服务后手动同步一次，后再重启服务**
+```
+systemctl stop ntpd
+ntpdate ip-192.168.10.190.fd.com
+systemctl start ntpd
+```
+systemctl stop ntpd && ntpdate ip-192.168.10.190.fd.com && systemctl start ntpd
+
+
+
+在集群的所有服务器上安装ntp服务，用于集群时钟同步
+> yum -y install ntp
+
+将ntpd加入系统自启动服务并设置开机启动
+
+* 服务端
+
+    > vim /etc/ntp.conf
+
+    添加
+```
+# local clock
+server 127.127.1.0
+fudge  127.127.1.0 stratum 10
+```
+
+    注释掉所有的server
+
+![image](/Images\OS\Linux\Soft\ntp\ntp_server.png)
+
+* 客户端
+
+    添加
+    
+        server 服务端地址(ip-192.168.10.190.fd.com) iburst
+
+
+![image](/Images\OS\Linux\Soft\ntp\ntp_client.png)
+
+* 手动同步一次时间
+
+> /usr/sbin/ntpdate ip-192.168.10.190.fd.com
+
+* 重启集群所有节点的ntpd服务
+
+> systemctl restart ntpd
+
+验证时钟同步，在所有节点执行
+
+> ntpq -p
+
+有“*”显示则表示同步成功。**需要等会**
+
+## 安装MySQL
+
+**yum 安装**
+
+> yum -y install mysql mysql-server
+
+将mysqld加入系统自启动服务并设置开机启动
+
+> chkconfig --add mysqld  
+chkconfig mysqld on
+
+启动并配置Mysql
+
+> systemctl start mysqld
+
+
+**[手动安装](/Database\Mysql\notes\install_mysql.md)**
+
+
+## 创建CM及CDH服务的数据库
+
+```
+create database metastore default character set utf8;
+CREATE USER 'hive'@'%' IDENTIFIED BY '123456';
+GRANT ALL PRIVILEGES ON metastore. * TO 'hive'@'%' IDENTIFIED by '123456';
+FLUSH PRIVILEGES;
+
+create database cm default character set utf8;
+CREATE USER 'cm'@'%' IDENTIFIED BY '123456';
+GRANT ALL PRIVILEGES ON cm. * TO 'cm'@'%' IDENTIFIED by '123456';
+FLUSH PRIVILEGES;
+
+create database am default character set utf8;
+CREATE USER 'am'@'%' IDENTIFIED BY '123456';
+GRANT ALL PRIVILEGES ON am. * TO 'am'@'%' IDENTIFIED by '123456';
+FLUSH PRIVILEGES;
+
+create database rm default character set utf8;
+CREATE USER 'rm'@'%' IDENTIFIED BY '123456';
+GRANT ALL PRIVILEGES ON rm. * TO 'rm'@'%' IDENTIFIED by '123456';
+FLUSH PRIVILEGES;
+
+create database hue default character set utf8;
+CREATE USER 'hue'@'%' IDENTIFIED BY '123456';
+GRANT ALL PRIVILEGES ON hue. * TO 'hue'@'%' IDENTIFIED by '123456';
+FLUSH PRIVILEGES;
+
+create database oozie  default character set utf8;
+CREATE USER 'oozie'@'%' IDENTIFIED BY '123456';
+GRANT ALL PRIVILEGES ON oozie. * TO 'oozie'@'%' IDENTIFIED by '123456';
+FLUSH PRIVILEGES;
+```
+
+# Cloudera Manager安装
+
+
+1. 配置CM本地repo源
+
+CM5.12.1下载地址：
+
+http://archive.cloudera.com/cm5/redhat/6/x86_64/cm/5.12.1/RPMS/x86_64/cloudera-manager-agent-5.12.1-1.cm5121.p0.6.el6.x86_64.rpm
+http://archive.cloudera.com/cm5/redhat/6/x86_64/cm/5.12.1/RPMS/x86_64/cloudera-manager-daemons-5.12.1-1.cm5121.p0.6.el6.x86_64.rpm
+http://archive.cloudera.com/cm5/redhat/6/x86_64/cm/5.12.1/RPMS/x86_64/cloudera-manager-server-5.12.1-1.cm5121.p0.6.el6.x86_64.rpm
+http://archive.cloudera.com/cm5/redhat/6/x86_64/cm/5.12.1/RPMS/x86_64/cloudera-manager-server-db-2-5.12.1-1.cm5121.p0.6.el6.x86_64.rpm
+http://archive.cloudera.com/cm5/redhat/6/x86_64/cm/5.12.1/RPMS/x86_64/enterprise-debuginfo-5.12.1-1.cm5121.p0.6.el6.x86_64.rpm
+http://archive.cloudera.com/cm5/redhat/6/x86_64/cm/5.12.1/RPMS/x86_64/jdk-6u31-linux-amd64.rpm
+http://archive.cloudera.com/cm5/redhat/6/x86_64/cm/5.12.1/RPMS/x86_64/oracle-j2sdk1.7-1.7.0+update67-1.x86_64.rpm
+
+将以上7个文件下载至服务器的/var/www/html/cm目录下
+
+在/var/www/html/cm目录下执行命令
+
+> createrepo .
+
+确认http是否能正常访问
+
+在/etc/yum.repo.d/目录下增加cm.repo文件，内容如下
+
+```
+[cloudera-manager]
+name = Cloudera Manager
+baseurl =  http://ip地址/cm/
+baseurl = file:///var/www/html/cm
+gpgcheck = 0
+```
+
+* 验证CM源是否配置成功
+
+yum repolist
+
+![image](/Images\BigData\Cloudera\clouder_yum_config.png)
+
+2. 配置http访问CDH Parcel包
+
+[官方地址](https://archive.cloudera.com/cdh6/)
+
+CDH5.12.1下载地址：
+
+http://archive.cloudera.com/cdh5/parcels/5.12.1/CDH-5.12.1-1.cdh5.12.1.p0.3-el6.parcel
+http://archive.cloudera.com/cdh5/parcels/5.12.1/CDH-5.12.1-1.cdh5.12.1.p0.3-el6.parcel.sha1
+http://archive.cloudera.com/cdh5/parcels/5.12.1/manifest.json
+
+将以上3个文件下载至/var/www/html/cdh目录下
+
+确认http是否能正常访问
+
+3. 安装Cloudera Manager Server
+
+> yum -y install cloudera-manager-server
+
+4. 初始化CM数据库 6.2.1
+
+/opt/cloudera/cm/schema/scm_prepare_database.sh mysql cm cm 123456
+
+5.13.2
+/usr/share/cmf/schema/scm_prepare_database.sh mysql cm cm 123456
+
+mysql  - 数据库类型  
+cm -数据库名  
+cm -登陆用户  
+123456 -密码  
+
+
+## 配置
+
+sysctl vm.swappiness=10
+echo 'vm.swappiness=10' >> /etc/sysctl.conf
+
+### 启动后设置
+echo never > /sys/kernel/mm/transparent_hugepage/defrag
+echo never > /sys/kernel/mm/transparent_hugepage/enabled
+
+
+## 启动
+
+> systemctl start cloudera-scm-server
+
+10. 日志文件 
+tail -f /var/log/cloudera-scm-server/clousera-scm-server.log
+
+create database cm6 default character set utf8;
+CREATE USER 'am'@'%' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON am. * TO 'am'@'%';
+FLUSH PRIVILEGES;
+
+
+systemctl restart cloudera-scm-server
+systemctl stop cloudera-scm-server
+systemctl status cloudera-scm-server
+systemctl start cloudera-scm-server
+
+systemctl start cloudera-scm-agent
+systemctl status cloudera-scm-agent
+systemctl restart cloudera-scm-agent
+systemctl stop cloudera-scm-agent
+
+
+
+# 附录
+
+## 下载地址
+
+[cdh5](http://archive.cloudera.com/cdh5/parcels/latest/)
+
+
+## 相关安装
+
+1. httpd
+
+        yum install httpd
+        systemctl status httpd
+        systemctl start httpd
+
+2. 下载createrepo
+
+        yum install createrepo
+
+
+
+
+6. 测试yum源是否正常
+```
+yum clean  all
+yum  makecache
+```
+
+* 初始化数据库  
+
+/opt/cloudera/cm/schema/scm_prepare_database.sh mysql -h hadoop1 -utemp -ptemp --scm-host  hadoop1  databaseName dbUser dbPw
+
+./scm_prepare_database.sh mysql -h master -P 3306 -u root -pWind@2019 --scm-host master scm root Wind@2019
+
+
+[安装数据库](https://blog.csdn.net/SYXDWT/article/details/87887293)
+
+cloudera-scm-agent start
+
+[创建数据库并添加用户](https://blog.csdn.net/weixin_42194239/article/details/103048808)
+
+
+
+
+## 启动
+
+> systemctl start cloudera-scm-server
+
+10. 日志文件 
+tail -f /var/log/cloudera-scm-server/clousera-scm-server.log
+
+create database cm6 default character set utf8;
+CREATE USER 'am'@'%' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON am. * TO 'am'@'%';
+FLUSH PRIVILEGES;
+
+
+systemctl restart cloudera-scm-server
+systemctl stop cloudera-scm-server
+systemctl status cloudera-scm-server
+systemctl start cloudera-scm-server
+
+systemctl start cloudera-scm-agent
+systemctl status cloudera-scm-agent
+systemctl restart cloudera-scm-agent
+systemctl stop cloudera-scm-agent
+
+
+http://archive.cloudera.com/cdh5/parcels/latest/
+
+
+
+
+
+
+# ERROR
+
+1. 群集进程了多个时区。例如，ip-192.168.10.194.fd.com 上的 UTC+08:00 和 ip-192.168.10.193.fd.com 上的 UTC-05:00。
+
+linux时区不统一
+
+date进行查看
+
+统一改为上海时间：
+
+    timedatectl set-timezone Asia/Shanghai
+
+
+
+
+# 警告
+
+cdh 各服务的日志默认在/var目录下，需要调整到/home/var目录下
+
+
+
+
+/opt/cloudera/parcels/CDH-6.2.1-1.cdh6.2.1.p0.1425774/lib/hue/build/env/lib/python2.7/site-packages/Django-1.11-py2.7.egg/django/core/management
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+
+yarn.app.mapreduce.am.admin-command-opts
+
+
+1. 更改hdfs
+
+1. 更改hue时区
+time 
+Asia/Shanghai
+
+
+2. sqoop jar包缺失
+oozie admin -oozie http://node89:11000/oozie -sharelibupdate
+
+hadoop fs -put mysql-connector-java-8.0.13.jar hdfs://nameservice1/user/oozie/share/lib/最新的目录/sqoop
+hadoop fs -put mysql-connector-java-8.0.13.jar hdfs://node89:8020/user/oozie/share/lib/lib_20200818205328/sqoop
+更新共享库
+> oozie admin -oozie http://node89:11000/oozie -sharelibupdate 
+
+3. hue 开启debug模式
+进入Hue配置项后搜索“Hue 服务环境高级配置代码段（安全阀）”或“Hue Service Environment Advanced Configuration Snippet (Safety Valve)”
+
+```
+DEBUG=true
+DESKTOP_DEBUG=true
+```
+
+
+4. Host with invalid Cloudera Manager GUID is detected 
+
+rm -rf /var/lib/cloudera-scm-agent/cm_guid
+systemctl restart cloudera-scm-agent

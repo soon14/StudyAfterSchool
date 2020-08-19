@@ -1,0 +1,77 @@
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: 安装jdk
+      yum:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - java-1.8.0-openjdk.x86_64
+        - java-1.8.0-openjdk-demo
+        - java-1.8.0-openjdk-devel
+        - java-1.8.0-openjdk-javadoc
+    - name: 禁用SELINUX
+      shell: setenforce 0 && sed -i "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
+    - name: 关闭防火墙
+      shell: systemctl stop firewalld &&
+        systemctl disable firewalld
+    - name: 添加mysql-connect.jar
+      copy:
+        src: mysql-connector-java-8.0.13.jar
+        dest: /usr/share/java/mysql-connector-java.jar
+    - name: 安装ntp服务
+      yum:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - ntp
+    - name: 设置swap
+      shell: sysctl vm.swappiness=10 &&
+        echo vm.swappiness = 10 >> /etc/sysctl.conf
+      tags:
+        - swap
+    - name: 设置透明大页面
+      shell: echo never > /sys/kernel/mm/transparent_hugepage/defrag &&
+             echo never > /sys/kernel/mm/transparent_hugepage/enabled &&
+             echo "if test -f /sys/kernel/mm/transparent_hugepage/enabled; then echo never > /sys/kernel/mm/transparent_hugepage/enabled fi if test -f /sys/kernel/mm/transparent_hugepage/defrag; then echo never > /sys/kernel/mm/transparent_hugepage/defrag fi" >> /etc/rc.d/rc.local
+- hosts: cm
+  remote_user: root
+  vars:
+    mysql_dir: /home
+    mysql_passwd: 123456
+  tasks:  
+    - name: CM 管理节点安装http服务
+      yum:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - httpd  
+    - name: 启动http服务
+      shell: systemctl enable httpd &&
+        systemctl start httpd &&
+        sed -i '272aAddType application/x-gzip .gz .tgz .parcel' /etc/httpd/conf/httpd.conf &&
+        systemctl restart httpd
+    - name: ntp 服务端配置
+      shell: sed -i 's/^server/#&/' /etc/ntp.conf && 
+             sed -i "25aserver  127.127.1.0     \# local clock\nfudge   127.127.1.0 stratum 10" /etc/ntp.conf &&
+             systemctl restart ntpd 
+    - name: 移除mariadb
+      yum:
+        name: mariadb-libs-*.el7.x86_64
+        state: absent
+      tags:
+        - mysql
+    - name: 解压Mysql
+      unarchive: 
+        src=/home/mysql.tar.gz
+        dest={{ mysql_dir }}
+      tags:
+        - mysql
+- hosts: cm_ext
+  vars:
+    ntp_server_ip: 192.168.10.189
+  remote_user: root
+  tasks:
+    - name: ntp客户端配置
+      shell: 
+             systemctl restart ntpd && ntpdate -u {{ ntp_server_ip }}

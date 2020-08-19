@@ -11,3 +11,6 @@ awk '{print $1" "$2}'
 二、以逗号为分隔符
 
 awk '{print $1","$2}'
+
+3. 获取最后一列
+echo 12.23 | awk -F "." '{print $NF}'
