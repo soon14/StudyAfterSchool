@@ -1,8 +1,19 @@
+- hosts: cm
+  remote_user: root
+  tasks:  
+    - name: CM 停止cloudera-scm-server
+      shell: systemctl stop cloudera-scm-server
+    - name: 移除cloudera-manager-server
+      shell: yum -y remove cloudera-manager-agent
 - hosts: all
   remote_user: root
   tasks:
     - name: 停止cloudera-scm-agent
       shell: systemctl stop cloudera-scm-agent
+    - name: 移除cloudera-manager-agent
+      shell: yum -y remove cloudera-manager-agent
+    - name: 移除cloudera-manager-daemons
+      shell: yum -y remove cloudera-manager-daemons
     - name: umount cm_processes 移除挂载
       shell: umount cm_processes && umount /var/run/cloudera-scm-agent/process
       ignore_errors: yes
@@ -27,15 +38,6 @@
     - name: 删除/opt/cloudera下的安装文件
       shell: rm -rf /opt/cloudera*
       ignore_errors: yes
-    - name: 移除cloudera-manager-agent
-      shell: yum -y remove cloudera-manager-agent
-    - name: 移除cloudera-manager-daemons
-      shell: yum -y remove cloudera-manager-daemons
-- hosts: cm
-  remote_user: root
-  tasks:  
-    - name: CM 停止cloudera-scm-server
-      shell: systemctl stop cloudera-scm-server
-    - name: 移除cloudera-manager-server
-      shell: yum -y remove cloudera-manager-agent
+
+
 

@@ -1,0 +1,11 @@
+---
+- hosts: cm
+  gather_facts: F   #开启debug
+  tasks:
+  - name: 测试
+    shell: echo {{ groups.cm[0]|truncate(-8,True,'') }}
+    ignore_errors: True
+    register: out  #定义变量存储返回的结果
+  - name: show 结果       #定义输出结果的task
+    debug: var=out verbosity=0    #debug的模块显示输出的记过
+

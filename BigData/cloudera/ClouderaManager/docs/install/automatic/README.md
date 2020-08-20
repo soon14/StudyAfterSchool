@@ -1,4 +1,4 @@
-自动化部署cdh
+# 自动化部署cm
 
 # 前期准备
 ## 所有节点
@@ -23,9 +23,6 @@
 ```
 yum install -y java-1.8.0-openjdk.x86_64 java-1.8.0-openjdk-demo  java-1.8.0-openjdk-devel java-1.8.0-openjdk-javadoc
 ```
-
-
-
 
 
 

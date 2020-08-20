@@ -35,3 +35,12 @@ service	系统服务管理模块
 cron	计划任务管理模块
 yum	yum软件包安装管理模块
 synchronize	使用rsync同步文件模块
+
+
+3. 输出内置变量
+
+```
+  - name: print all 内置 vars
+    debug: var=hostvars[inventory_hostname]
+    tags: test
+```

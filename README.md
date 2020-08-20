@@ -55,6 +55,10 @@ String -> bean -> 处理 -> String
 
 *倾斜加单星号*
 
+<details>
+<summary>折叠语法</summary>
+
+<details>
 
 
 
