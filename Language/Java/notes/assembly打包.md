@@ -4,45 +4,9 @@
  * @LastEditors: wjn
  * @LastEditTime: 2020-08-07 14:44:34
 -->
-pom.xml
+pom.xml 添加
+
 ```
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.3.RELEASE</version>
-    </parent>
-
-
-    <packaging>jar</packaging>
-
-    <groupId>com.example</groupId>
-    <artifactId>cdh-eureka</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>cdh-eureka</name>
-    <description>Demo project for Spring Boot</description>
-
-    <dependencies>
-        <!-- Spring Boot Begin -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
-        <!-- Spring Boot End -->
-
-        <!-- Spring Cloud Begin -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-            <version>2.0.0.RELEASE</version>
-        </dependency>
-
-    </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -82,7 +46,7 @@ pom.xml
                     <appendAssemblyId>false</appendAssemblyId>
                     <attach>false</attach>
                     <descriptors>
-                        <descriptor>${basedir}/src/main/assembly/deploy.xml</descriptor>
+                        <descriptor>${basedir}/src/main/assembly/assembly.xml</descriptor>
                     </descriptors>
                     <finalName>${project.artifactId}_${project.version}_1</finalName>
                     <outputDirectory>${project.build.directory}/packages</outputDirectory>
@@ -91,14 +55,13 @@ pom.xml
         </plugins>
     </build>
 
-</project>
 ```
 
-deploy.xml
+assembly.xml
 ```
 <?xml version="1.0" encoding="UTF-8"?>
-<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/2.2.1"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/2.2.1 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
     <id>dist</id>
     <formats>
         <format>tar.gz</format>
@@ -106,16 +69,19 @@ deploy.xml
     <includeBaseDirectory>false</includeBaseDirectory>
     <dependencySets>
         <dependencySet>
+            <outputDirectory>服务名称/lib</outputDirectory>
             <useProjectArtifact>true</useProjectArtifact>
-            <outputDirectory>eureka/lib</outputDirectory>
-            <scope>runtime</scope>
+            <useTransitiveDependencies>true</useTransitiveDependencies>
+            <unpack>false</unpack>
+            <useStrictFiltering>true</useStrictFiltering>
+            <useTransitiveFiltering>true</useTransitiveFiltering>
         </dependencySet>
     </dependencySets>
     <fileSets>
         <fileSet>
             <lineEnding>unix</lineEnding>
             <directory>./src/main/bin</directory>
-            <outputDirectory>eureka/bin</outputDirectory>
+            <outputDirectory>服务名称/bin</outputDirectory>
             <includes>
                 <include>**/*</include>
             </includes>
@@ -123,15 +89,25 @@ deploy.xml
         </fileSet>
         <fileSet>
             <directory>./src/main/logs</directory>
-            <outputDirectory>eureka/logs</outputDirectory>
+            <outputDirectory>服务名称/logs</outputDirectory>
         </fileSet>
         <fileSet>
             <directory>./src/main/resources</directory>
             <includes>
                 <include>**/*</include>
             </includes>
-            <outputDirectory>eureka/conf</outputDirectory>
+            <outputDirectory>服务名称/conf</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>.</directory>
+            <excludes>
+                <exclude>*/**</exclude>
+            </excludes>
+            <outputDirectory>服务名称/logs</outputDirectory>
         </fileSet>
     </fileSets>
 </assembly>
 ```
+
+
+settings -> schemas and dtds 添加http://maven.apache.org/plugins/maven-assembly-plugin/assembly/2.2.1

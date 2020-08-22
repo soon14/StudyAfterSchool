@@ -9,7 +9,8 @@
             "type": "python",
             "request": "launch",
             "program": "${file}",
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "pythonPath": "D:/wjn/sdk/Python/Python37/python.exe"
         }
     ]
 }

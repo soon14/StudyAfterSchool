@@ -1,6 +1,26 @@
-自动化
+# 自动化部署管理
 
 yum install ansible
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # [How to build your inventory](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#intro-inventory)
 

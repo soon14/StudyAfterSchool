@@ -92,3 +92,12 @@ NodeManager 恢复目录下文件删除
 
 
 
+
+13. ProtocolError for 127.0.0.1/RPC2: 401 Unauthorized
+
+ps -ef | grep supervisord
+
+kill -9 <processID>
+
+
+

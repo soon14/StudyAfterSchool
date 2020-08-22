@@ -1,0 +1,7 @@
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: umount cm_processes 移除挂载
+      shell: umount /run/cloudera-scm-agent/process
+    - name: 删除/etc下的配置文件
+      shell: rm -rf /var/lib/cloudera-scm-agent /run/cloudera-scm-agent /var/log/cloudera-scm-agent
