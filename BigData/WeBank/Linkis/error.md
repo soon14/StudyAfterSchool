@@ -30,6 +30,8 @@ import org.apache.commons.httpclient.HttpMethod;
 
 jetty-util-9.3.25.v20180904.jar 需要升级到 jetty-util-9.4.11.v20180605.jar
 
+jetty-util-9.3.25.v20180904.jar  需要移除
+
 
 
 3. java.lang.NoClassDefFoundError: Lorg/apache/hadoop/hive/ql/plan/TableDesc;
