@@ -97,3 +97,8 @@ FROM
 版本冲突
 将spark-enginemanager 和hadoop jars 中的hadoop相关包对比
 
+
+com.webank.wedatasphere.linkis.server.restful.RestfulCatchAOP 83 apply - operation failed(操作失败)s java.lang.NumberFormatException: null
+
+要使用hadoop用户启动
+
