@@ -4,7 +4,7 @@
     - name: CM 停止cloudera-scm-server
       shell: systemctl stop cloudera-scm-server
     - name: 移除cloudera-manager-server
-      shell: yum -y remove cloudera-manager-agent
+      shell: yum -y remove cloudera-manager-server
 - hosts: all
   remote_user: root
   tasks:
@@ -30,14 +30,15 @@
       shell: rm -rf /dfs /yarn /impala /opt/dfs /opt/yarn
       ignore_errors: yes
     - name: 删除/etc下的配置文件
-      shell: rm -rf /etc/cloudera* /etc/flume* /etc/hadoop* /etc/zookeeper* /etc/hive* /etc/hue /etc/impala /etc/sqoop* /etc/oozie /etc/hbase* /etc/kafka /etc/kudu /etc/mahout /etc/spark* /etc/llama /etc/solr /etc/sentry
+      shell: rm -rf /etc/cloudera* /etc/flume* /etc/hadoop* /etc/zookeeper* /etc/hive* /etc/hue /etc/impala /etc/sqoop* /etc/oozie /etc/hbase* /etc/kafka /etc/kudu /etc/mahout /etc/spark* /etc/llama /etc/solr /etc/sentry /etc/livy
       ignore_errors: yes
     - name: 删除/var/log下的日志文件夹
-      shell: rm -rf /var/log/cloudera* /var/log/hadoop* /var/log/hbase /var/log/hive /var/log/hue* /var/log/impala* /var/log/kudu /var/log/oozie /var/log/spark* /var/log/zookeeper /var/log/kafka
+      shell: rm -rf /var/log/cloudera* /var/log/hadoop* /var/log/hbase /var/log/hive /var/log/hue* /var/log/impala* /var/log/kudu /var/log/oozie /var/log/spark* /var/log/zookeeper /var/log/kafka /var/log/livy /var/local/livy
       ignore_errors: yes
     - name: 删除/opt/cloudera下的安装文件
       shell: rm -rf /opt/cloudera*
       ignore_errors: yes
+
 
 
 

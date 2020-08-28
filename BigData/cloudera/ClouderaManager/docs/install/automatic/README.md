@@ -191,6 +191,15 @@ http://archive.cloudera.com/cm5/redhat/6/x86_64/cm/5.12.1/RPMS/x86_64/enterprise
 http://archive.cloudera.com/cm5/redhat/6/x86_64/cm/5.12.1/RPMS/x86_64/jdk-6u31-linux-amd64.rpm
 http://archive.cloudera.com/cm5/redhat/6/x86_64/cm/5.12.1/RPMS/x86_64/oracle-j2sdk1.7-1.7.0+update67-1.x86_64.rpm
 
+
+
+
+https://archive.cloudera.com/cm6/6.1.1/redhat7/yum/RPMS/x86_64/
+
+下面文件需要不然会安装报错
+https://archive.cloudera.com/cm6/6.1.1/allkeys.asc
+
+
 将以上7个文件下载至服务器的/var/www/html/cm目录下
 
 在/var/www/html/cm目录下执行命令
