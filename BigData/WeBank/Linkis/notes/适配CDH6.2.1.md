@@ -194,3 +194,20 @@ hive
             </snapshots>
         </repository>
     </repositories>
+
+
+
+
+
+
+
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.262.b10-0.el7_8.x86_64
+#HADOOP  
+export HADOOP_HOME=/opt/cloudera/parcels/CDH/lib/hadoop
+export HADOOP_CONF_DIR=/etc/hadoop   
+#Spark
+export SPARK_HOME=/opt/cloudera/parcels/CDH/lib/spark
+export SPARK_CONF_DIR=/etc/spark
+#Hive
+export HIVE_HOME=/opt/cloudera/parcels/CDH/lib/hive
+export HIVE_CONF_DIR=/etc/hive
