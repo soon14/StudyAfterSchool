@@ -1,3 +1,9 @@
+<!--
+ * @Author: wjn
+ * @Date: 2020-08-29 00:38:59
+ * @LastEditors: wjn
+ * @LastEditTime: 2020-08-29 20:51:36
+-->
 ansible
 ```
 [ansible]
@@ -28,3 +34,9 @@ gpgcheck=1
 enabled=0
 gpgkey=https://nginx.org/keys/nginx_signing.key
 ```
+
+
+
+添加镜像地址
+
+yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
