@@ -106,3 +106,49 @@ https://docs.ansible.com/ansible/latest/modules/yum_module.html?highlight=yum
     state: latest
     download_only: true
 ```
+
+
+repository
+```
+- name: Add repository
+  yum_repository:
+    name: epel
+    description: EPEL YUM repo
+    baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+
+- name: Add multiple repositories into the same file (1/2)
+  yum_repository:
+    name: epel
+    description: EPEL YUM repo
+    file: external_repos
+    baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+    gpgcheck: no
+
+- name: Add multiple repositories into the same file (2/2)
+  yum_repository:
+    name: rpmforge
+    description: RPMforge YUM repo
+    file: external_repos
+    baseurl: http://apt.sw.be/redhat/el7/en/$basearch/rpmforge
+    mirrorlist: http://mirrorlist.repoforge.org/el7/mirrors-rpmforge
+    enabled: no
+
+# Handler showing how to clean yum metadata cache
+- name: yum-clean-metadata
+  command: yum clean metadata
+  args:
+    warn: no
+
+# Example removing a repository and cleaning up metadata cache
+- name: Remove repository (and clean up left-over metadata)
+  yum_repository:
+    name: epel
+    state: absent
+  notify: yum-clean-metadata
+
+- name: Remove repository from a specific repo file
+  yum_repository:
+    name: epel
+    file: external_repos
+    state: absent
+```

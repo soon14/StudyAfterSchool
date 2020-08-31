@@ -1,0 +1,15 @@
+- name: Configure webserver with nginx
+  hosts: webservers
+  tasks:
+    - name: Add nginx repository
+      yum_repository:
+        name: nginx
+        description: nginx repo
+        baseurl: http://nginx.org/packages/centos/$releasever/$basearch/
+        gpgcheck: no #GPG验证是否开启的选项,1是开启,0是不开启,一般情况可以关掉
+    - name: install nginx
+      yum: 
+        name: nginx
+      ignore_errors: True
+      register: out  #定义变量存储返回的结果
+    - debug: var=out verbosity=0    #debug的模块显示输出的记过
