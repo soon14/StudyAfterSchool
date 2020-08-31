@@ -2,6 +2,12 @@
 - hosts: localhost
   vars:
     jenkins_hostname: localhost
+  tasks:
+    - name: install curl
+      yum:
+        name: curl
+        state: 'latest'
+        update_cache: no
   roles:
     - role: geerlingguy.jenkins
       become: yes
