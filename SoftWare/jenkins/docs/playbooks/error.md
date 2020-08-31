@@ -13,3 +13,17 @@ https://jenkins-zh.gitee.io/update-center-mirror/tsinghua/update-center.json
 
 
 
+2. maven 编译无法删除
+权限问题
+
+使用root用户运行
+vi /etc/sysconfig/jenkins
+JENKINS_USER=root
+JENKINS_GROUP=root
+
+重启jenkins
+
+参考：https://blog.csdn.net/qq_31977125/article/details/83345424
+
+
+

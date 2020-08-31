@@ -6,7 +6,18 @@
 -->
 # ci cd
 
+常用插件
 
+maven 
+git 
+Pipeline 
+Gitlab Hook
+
+
+
+https://www.jianshu.com/p/2b2c204dcbe2
+Gitlab Hook Plugin
+Gitlab Plugin
 
 
 
