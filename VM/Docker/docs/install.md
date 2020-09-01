@@ -10,7 +10,7 @@
 
 执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker CE 的 Edge 版本安装在系统中。
 
-# 2. 使用ansible安装
+# 2. [Centos使用yum安装](../../../OS/Linux/Centos/docs/yum.md)
 
 
 
