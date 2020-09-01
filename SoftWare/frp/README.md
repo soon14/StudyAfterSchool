@@ -1,22 +1,12 @@
-frpc.ini
-```
-[common]
-server_addr = 120.27.240.227
-server_port = 7000
 
-[ssh]
-type = tcp
-local_ip = 127.0.0.1
-local_port = 22
-remote_port = 6000
-
-[web]
-type = http
-local_ip = 127.0.0.1
-local_port = 8899
-custom_domains = 120.27.240.227
-```
 
 
 
 nohup ./frpc -c frpc.ini &
+
+# error
+
+1. -bash: ./frps: cannot execute binary file
+错误原因是下载的frp的系统架构和安装环境的系统架构不匹配
+https://blog.csdn.net/lixuande19871015/article/details/90485929
+https://blog.csdn.net/lixuande19871015/article/details/98613711
