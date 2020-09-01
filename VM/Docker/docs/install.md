@@ -2,13 +2,19 @@
 
 
 
-# 使用脚本自动安装
+# 1. 使用脚本自动安装
 在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，CentOS 系统上可以使用这套脚本安装：
 
     $ curl -fsSL get.docker.com -o get-docker.sh
     $ sudo sh get-docker.sh --mirror Aliyun
 
 执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker CE 的 Edge 版本安装在系统中。
+
+# 2. 使用ansible安装
+
+
+
+
 
 # 启动 Docker CE
 
