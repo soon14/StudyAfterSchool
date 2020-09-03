@@ -1,4 +1,4 @@
-Http Source
+# Http Source
 
 ```
 # example.conf: A single-node Flume configuration
@@ -37,7 +37,7 @@ a1.sinks.k1.channel = c1
 ```
 
 
-# 自定义http source handler
+## 自定义http source handler 实现对xml类型数据处理
 
 <details>
 <summary>pom.xml</summary>
@@ -69,6 +69,7 @@ a1.sinks.k1.channel = c1
 
 
 <details>
+打包后上传到flume lib目录下
 <summary>HTTPSourceXMLHandler</summary>
 
 ```
@@ -223,4 +224,29 @@ public class HTTPSourceXMLHandler implements HTTPSourceHandler {
 </events>
 ```
 
-![image](Images/BigData/apache/flume/)
+![image](../../../../Images/BigData/apache/flume/httpxmlSourceHandler.png)
+
+
+
+# Spooling Directory Source
+
+```
+a1.sources=r1
+a1.sinks=k1
+a1.channels=c1
+
+a1.sources.r1.type=spooldir  
+a1.sources.r1.spoolDir=/tmp/cs/flume  # 监控目录，不监控该目录下子目录
+#a1.sources.r1.ignorePater=*ignore
+#a1.sources.r1.deletePolicy=immediate # 默认读取完成删除文件，never不删除只是重命名
+a1.sources.r1.fileHeader=true  # 文件名添加到事件header
+a1.sources.r1.channels=c1
+a1.sources.r1.insertTimestamp=true
+
+a1.sinks.k1.type=logger
+a1.sinks.k1.channel=c1
+
+a1.channels.c1.type=memory
+a1.channels.c1.capacity=1000
+a1.channels.c1.transactionCapacity=100
+```
