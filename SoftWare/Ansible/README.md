@@ -45,11 +45,12 @@ ansible-playbook playbook.yml -i host.yml --tags="test"
 
 
 
-模块名	作用
-command	执行命令模块（重要）
-copy	文件拷贝模块（重要）
-shell	执行shell脚本模块（重要）
-script	执行shell脚本模块（重要）
+模块名	作用  
+command	执行命令模块（重要）  
+copy	文件拷贝模块（重要）  
+unarchive 文件拷贝后解压
+shell	执行shell脚本模块（重要）  
+script	执行shell脚本模块（重要）  
 file	设定文件属性模块
 service	系统服务管理模块
 cron	计划任务管理模块
