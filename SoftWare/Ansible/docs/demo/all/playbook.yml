@@ -72,7 +72,15 @@
       command: yum install -y --nogpgcheck nginx
     - name: 启动nginx
       command: systemctl start nginx
-
+- name: 安装redis
+  hosts: redis
+  tags:
+    - redis
+  tasks:
+    # - name: 加载redis到docker
+    - name: 启动redis
+      command: "docker run -itd --name redis-test -p 6379:6379 redis"
+     
 
 
     

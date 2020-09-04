@@ -11,3 +11,6 @@ all:
     nginx:
       hosts:
         localhost
+    redis:
+      hots:
+        localhost
