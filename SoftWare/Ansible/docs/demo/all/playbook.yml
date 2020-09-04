@@ -1,0 +1,43 @@
+- name: 部署mysql
+  hosts: mysql
+  vars:
+    custom_passwd: "123456"
+  tasks:
+    - name: 移除mariadb
+      yum: 
+        name: mariadb-libs-*.el7.x86_64
+        state: absent
+    - name: 解压mysql安装包
+      unarchive:
+        src: /root/mysql.tar.gz
+        dest: /tmp/install/
+    - name: 添加mysql本地yum源
+      yum_repository:
+        name: mysql 
+        description: mysql YUM repo
+        baseurl: file:///tmp/install/mysql
+    - name: 安装mysql
+      command: yum install -y --nogpgcheck mysql mysql-community-server
+    - name: 启动mysql
+      command: systemctl start mysqld
+    - name: 获取mysql初始化密码
+      shell: "cat /var/log/mysqld.log | grep root@localhost | awk -F 'root@localhost: ' '{print $2}'"
+      register: passwd
+    - name: 重置mysql管理员密码
+      command: "mysql --connect-expired-password -u root -e \"
+                ALTER USER USER() IDENTIFIED BY 'Wjn@@1234';
+                set global validate_password_policy=0;
+                set global validate_password_length=1;
+                set global validate_password_mixed_case_count=0;
+                set global validate_password_number_count=3;
+                ALTER USER USER() IDENTIFIED BY '{{ custom_passwd }}';
+                grant all on *.* to root@'%' identified by '{{ custom_passwd }}' with grant option;
+                flush privileges;
+                \""
+      environment: 
+        MYSQL_PWD: "{{passwd.stdout}}"
+
+
+
+
+    
