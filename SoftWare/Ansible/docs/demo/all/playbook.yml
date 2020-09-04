@@ -36,7 +36,42 @@
                 \""
       environment: 
         MYSQL_PWD: "{{passwd.stdout}}"
-
+- name: 部署docker
+  hosts: docker
+  tags:
+    - docker
+  tasks:
+    - name: 解压docker安装包
+      unarchive:
+        src: /root/docker.tar.gz
+        dest: /tmp/install/
+    - name: 添加docker本地yum源
+      yum_repository:
+        name: docker 
+        description: docker YUM repo
+        baseurl: file:///tmp/install/docker
+    - name: 安装docker
+      command: yum install -y --nogpgcheck docker
+    - name: 启动docker
+      command: systemctl start docker
+- name: 部署nginx
+  hosts: nginx
+  tags:
+    - nginx
+  tasks:
+    - name: 解压nginx安装包
+      unarchive:
+        src: /root/nginx.tar.gz
+        dest: /tmp/install/
+    - name: 添加nginx本地yum源
+      yum_repository:
+        name: nginx 
+        description: nginx YUM repo
+        baseurl: file:///tmp/install/nginx
+    - name: 安装nginx
+      command: yum install -y --nogpgcheck nginx
+    - name: 启动nginx
+      command: systemctl start nginx
 
 
 

@@ -5,3 +5,9 @@ all:
     mysql:
       hosts:
         localhost
+    docker:
+      hosts:
+        localhost
+    nginx:
+      hosts:
+        localhost

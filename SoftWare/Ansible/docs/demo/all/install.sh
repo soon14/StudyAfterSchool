@@ -2,7 +2,7 @@
  # @Author: wjn
  # @Date: 2020-09-04 01:15:31
  # @LastEditors: wjn
- # @LastEditTime: 2020-09-04 06:39:29
+ # @LastEditTime: 2020-09-04 08:00:47
 ### 
 #!/bin/bash
 YUM_SOURCE_DIR=/etc/yum.repos.d
@@ -28,4 +28,4 @@ function install_ansible() {
 }
 
 
-ansible-playbook playbook.yml -i host.yml 
+ansible-playbook playbook.yml -i host.yml --tags="nginx"
