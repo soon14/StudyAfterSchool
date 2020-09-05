@@ -1,0 +1,11 @@
+[ansible]
+name=ansible
+baseurl=file:///tmp/install/ansible
+enabled=1
+gpgcheck=0
+
+[mysql]
+name=ansible
+baseurl=file:///tmp/install/mysql
+enabled=1
+gpgcheck=0

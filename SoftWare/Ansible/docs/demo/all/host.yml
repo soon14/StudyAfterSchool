@@ -1,0 +1,16 @@
+all:
+  hosts:
+    localhost
+  children:
+    mysql:
+      hosts:
+        localhost
+    docker:
+      hosts:
+        localhost
+    nginx:
+      hosts:
+        localhost
+    redis:
+      hots:
+        localhost
