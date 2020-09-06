@@ -76,14 +76,18 @@ For more examples and ideas, visit:
 
 # 镜像加速
 
+
+
 鉴于国内网络问题，后续拉取 Docker 镜像十分缓慢，强烈建议安装 Docker 之后配置 国内镜像加速。
 
 
 对于使用 systemd 的系统，请在 /etc/docker/daemon.json 中写入如下内容（如果文件不存在请新建该文件）
 
+使用阿里提供的镜像
+
     {
     "registry-mirrors": [
-        "https://registry.docker-cn.com"
+        "https://qq2hp253.mirror.aliyuncs.com"
     ]
     }
 

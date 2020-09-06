@@ -1,0 +1,47 @@
+version: '3.7'
+
+services:
+  # mysql:
+  #   hostname: mysql
+  #   # 启动容器名称mysql
+  #   container_name: mysql
+  #   # 使用mysql 5.7.20的镜像
+  #   image: mysql:5.7.20
+  #   # 自启动
+  #   restart: always
+  #   command:
+  #     # mysql默认使用utf8mb4编码
+  #     - --character-set-server=utf8mb4
+  #     - --collation-server=utf8mb4_general_ci
+  #     # mysql时间加8个小时
+  #     - --default-time_zone=+8:00
+  #   environment:
+  #     # 服务器时区使用上海 
+  #     TZ: Asis/Shanghai
+  #     # mysql初始化密码
+  #     MYSQL_ROOT_PASSWORD: 123456
+  #   ports:
+  #     # 容器3306端口映射到宿主机3306端口
+  #     - "3306:3306"
+  #   volumes:
+  #     # mysql相关数据存储在宿主机/data/docker/mysql文件夹
+  #     - /data/docker/mysql:/var/lib/mysql
+  #   privileged: true
+  # mongo:
+  #   image: mongo
+  #   restart: always
+  #   container_name: mongod
+  #   ports:
+  #     - "27017:27017"
+  #   volumes:
+  #     - $PWD/db:/data/db
+  #     - $PWD/log:/data/log
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: root
+  #     MONGO_INITDB_ROOT_PASSWORD: 123456
+  #   privileged: true
+  face_recognition:
+    image: aaftio/face_recognition
+    container_name: face_recognition
+    ports:
+        - 5001:5001
