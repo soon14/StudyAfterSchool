@@ -2,10 +2,24 @@
  * @Author: wjn
  * @Date: 2020-01-31 10:00:10
  * @LastEditors: wjn
- * @LastEditTime: 2020-03-01 11:24:13
+ * @LastEditTime: 2020-09-06 07:00:56
  -->
 
 <font size=8>**任何一个有智力的笨蛋都可以把事情搞得更大，更复杂。往相反的方向前进则需要天分，以及很大的勇气。**</font>
+
+总体结构
+* classify 分类
+    * --
+        * pro_name
+            * doc 使用文档
+                * install.md 安装文档
+                * error.md 错误整理
+            * demo 使用demo
+            * images 项目使用图片
+            * README.md 项目总体说明
+
+所有分类名称使用驼峰
+所有项目使用小写
 
 
 # 计算机核心：输入->处理->输出

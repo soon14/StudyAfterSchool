@@ -26,3 +26,8 @@ systemctl enable  network
 ping 8.8.8.8 
 
 如果接受不到数据则网关设置错误，调整网关和宿主机的Vmware 8 的网关一致
+
+
+5. dns无法解析
+
+BOOTPROTO=static  改为dhcp 动态可以使用

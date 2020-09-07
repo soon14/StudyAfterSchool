@@ -1,3 +1,9 @@
+###
+ # @Author: wjn
+ # @Date: 2020-09-06 05:58:55
+ # @LastEditors: wjn
+ # @LastEditTime: 2020-09-06 12:32:37
+### 
 #!/bin/bash
 
 # 下载安装脚本
@@ -17,9 +23,10 @@ systemctl start docker
 # 镜像加速
 cat>/etc/docker/daemon.json<<EOF
 {
-"registry-mirrors": [
-    "https://registry.docker-cn.com"
-]
+    "registry-mirrors": [
+        "https://registry.docker-cn.com",
+	    "http://hub-mirror.c.163.com"
+    ]
 }
 EOF
 
