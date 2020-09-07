@@ -1,1 +1,112 @@
--- name: 安装python3.6.8
+---
+- name: 源码安装python3.6.8
+  hosts: all
+  tasks:
+    - name: 安装依赖
+      yum:
+        name: "{{ pkgs}}"
+      vars:
+        pkgs:
+          - gcc
+          - zlib-devel
+          - gcc-c++
+          - unzip
+    # - name: 下载源码
+    #   command: "wget https://www.python.org/ftp/python/3.6.8/Python-3.6.8.tgz"
+    # - name: 解压
+    #   unarchive:
+    #     src: ./Python-3.6.8.tgz
+    #     dest: /tmp
+    # - name: 编译
+    #   command: "{{ item }}"
+    #   args:
+    #     chdir: /tmp/Python-3.6.8
+    #   with_items:
+    #     - ./configure --prefix=/usr/local/python3
+    #     - make
+    #     - make install
+    - name: 创建软连接
+      command: ln -s /usr/local/python3/bin/python3 /usr/local/bin/python3
+- name: 安装cmake
+  hosts: all
+  tags: cmake
+  tasks:
+    - name: 解压cmake
+      unarchive:
+        src: ./cmake-3.14.0.tar.gz
+        dest: /tmp
+    - name: 编译
+      args: 
+        chdir: /tmp/cmake-3.14.0
+      command: "{{ item }}"
+      with_items:
+        - ./bootstrap
+        - gmake
+        - gmake install
+- name: 安装boost
+  hosts: all
+  tags: boost
+  tasks:
+    - name: 解压boost
+      unarchive:
+        src: ./boost_1_69_0.tar.gz
+        dest: /tmp
+    - name: 编译
+      args: 
+        chdir: /tmp/boost_1_69_0
+      command: "{{ item }}"
+      with_items:
+        - ./bootstrap.sh --prefix=/usr/local/boost --with-libraries=python --with-python=/usr/local/python3
+        - ./b2
+        - ./b2 install
+- name: 安装dlib
+  hosts: all
+  tags: dlib
+  tasks:
+    # - name: 解压dlib
+    #   unarchive:
+    #     src: ./dlib-19.16.0.tar.gz
+    #     dest: /tmp
+    # - name: 
+    #   blockinfile:
+    #     path: /etc/profile
+    #     block: "export BOOST_ROOT=/usr/local/boost"
+    - name: 安装
+      args: 
+        chdir: /tmp/dlib-19.16.0
+      command: "python3 setup.py install --yes USE_AVX_INSTRUCTIONS"
+
+- name: 安装click
+  hosts: all
+  tags: click
+  tasks:
+    - name: 安装
+      command: "{{ item }}"
+      with_items:
+        - python3 -m pip install Click-7.0-py2.py3-none-any.whl
+        - python3 -m pip install face_recognition_models-0.3.0-py2.py3-none-any.whl
+        - python3 -m pip install numpy-1.16.2-cp36-cp36m-manylinux1_x86_64.whl
+        - python3 -m pip install Pillow-5.4.1-cp36-cp36m-manylinux1_x86_64.whl
+- name: 安装face_recognition
+  hosts: all
+  tags: face_recognition
+  tasks:
+    - name: 解压
+      unarchive:
+        src: ./face_recognition-master.zip
+        dest: /tmp
+    - name: 安装
+      args:
+        chdir: /tmp/face_recognition-master
+      command: "python3 setup.py install"
+
+- name: 清除安装目录
+  hosts: all
+  tags: delete
+  tasks:
+    - name: 清空临时目录
+      args:
+        chdir: /tmp
+      command: "rm -rf cmake-3.14.0 boost_1_69_0 dlib-19.16.0 Python-3.6.8 face_recognition-master"
+      
+
