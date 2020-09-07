@@ -2,7 +2,7 @@
  * @Author: wjn
  * @Date: 2020-01-31 23:12:05
  * @LastEditors: wjn
- * @LastEditTime: 2020-03-03 13:57:59
+ * @LastEditTime: 2020-09-07 01:59:30
  -->
 
 
@@ -31,6 +31,10 @@ tag  --标记本地tomcat镜像
 192.168.137.100:5000  --私服地址（官方默认添加ip和端口）
 
     docker push 192.168.137.100:5000/tomcat
+
+
+docker tag mysql:5.7.20  192.168.10.64:5000/mysql:5.7.20
+docker push 192.168.10.64:5000/mysql:5.7.20
 
 # 查看私服镜像
     
