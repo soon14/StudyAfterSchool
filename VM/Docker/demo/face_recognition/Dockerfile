@@ -40,7 +40,9 @@ RUN cd ~ && \
 #     pip3 install -r requirements.txt
 # RUN whatever_command_you_run_to_start_your_app
 
-ADD ML-face-recognition /usr/local/face-recognition
+RUN pip3 install pipreqs --timeout 1000 -i http://pypi.douban.com/simple/  --trusted-host pypi.douban.com
+
+
 WORKDIR /usr/local/face-recognition
 RUN pip3 install -r requirements.txt -i http://pypi.douban.com/simple/  --trusted-host pypi.douban.com
 CMD top
