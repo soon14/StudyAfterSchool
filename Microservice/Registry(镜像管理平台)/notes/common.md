@@ -2,7 +2,7 @@
  * @Author: wjn
  * @Date: 2020-01-31 23:12:05
  * @LastEditors: wjn
- * @LastEditTime: 2020-09-07 01:59:30
+ * @LastEditTime: 2020-09-07 11:40:38
  -->
 
 
@@ -35,6 +35,10 @@ tag  --标记本地tomcat镜像
 
 docker tag mysql:5.7.20  192.168.10.64:5000/mysql:5.7.20
 docker push 192.168.10.64:5000/mysql:5.7.20
+
+# 私服下载镜像
+
+docker pull 192.168.10.64:5000/mongo:latest
 
 # 查看私服镜像
     
