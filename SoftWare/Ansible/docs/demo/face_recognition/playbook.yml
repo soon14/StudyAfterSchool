@@ -1,6 +1,7 @@
 ---
 - name: 源码安装python3.6.8
   hosts: all
+  tags: python
   tasks:
     - name: 安装依赖
       yum:
@@ -13,20 +14,42 @@
           - unzip
     # - name: 下载源码
     #   command: "wget https://www.python.org/ftp/python/3.6.8/Python-3.6.8.tgz"
-    # - name: 解压
-    #   unarchive:
-    #     src: ./Python-3.6.8.tgz
-    #     dest: /tmp
-    # - name: 编译
-    #   command: "{{ item }}"
-    #   args:
-    #     chdir: /tmp/Python-3.6.8
-    #   with_items:
-    #     - ./configure --prefix=/usr/local/python3
-    #     - make
-    #     - make install
+    - name: 解压
+      unarchive:
+        src: ./Python-3.6.8.tgz
+        dest: /tmp
+    - name: 编译
+      command: "{{ item }}"
+      args:
+        chdir: /tmp/Python-3.6.8
+      with_items:
+        - ./configure --prefix=/usr/local/python3
+        - make
+        - make install
     - name: 创建软连接
       command: ln -s /usr/local/python3/bin/python3 /usr/local/bin/python3
+- name: 安装依赖
+  hosts: all
+  tags: dep
+  tasks:
+    - name: copy file
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+      with_items:
+        - { src: 'Click-7.0-py2.py3-none-any.whl', dest: '/tmp/Click-7.0-py2.py3-none-any.whl' }
+        - { src: 'face_recognition_models-0.3.0-py2.py3-none-any.whl', dest: '/tmp/face_recognition_models-0.3.0-py2.py3-none-any.whl' }
+        - { src: 'numpy-1.16.2-cp36-cp36m-manylinux1_x86_64.whl', dest: '/tmp/numpy-1.16.2-cp36-cp36m-manylinux1_x86_64.whl' }
+        - { src: 'Pillow-5.4.1-cp36-cp36m-manylinux1_x86_64.whl', dest: '/tmp/Pillow-5.4.1-cp36-cp36m-manylinux1_x86_64.whl' }
+    - name: install
+      args:
+        chdir: /tmp
+      command: "{{ item }}"
+      with_items:
+        - python3 -m pip install Click-7.0-py2.py3-none-any.whl
+        - python3 -m pip install face_recognition_models-0.3.0-py2.py3-none-any.whl
+        - python3 -m pip install numpy-1.16.2-cp36-cp36m-manylinux1_x86_64.whl
+        - python3 -m pip install Pillow-5.4.1-cp36-cp36m-manylinux1_x86_64.whl
 - name: 安装cmake
   hosts: all
   tags: cmake
@@ -63,14 +86,14 @@
   hosts: all
   tags: dlib
   tasks:
-    # - name: 解压dlib
-    #   unarchive:
-    #     src: ./dlib-19.16.0.tar.gz
-    #     dest: /tmp
-    # - name: 
-    #   blockinfile:
-    #     path: /etc/profile
-    #     block: "export BOOST_ROOT=/usr/local/boost"
+    - name: 解压dlib
+      unarchive:
+        src: ./dlib-19.16.0.tar.gz
+        dest: /tmp
+    - name: 
+      blockinfile:
+        path: /etc/profile
+        block: "export BOOST_ROOT=/usr/local/boost"
     - name: 安装
       args: 
         chdir: /tmp/dlib-19.16.0
