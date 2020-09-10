@@ -2,7 +2,7 @@
 Author: wjn
 Date: 2020-09-03 16:23:02
 LastEditors: wjn
-LastEditTime: 2020-09-10 11:47:03
+LastEditTime: 2020-09-10 14:08:09
 '''
 import os
 import sys
@@ -35,9 +35,9 @@ import sys
 # build_path = "D:/wjn/IdeaProjects/morgana/morgana-visualization/portal/portal-bootstrap/bin/"
 
 
-server_name = "wind-bdv"
+server_name = "fdbdv"
 server_main_class = "com.fdbdv.web.WebApplication"
-build_path = "D:/wjn/IdeaProjects/fdbdv/src/main/bin"
+build_path = "D:/wjn/IdeaProjects/fdbdv/src/main/bin/"
 
 
 path = 'Language/Java/notes/启动_停止进程/'
