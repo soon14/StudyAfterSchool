@@ -1,3 +1,9 @@
+'''
+Author: wjn
+Date: 2020-09-03 16:23:02
+LastEditors: wjn
+LastEditTime: 2020-09-10 11:47:03
+'''
 import os
 import sys
 
@@ -24,9 +30,14 @@ import sys
 # server_main_class = "com.wind.dashboard.DashboardBootstrapApplication"
 # build_path = "D:/wjn/IdeaProjects/morgana/morgana-visualization/dashboard/dashboard-bootstrap/bin/"
 
-server_name = "portal"
-server_main_class = "com.wind.portal.PortalBootstrapApplication"
-build_path = "D:/wjn/IdeaProjects/morgana/morgana-visualization/portal/portal-bootstrap/bin/"
+# server_name = "portal"
+# server_main_class = "com.wind.portal.PortalBootstrapApplication"
+# build_path = "D:/wjn/IdeaProjects/morgana/morgana-visualization/portal/portal-bootstrap/bin/"
+
+
+server_name = "wind-bdv"
+server_main_class = "com.fdbdv.web.WebApplication"
+build_path = "D:/wjn/IdeaProjects/fdbdv/src/main/bin"
 
 
 path = 'Language/Java/notes/启动_停止进程/'
