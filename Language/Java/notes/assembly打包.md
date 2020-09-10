@@ -2,7 +2,7 @@
  * @Author: wjn
  * @Date: 2020-08-07 14:44:07
  * @LastEditors: wjn
- * @LastEditTime: 2020-08-07 14:44:34
+ * @LastEditTime: 2020-09-10 15:36:24
 -->
 pom.xml 添加
 
@@ -111,3 +111,18 @@ assembly.xml
 
 
 settings -> schemas and dtds 添加http://maven.apache.org/plugins/maven-assembly-plugin/assembly/2.2.1
+
+
+
+* 找不到或加载不到主类
+
+build 中移除
+
+            <!--<plugin>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--</plugin>-->
+注释掉
+
+    <!-- 打包方式 -->
+    <packaging>jar</packaging>
