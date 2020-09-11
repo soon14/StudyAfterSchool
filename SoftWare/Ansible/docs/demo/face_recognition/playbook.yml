@@ -1,35 +1,35 @@
 ---
-- name: 源码安装python3.6.8
-  hosts: all
-  tags: python
-  vars:
-    - base_dir: /tmp
-  tasks:
-    - name: 安装依赖
-      yum:
-        name: "{{ pkgs}}"
-      vars:
-        pkgs:
-          - gcc
-          - zlib-devel
-          - gcc-c++
-          - unzip
-    # - name: 下载源码
-    #   command: "wget https://www.python.org/ftp/python/3.6.8/Python-3.6.8.tgz"
-    - name: 解压
-      unarchive:
-        src: "{{base_dir}}/Python-3.6.8.tgz"
-        dest: /tmp
-    - name: 编译
-      command: "{{ item }}"
-      args:
-        chdir: /tmp/Python-3.6.8
-      with_items:
-        - ./configure --prefix=/usr/local/python3
-        - make
-        - make install
-    - name: 创建软连接
-      command: ln -s /usr/local/python3/bin/python3 /usr/local/bin/python3
+# - name: 源码安装python3.6.8   该方式启用，使用官方编译好的安装，不然会缺少很多依赖
+  # hosts: all
+  # tags: python
+  # vars:
+  #   - base_dir: /tmp
+  # tasks:
+  #   - name: 安装依赖
+  #     yum:
+  #       name: "{{ pkgs}}"
+  #     vars:
+  #       pkgs:
+  #         - gcc
+  #         - zlib-devel
+  #         - gcc-c++
+  #         - unzip
+  #   # - name: 下载源码
+  #   #   command: "wget https://www.python.org/ftp/python/3.6.8/Python-3.6.8.tgz"
+  #   - name: 解压
+  #     unarchive:
+  #       src: "{{base_dir}}/Python-3.6.8.tgz"
+  #       dest: /tmp
+  #   - name: 编译
+  #     command: "{{ item }}"
+  #     args:
+  #       chdir: /tmp/Python-3.6.8
+  #     with_items:
+  #       - ./configure --prefix=/usr/local/python3
+  #       - make
+  #       - make install
+  #   - name: 创建软连接
+  #     command: ln -s /usr/local/python3/bin/python3 /usr/local/bin/python3
 - name: 安装依赖
   hosts: all
   tags: dep
