@@ -1,6 +1,6 @@
 # 自动化部署管理
 
-yum install ansible
+
 
 
 
