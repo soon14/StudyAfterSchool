@@ -1,0 +1,7 @@
+- name: 测试
+  hosts: all
+  tasks: 
+    - name: cs
+      shell: echo {{ cs }}
+      register: out
+    - debug: var=out
