@@ -12,6 +12,14 @@
 #   tags:
 #     - java
 
+# - name: docker
+#   hosts: docker
+#   roles:
+#     - { role: docker, do: ['el7']}
+#   tags:
+#     - docker
+
+
 # - name: 安装httpd
 #   hosts: httpd
 #   roles:
@@ -35,17 +43,10 @@
 #   roles:
 #     - ntpd
 
-- name: docker
-  hosts: docker
+
+- name: install mysql
+  hosts: mysql
   roles:
-    - docker
+    - { role: mysql, do: ['base', 'repl' ]}
   tags:
-    - docker
-
-
-# - name: install mysql
-#   hosts: mysql
-#   roles:
-#     - { role: mysql, do: ['base', 'repl' ]}
-#   tags:
-#    - mysql
+   - mysql

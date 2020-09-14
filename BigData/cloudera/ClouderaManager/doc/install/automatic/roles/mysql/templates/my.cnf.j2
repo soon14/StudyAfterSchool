@@ -1,0 +1,73 @@
+[mysqld]
+#{{ inventory_hostname }}
+{% if mysql.repl and inventory_hostname == groups.mysql[0] %}
+log-bin=mysql-bin
+server-id=1
+{% endif %}
+
+{% if mysql.repl and inventory_hostname != groups.mysql[0] %}
+{% for host in groups.mysql %}
+{% if inventory_hostname == host %}
+server-id={{ loop.index }}
+replicate-ignore-db=mysql
+{% endif %}
+{% endfor %}
+{% endif %}
+port = {{ mysql.port }}
+datadir=/var/lib/mysql
+#user=mysql
+default-storage-engine = InnoDB
+
+# Disabling symbolic-links is recommended to prevent assorted security risks
+# symbolic-links=0
+
+transaction-isolation = READ-COMMITTED
+character-set-client-handshake = FALSE
+character-set-server = utf8
+collation-server = utf8_unicode_ci
+
+key_buffer = 16M
+key_buffer_size = 32M
+max_allowed_packet = 32M
+thread_stack = 256K
+thread_cache_size = 64
+query_cache_limit = 8M
+query_cache_size = 64M
+query_cache_type = 1
+skip-name-resolve
+
+max_connections = 1024
+expire_logs_days = 7
+#max_binlog_size = 100M
+
+#log_bin should be on a disk with enough free space. Replace '/var/lib/mysql/mysql_binary_log' with an appropriate path for your system
+#and chown the specified folder to the mysql user.
+log_bin=/var/lib/mysql/mysql_binary_log
+
+# For MySQL version 5.1.8 or later. Comment out binlog_format for older versions.
+binlog_format = mixed
+
+read_buffer_size = 2M
+read_rnd_buffer_size = 16M
+sort_buffer_size = 8M
+join_buffer_size = 8M
+
+# InnoDB settings
+innodb_file_per_table = 1
+innodb_flush_log_at_trx_commit  = 2
+innodb_log_buffer_size = 64M
+innodb_buffer_pool_size = 4G
+innodb_thread_concurrency = 8
+innodb_flush_method = O_DIRECT
+innodb_log_file_size = 512M
+
+[mysqld_safe]
+log-error=/var/lib/mysql/log/mysqld.log
+pid-file=/var/lib/mysql/pid/mysqld.pid
+sql_mode=STRICT_ALL_TABLES
+
+[client]
+default-character-set=utf8
+
+[mysql]
+default-character-set=utf8

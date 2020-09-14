@@ -17,4 +17,19 @@ ntp_server:
   host: 192.168.50.4
 docker:
   dir: docker
-  tar: '{{pkgs_path}}/docker.{{ os }}.tar.gz'
+  tar: '{{pkgs_path}}/docker.el7.tar.gz'
+mysql:
+  onion_passwd: 123456
+  onion_user: onion
+  dir: mysql
+  image_file: mysql5.6.image
+  image_name: icloud.com/database/mysql:5.6
+  port: 3306
+  repl: '{{ groups.mysql | length >= 2 }}'
+  repl_passwd: onion_repl
+  repl_user: repl
+  root_passwd: onion_pcloud
+  tar: '{{pkgs_path}}/mysql.tar.gz'
+database:
+  root: /data/disk_01/database
+  user: db
