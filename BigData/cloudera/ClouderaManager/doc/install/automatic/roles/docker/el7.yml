@@ -1,0 +1,74 @@
+- name: check docker installed
+ shell: docker ps
+ register: re
+ ignore_errors: true
+
+- name: docker stop
+  service: name=docker state=stopped enabled=yes
+  ignore_errors: true
+
+- name: rm -fr /var/lib/docker
+  shell:  rm -fr /var/lib/docker
+
+- name: copy {{docker.tar_el7}} to remote
+  unarchive: >
+    src={{ docker.tar}}
+    dest=/tmp
+#  when: "'version' not in re.stdout "
+
+
+# #- name: install deps
+# #  shell: "for i in /tmp/{{ docker.dir }}/*.rpm; do rpm -Uvh $i --nodeps --force; done"
+# #  when: "'version' not in re.stdout "
+
+# - name: install deps
+#   shell: cd /tmp/docker && python /tmp/docker/install.py
+#   #when: "'version' not in re.stdout "
+
+# - name: groupadd docker
+#   group: name=docker state=present
+
+# - name: usermod -aG docker {{bdp_user}}
+#   shell: usermod -aG docker {{bdp_user}}
+#   ignore_errors: true
+
+# - name: docker start
+#   service: name=docker state=restarted enabled=yes
+
+# - name: stat {{ cluster.cluster_default_data_path }}
+#   stat: path={{ cluster.cluster_default_data_path }}
+#   register: cluster_stat
+
+# - name: create {{ cluster.cluster_default_data_path }}
+#   file: >
+#     path={{ cluster.cluster_default_data_path }}
+#     owner={{ bdp_user }}
+#     group={{ bdp_user }}
+#     state=directory
+#   when: not cluster_stat.stat.exists
+
+# - name: docker stop
+#   service: name=docker state=stopped enabled=yes
+#   ignore_errors: true
+
+# - name: rm -rf {{ cluster.cluster_default_data_path }}/docker
+#   shell: rm -rf {{ cluster.cluster_default_data_path }}/docker
+
+# - name: mv -rf /var/lib/docker {{ cluster.cluster_default_data_path }}/
+#   shell: cp -rf /var/lib/docker {{ cluster.cluster_default_data_path }}/ 
+
+# - name: link docker direcory to {{ cluster.cluster_default_data_path }}/docker
+#   shell: ln -s {{ cluster.cluster_default_data_path }}/docker /var/lib/docker
+
+# - name: docker start
+#   service: name=docker state=restarted enabled=yes
+
+# - name: check docker ps
+#   shell: ps -ef | grep -v grep | grep docker
+#   register: out
+#   failed_when: "'/usr/bin/docker' not in out.stdout"
+
+# - name: del unused file
+#   file: >
+#     path=/tmp/{{ docker.dir}}
+#     state=absent

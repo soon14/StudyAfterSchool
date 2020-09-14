@@ -1,0 +1,85 @@
+- name: pkill java process
+  shell: pkill -f {{ item }}
+  with_items:
+    - java
+  ignore_errors: true
+
+- name: stat {{cluster.cluster_path}}
+  stat: path={{cluster.cluster_path}}
+  register: cluster_stat
+
+- name: create {{ cluster.cluster_default_data_path }}/cluster
+  file: >
+    path={{ cluster.cluster_default_data_path }}/cluster
+    owner={{onion_user}}
+    group={{onion_group}}
+    state=directory
+  when: not cluster_stat.stat.exists or not cluster_stat.stat.isdir
+
+- name: link cluster
+  file: >
+    src={{ cluster.cluster_default_data_path }}/cluster
+    dest={{ cluster.cluster_path }}
+    owner={{onion_user}}
+    group={{onion_group}}
+    state=link
+  when: not cluster_stat.stat.exists or not cluster_stat.stat.isdir
+  ignore_errors: true
+
+- name: copy jdk.tar
+  unarchive: >
+    src={{ pkgs_path }}/jdk{{ jdk_version }}.tar.gz
+    dest={{ cluster.cluster_path }}
+    owner={{onion_user}}
+    group={{onion_group}}
+
+- name: create link for jdk dir
+  file: >
+    src={{ cluster.cluster_path }}/jdk{{ jdk_version }}
+    dest={{ cluster.cluster_path }}/jdk
+    owner={{onion_user}}
+    group={{onion_group}}
+    state=link
+
+- name: export path root&onion
+  lineinfile: >
+    dest={{ item[0] }}
+    line={{ item[1] }}
+    create=yes
+    owner={{onion_user}}
+    group={{onion_group}}
+  with_nested:
+    - [
+        # '{{ cluster.cluster_path }}/cluster_env'
+       '/home/{{onion_user}}/.bashrc',
+       '/root/.bashrc'
+      ]
+    - [
+        'export ONIONCLUSTER_HOME={{ cluster.cluster_path  }}',
+        'export JAVA_HOME=$ONIONCLUSTER_HOME/jdk',
+        'export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar',
+        'export PATH=$JAVA_HOME/bin:$PATH',
+      ]
+
+
+- name: create {{ cluster.cluster_data_root_path }}
+  file: >
+    path={{ cluster.cluster_data_root_path }}
+    owner={{onion_user}}
+    group={{onion_group}}
+    state=directory
+
+- name: create data file
+  file: >
+    path={{ item }}
+    state=directory
+    owner={{onion_user}}
+    group={{onion_group}}
+  with_items:
+    - "{{ cluster.cluster_data_path }}"
+  ignore_errors: true
+- name: source bashrc
+  shell: "source {{ item }}"
+  with_items:
+    - '/home/{{onion_user}}/.bashrc'
+    - '/root/.bashrc'

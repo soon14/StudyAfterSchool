@@ -8,24 +8,17 @@
     name={{onion_user}}
     generate_ssh_key=yes
 
-- name: copy ssh-key
-  template: >
-    src={{ item[0] }}.j2
-    dest={{ item[1] }}/.ssh/{{ item[0] }}
-    owner={{ onion_user }}
-    group={{ onion_user }}
-    mode=600
-  with_nested:
-    - ["onion", "onion.pub", "config"]
-    - ['/home/{{ onion_user }}']
+- name: "分发公钥"
+  authorized_key:
+      user: root
+      key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+      state: present
 
-- name: copy ssh-key
-  template: >
-    src={{ item[0] }}.j2
-    dest={{ item[1] }}/.ssh/{{ item[0] }}
-    owner=root
-    group=root
-    mode=600
+- name: "分发公钥"
+  authorized_key:
+      user: '{{ onion_user }}'
+      key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+      state: present
 
 - name: check ssh
   shell: ssh -p {{ hostvars[item[0]].ansible_ssh_port }} {{ item[1] }}@{{ item[0] }} -o "StrictHostKeyChecking no" "echo hello cluster"
@@ -34,3 +27,5 @@
     - ['root', '{{ onion_user }}']
   register: res
   failed_when: "'hello cluster' not in res.stdout"
+  delegate_to: 127.0.0.1 # 任务委派
+

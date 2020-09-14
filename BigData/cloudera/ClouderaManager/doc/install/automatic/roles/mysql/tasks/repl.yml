@@ -1,0 +1,23 @@
+- name: create user for repl
+  shell: docker exec bdp-mysql mysql -P {{ mysql.port }} -uroot -p{{ mysql.root_passwd }} -e "GRANT REPLICATION CLIENT, REPLICATION SLAVE ON *.* TO {{ mysql.repl_user }}@'%' IDENTIFIED BY '{{ mysql.repl_passwd }}';"
+  delegate_to: "{{ groups.mysql[0] }}"
+  run_once: true
+  when: "mysql.repl"
+
+- name: set slaves
+  shell: docker exec bdp-mysql mysql -P {{ mysql.port }} -uroot -p{{ mysql.root_passwd }} -e "CHANGE MASTER TO MASTER_HOST='{{ groups.mysql[0] }}', MASTER_PORT={{ mysql.port }}, MASTER_USER='{{ mysql.repl_user }}', MASTER_PASSWORD='{{ mysql.repl_passwd }}';start slave;"
+  delegate_to: "{{ item }}"
+  run_once: true
+  with_items:
+    - "{{ groups.mysql[1:] }}"
+  when: "mysql.repl"
+
+- name: check slaves
+  shell: docker exec bdp-mysql mysql -P {{ mysql.port }} -uroot -p{{ mysql.root_passwd }} -e "show slave status\G"
+  register: res
+  failed_when: "'Slave_IO_Running: Yes' not in res.stdout or 'Slave_SQL_Running: Yes' not in res.stdout"
+  delegate_to: "{{ item }}"
+  run_once: true
+  with_items:
+    - "{{ groups.mysql[1:] }}"
+  when: "{{ mysql.repl }}"

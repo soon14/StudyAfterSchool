@@ -1,6 +1,51 @@
-- name: system init（系统初始化）
-  hosts: all
+# - name: system init（系统初始化）
+#   hosts: all
+#   roles:
+#     - { role: init, do: ['user', 'el7', 'hosts', 'hostname', 'ssh']}
+#   tags:
+#     - init
+
+# - name: install java
+#   hosts: all
+#   roles:
+#     - java
+#   tags:
+#     - java
+
+# - name: 安装httpd
+#   hosts: httpd
+#   roles:
+#     - { role: httpd, do: ['install']}
+#   tags:
+#     - httpd
+
+
+# - name: 添加mysql-connect.jar
+#   hosts: all
+#   tasks:
+#     - name: 创建目录
+#       shell: sudo mkdir -p /usr/share/java/
+#     - name: 添加mysql-connect.jar
+#       copy:
+#         src: "{{pkgs_path}}/mysql-connector-java.jar"
+#         dest: "/usr/share/java/mysql-connector-java.jar"
+
+# - name: 集群时间同步
+#   hosts: all
+#   roles:
+#     - ntpd
+
+- name: docker
+  hosts: docker
   roles:
-    - { role: init, do: ['ssh']}
+    - docker
   tags:
-    - init
+    - docker
+
+
+# - name: install mysql
+#   hosts: mysql
+#   roles:
+#     - { role: mysql, do: ['base', 'repl' ]}
+#   tags:
+#    - mysql
