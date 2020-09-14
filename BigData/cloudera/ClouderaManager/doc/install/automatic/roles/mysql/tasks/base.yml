@@ -43,7 +43,7 @@
   wait_for: port={{ mysql.port }}
 
 - name: check mysql_init.sh
-  shell: docker exec onion-mysql mysql -P {{ mysql.port }} -uroot -p{{ mysql.root_passwd }} -e 'show databases;'
+  shell: docker exec bdp-mysql mysql -P {{ mysql.port }} -uroot -p{{ mysql.root_passwd }} -e 'show databases;'
   register: res
-  failed_when: "'hive_meta' not in res.stdout"
+  failed_when: "'cm' not in res.stdout"
 

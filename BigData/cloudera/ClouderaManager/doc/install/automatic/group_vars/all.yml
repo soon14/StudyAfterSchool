@@ -22,7 +22,7 @@ mysql:
   onion_passwd: 123456
   onion_user: onion
   dir: mysql
-  image_file: mysql5.6.image
+  image_file: mysql5.7.22.image
   image_name: icloud.com/database/mysql:5.6
   port: 3306
   repl: '{{ groups.mysql | length >= 2 }}'
