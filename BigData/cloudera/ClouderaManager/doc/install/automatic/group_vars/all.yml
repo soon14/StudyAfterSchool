@@ -1,0 +1,14 @@
+cs: 测试
+onion_encry_passwd: '{{ ''123456'' | password_hash(''sha512'') }}'
+onion_group: onion
+onion_group_id: 5555
+onion_passwd: 123456
+onion_user: onion
+onion_user_id: 5555
+cluster:
+  cluster_data_path:
+  - /data/disk_01
+  cluster_data_root_path: /data
+  cluster_default_data_path: /data/disk_01
+  cluster_path: /home/{{ onion_user }}/cluster
+

@@ -1,0 +1,36 @@
+- name: root ssh-keygen
+  user: >
+    name=root
+    generate_ssh_key=yes
+
+- name: onion ssh-keygen
+  user: >
+    name={{onion_user}}
+    generate_ssh_key=yes
+
+- name: copy ssh-key
+  template: >
+    src={{ item[0] }}.j2
+    dest={{ item[1] }}/.ssh/{{ item[0] }}
+    owner={{ onion_user }}
+    group={{ onion_user }}
+    mode=600
+  with_nested:
+    - ["onion", "onion.pub", "config"]
+    - ['/home/{{ onion_user }}']
+
+- name: copy ssh-key
+  template: >
+    src={{ item[0] }}.j2
+    dest={{ item[1] }}/.ssh/{{ item[0] }}
+    owner=root
+    group=root
+    mode=600
+
+- name: check ssh
+  shell: ssh -p {{ hostvars[item[0]].ansible_ssh_port }} {{ item[1] }}@{{ item[0] }} -o "StrictHostKeyChecking no" "echo hello cluster"
+  with_nested:
+    - "{{ groups.all }}"
+    - ['root', '{{ onion_user }}']
+  register: res
+  failed_when: "'hello cluster' not in res.stdout"

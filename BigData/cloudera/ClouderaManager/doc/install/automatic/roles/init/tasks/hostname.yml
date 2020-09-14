@@ -1,0 +1,11 @@
+- name: create network
+  template: >
+    src=network.j2
+    dest=/etc/sysconfig/network
+    backup=yes
+
+- name: edit hostname
+  shell: hostname {{ inventory_hostname }}
+
+- name: edit /etc/hostname
+  shell: "echo {{ inventory_hostname }} > /etc/hostname"

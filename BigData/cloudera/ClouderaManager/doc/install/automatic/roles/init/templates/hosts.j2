@@ -1,0 +1,5 @@
+{% for host in groups.all %}
+{% if 'localhost' not in host %}
+{{ hostvars[host].ansible_ssh_host }} {{ host }}
+{% endif %}
+{% endfor %}
