@@ -44,9 +44,9 @@
 #     - ntpd
 
 
-- name: install mysql
-  hosts: mysql
-  roles:
-    - { role: mysql, do: ['user' ]}
-  tags:
-   - mysql
+# - name: install mysql
+#   hosts: mysql
+#   roles:
+#     - { role: mysql, do: ['base','repl','user' ]}
+#   tags:
+#    - mysql
