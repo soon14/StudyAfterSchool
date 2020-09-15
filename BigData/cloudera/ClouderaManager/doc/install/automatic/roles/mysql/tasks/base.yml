@@ -1,0 +1,49 @@
+- name: create group {{ database.user }}
+  group: >
+    name={{ database.user }}
+    system=yes
+
+- name: create user {{ database.user }}
+  user: >
+    name={{ database.user }}
+    group={{ database.user }}
+    createhome=no
+
+- name: del {{ database.root }}/mysql
+  file: >
+    path={{ database.root }}/mysql
+    state=absent
+
+- name: create user {{ database.root }}
+  file: >
+    path={{ database.root }}
+    state=directory
+    owner={{ database.user }}
+    group={{ database.user }}
+
+- name: copy {{ mysql.tar }}
+  unarchive: >
+    src={{ mysql.tar }}
+    dest={{database.root}}/
+    owner={{ database.user }}
+    group={{ database.user }}
+
+- name: docker load < {{ database.root }}/{{ mysql.dir }}/{{ mysql.image_file }}
+  shell: docker load < {{ database.root }}/{{ mysql.dir }}/{{ mysql.image_file }}
+
+- name: replace my.cnf
+  template: >
+    src=my.cnf.j2
+    dest={{ database.root }}/{{ mysql.dir }}/conf/my.cnf
+
+- name: start mysql docker container
+  shell: sh {{ database.root }}/mysql/container_start.sh
+
+- name: check mysql port
+  wait_for: port={{ mysql.port }}
+
+- name: check mysql_init.sh
+  shell: docker exec onion-mysql mysql -P {{ mysql.port }} -uroot -p{{ mysql.root_passwd }} -e 'show databases;'
+  register: res
+  failed_when: "'mysql' not in res.stdout"
+

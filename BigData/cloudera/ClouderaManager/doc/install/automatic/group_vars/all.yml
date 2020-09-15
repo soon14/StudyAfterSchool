@@ -1,0 +1,41 @@
+cs: 测试
+onion_encry_passwd: '{{ ''123456'' | password_hash(''sha512'') }}'
+onion_group: onion
+onion_group_id: 5555
+onion_passwd: 123456
+onion_user: onion
+onion_user_id: 5555
+cluster:
+  cluster_data_path:
+  - /data/disk_01
+  cluster_data_root_path: /data
+  cluster_default_data_path: /data/disk_01
+  cluster_path: /home/{{ onion_user }}/cluster
+pkgs_path: '/tmp/pkgs'
+jdk_version: 1.8.0_91
+ntp_server:
+  host: 192.168.50.4
+docker:
+  dir: docker
+  tar: '{{pkgs_path}}/docker.el7.tar.gz'
+mysql:
+  onion_passwd: 123456
+  onion_user: onion
+  dir: mysql
+  image_file: mysql5.7.22.image
+  image_name: icloud.com/database/mysql:5.6
+  port: 3306
+  repl: '{{ groups.mysql | length >= 2 }}'
+  repl_passwd: onion_repl
+  repl_user: repl
+  root_passwd: onion_pcloud
+  tar: '{{pkgs_path}}/mysql.tar.gz'
+database:
+  root: /data/disk_01/database
+  user: db
+cm:
+  version: "6.1.1"
+  tar: '{{pkgs_path}}/cm6.1.1.tar.gz'
+cdh:
+  version: "6.1.1"
+  tar: '{{pkgs_path}}/cdh6.1.1.tar.gz'

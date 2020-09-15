@@ -1,0 +1,31 @@
+- name: root ssh-keygen
+  user: >
+    name=root
+    generate_ssh_key=yes
+
+- name: onion ssh-keygen
+  user: >
+    name={{onion_user}}
+    generate_ssh_key=yes
+
+- name: "分发公钥"
+  authorized_key:
+      user: root
+      key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+      state: present
+
+- name: "分发公钥"
+  authorized_key:
+      user: '{{ onion_user }}'
+      key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+      state: present
+
+- name: check ssh
+  shell: ssh -p {{ hostvars[item[0]].ansible_ssh_port }} {{ item[1] }}@{{ item[0] }} -o "StrictHostKeyChecking no" "echo hello cluster"
+  with_nested:
+    - "{{ groups.all }}"
+    - ['root', '{{ onion_user }}']
+  register: res
+  failed_when: "'hello cluster' not in res.stdout"
+  delegate_to: 127.0.0.1 # 任务委派
+
