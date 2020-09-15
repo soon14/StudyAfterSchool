@@ -1,0 +1,9 @@
+- name: change swapper
+  shell: sysctl vm.swappiness=10
+- name: change swapper
+  shell: echo 'vm.swappiness=10' >> /etc/sysctl.conf  
+- name: 透明大页面压缩
+  shell: echo never > /sys/kernel/mm/transparent_hugepage/defrag
+- name: 透明大页面压缩
+  shell: echo never > /sys/kernel/mm/transparent_hugepage/enabled
+

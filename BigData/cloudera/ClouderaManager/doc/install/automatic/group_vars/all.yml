@@ -33,3 +33,9 @@ mysql:
 database:
   root: /data/disk_01/database
   user: db
+cm:
+  version: "6.1.1"
+  tar: '{{pkgs_path}}/cm6.1.1.tar.gz'
+cdh:
+  version: "6.1.1"
+  tar: '{{pkgs_path}}/cdh6.1.1.tar.gz'
