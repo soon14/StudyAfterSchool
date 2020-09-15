@@ -2,10 +2,6 @@
   unarchive:
     src: "{{ cm.tar }}"
     dest: '/var/www/html'
-- name: 增加本地cm的本地yum源
-  template: >
-    src=cloudera.repo.j2
-    dest=/etc/yum.repos.d/cloudera.repo
 - name: 上传cdh安装包
   unarchive:
     src: "{{ cdh.tar }}"

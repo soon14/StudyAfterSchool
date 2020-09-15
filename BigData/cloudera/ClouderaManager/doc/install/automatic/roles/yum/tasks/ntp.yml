@@ -1,0 +1,10 @@
+- name: 上传ntp安装包
+  unarchive:
+    src: "{{ java.tar }}"
+    dest: '/var/www/html'
+- name: 上传ntp安装包
+  unarchive:
+    src: "{{ ntp.tar }}"
+    dest: '/var/www/html'
+- name: 安装jdk1.8
+  shell: yum install -y ntp

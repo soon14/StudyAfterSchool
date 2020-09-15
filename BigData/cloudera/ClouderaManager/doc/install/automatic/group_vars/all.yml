@@ -19,8 +19,6 @@ docker:
   dir: docker
   tar: '{{pkgs_path}}/docker.el7.tar.gz'
 mysql:
-  onion_passwd: 123456
-  onion_user: onion
   dir: mysql
   image_file: mysql5.7.22.image
   image_name: icloud.com/database/mysql:5.6
@@ -32,21 +30,15 @@ mysql:
   tar: '{{pkgs_path}}/mysql.tar.gz'
 database:
   root: /data/disk_01/database
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 624fd980f684d7ca40226c2d4cbc84736862754d
   user: db
 cm:
   version: "6.1.1"
   tar: '{{pkgs_path}}/cm6.1.1.tar.gz'
 cdh:
   version: "6.1.1"
-<<<<<<< HEAD
   tar: '{{pkgs_path}}/cdh6.1.1.tar.gz'
-=======
-  tar: '{{pkgs_path}}/cdh6.1.1.tar.gz'
-=======
-  user: db
->>>>>>> c45965e0bfbe39c772db5a5451f4f20dd2559fb6
->>>>>>> 624fd980f684d7ca40226c2d4cbc84736862754d
+java:
+  version: "1.8"
+  tar: '{{pkgs_path}}/java1.8.tar.gz'
+ntp:
+  tar: '{{pkgs_path}}/ntp.tar.gz'
