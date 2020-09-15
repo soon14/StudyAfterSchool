@@ -42,6 +42,14 @@
 - name: create {{ cluster.cluster_default_data_path }}
   file: >
     path={{ cluster.cluster_default_data_path }}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+    owner={{ bdp_user }}
+    group={{ bdp_user }}
+>>>>>>> c45965e0bfbe39c772db5a5451f4f20dd2559fb6
+>>>>>>> 624fd980f684d7ca40226c2d4cbc84736862754d
     state=directory
   when: not cluster_stat.stat.exists
 
