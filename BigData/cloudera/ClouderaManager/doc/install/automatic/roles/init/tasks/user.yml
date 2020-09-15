@@ -1,0 +1,31 @@
+- name: create group onion
+  group: >
+    name={{ onion_user }}
+    gid={{ onion_group_id }}
+    system=yes
+
+- name: create user onion
+  user: >
+    name={{ onion_user }}
+    uid={{ onion_user_id }}
+    group={{ onion_group }}
+    password={{ onion_encry_passwd }}
+    createhome=yes
+
+- name: add onion sudoers
+  lineinfile: dest=/etc/sudoers state=present line='{{item}}' validate='visudo -cf %s'
+  with_items:
+    - "onion  ALL=(ALL) NOPASSWD: ALL"
+
+- name: modified .bashrc for {{ onion_user }}
+  blockinfile:
+    dest: '{{ item }}'
+    create: yes
+    backup: yes
+    block: |
+      if [ -f {{ cluster.cluster_path }}/cluster_env ]; then
+          . {{ cluster.cluster_path }}/cluster_env
+      fi
+  with_items:
+    - '/home/{{onion_user}}/.bashrc'
+    - '/root/.bashrc'
