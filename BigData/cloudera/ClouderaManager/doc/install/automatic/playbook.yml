@@ -1,41 +1,41 @@
-# - name: 系统初始化
-#   hosts: all
-#   roles:
-#     - { role: init, do: ['el7', 'hosts', 'user','hostname', 'ssh', 'other', 'java']}
-#   tags:
-#     - init
+- name: 系统初始化
+  hosts: all
+  roles:
+    - { role: init, do: ['el7', 'hosts', 'user','hostname', 'ssh', 'other', 'java']}
+  tags:
+    - init
 
-# - name: 安装httpd
-#   hosts: httpd
-#   tasks:
-#     - name: install httpd
-#       yum: 
-#         name: httpd
-#         state: latest
-#     - name: start httpd
-#       shell: systemctl start httpd
+- name: 安装httpd
+  hosts: httpd
+  tasks:
+    - name: install httpd
+      yum: 
+        name: httpd
+        state: latest
+    - name: start httpd
+      shell: systemctl start httpd
 
-# - name: 集群时间同步
-#   hosts: all
-#   roles:
-#     - ntpd
+- name: 集群时间同步
+  hosts: all
+  roles:
+    - ntpd
 
-# - name: 安装docker
-#   hosts: docker
-#   roles:
-#     - { role: docker, do: ['el7']}
-#   tags:
-#     - docker
+- name: 安装docker
+  hosts: docker
+  roles:
+    - { role: docker, do: ['el7']}
+  tags:
+    - docker
 
-# - name: 添加mysql-connect.jar
-#   hosts: all
-#   tasks:
-#     - name: 创建目录
-#       shell: sudo mkdir -p /usr/share/java/
-#     - name: 添加mysql-connect.jar
-#       copy:
-#         src: "{{pkgs_path}}/mysql-connector-java.jar"
-#         dest: "/usr/share/java/mysql-connector-java.jar"
+- name: 添加mysql-connect.jar
+  hosts: all
+  tasks:
+    - name: 创建目录
+      shell: sudo mkdir -p /usr/share/java/
+    - name: 添加mysql-connect.jar
+      copy:
+        src: "{{pkgs_path}}/mysql-connector-java.jar"
+        dest: "/usr/share/java/mysql-connector-java.jar"
 
 - name: 安装 mysql
   hosts: mysql
