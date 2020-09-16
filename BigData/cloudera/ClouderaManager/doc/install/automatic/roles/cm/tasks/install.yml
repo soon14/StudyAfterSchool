@@ -2,17 +2,17 @@
   unarchive:
     src: "{{ cm.tar }}"
     dest: '/var/www/html'
-- name: 增加本地cm的本地yum源
-  template: >
-    src=cloudera.repo.j2
-    dest=/etc/yum.repos.d/cloudera.repo
 - name: 上传cdh安装包
   unarchive:
     src: "{{ cdh.tar }}"
     dest: '/var/www/html'
+- name: 添加本地yum源
+  template:
+    src: cloudera.repo.j2
+    dest: /etc/yum.repos.d/cloudera.repo
 - name: 安装cloudera manager
   shell: yum -y install cloudera-manager-server
 - name: 配置SCM database
-  shell: /opt/cloudera/cm/schema/scm_prepare_database.sh -h 192.168.50.4 mysql cm cm 123456
+  shell: /opt/cloudera/cm/schema/scm_prepare_database.sh mysql cm cm 123456
 - name: 启动cloudera manager
   shell: systemctl start cloudera-scm-server

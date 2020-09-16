@@ -28,8 +28,8 @@
 - name: groupadd docker
   group: name=docker state=present
 
-- name: usermod -aG docker {{bdp_user}}
-  shell: usermod -aG docker {{bdp_user}}
+- name: usermod -aG docker {{onion_user}}
+  shell: usermod -aG docker {{onion_user}}
   ignore_errors: true
 
 - name: docker start
@@ -42,11 +42,8 @@
 - name: create {{ cluster.cluster_default_data_path }}
   file: >
     path={{ cluster.cluster_default_data_path }}
-<<<<<<< HEAD
-=======
-    owner={{ bdp_user }}
-    group={{ bdp_user }}
->>>>>>> c45965e0bfbe39c772db5a5451f4f20dd2559fb6
+    owner={{ onion_user }}
+    group={{ onion_user }}
     state=directory
   when: not cluster_stat.stat.exists
 

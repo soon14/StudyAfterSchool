@@ -32,7 +32,4 @@
 - name: set default random port
   shell: echo -e "\nnet.ipv4.ip_local_port_range = 32768 60999" >> /etc/sysctl.conf
   ignore_errors: true
-<<<<<<< HEAD
 
-=======
->>>>>>> c45965e0bfbe39c772db5a5451f4f20dd2559fb6
