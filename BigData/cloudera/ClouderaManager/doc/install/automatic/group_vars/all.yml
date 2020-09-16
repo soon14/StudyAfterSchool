@@ -42,3 +42,5 @@ java:
   tar: '{{pkgs_path}}/java1.8.tar.gz'
 ntp:
   tar: '{{pkgs_path}}/ntp.tar.gz'
+httpd:
+  tar: '{{pkgs_path}}/httpd.tar.gz'

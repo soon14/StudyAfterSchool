@@ -1,4 +1,0 @@
-- include: "{{outer_item}}.yml"
-  with_items: "{{ do }}"
-  loop_control:
-    loop_var: outer_item

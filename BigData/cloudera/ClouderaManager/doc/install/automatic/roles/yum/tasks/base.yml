@@ -1,4 +1,0 @@
-- name: 增加本地yum源
-  template: >
-    src=cloudera.repo.j2
-    dest=/etc/yum.repos.d/cloudera.repo
