@@ -2,13 +2,18 @@
  * @Author: wjn
  * @Date: 2020-09-24 10:08:54
  * @LastEditors: wjn
- * @LastEditTime: 2020-09-24 10:10:51
+ * @LastEditTime: 2020-09-24 10:55:41
 -->
-yum 方式安装
-vi /etc/yum.repos.d/jenkins.repo 
-[jenkins]
-name=Jenkins
-baseurl=http://pkg.jenkins.io/redhat
-gpgcheck=1
+# yum 方式安装
 
-yum install -y jenkins
+配置yum源：
+wget  -O  /etc/yum.repos.d/jenkins.repo  http://pkg.jenkins-ci.org/redhat/jenkins.repo
+导入rpm密钥：
+rpm  --import  https://jenkins-ci.org/redhat/jenkins-ci.org.key
+安装：
+yum  -y  install  jenkins  java
+启动服务：
+systemctl  start  jenkins
+访问网址：
+xx.xx.xx.xx:8080
+根据提示进行安装
