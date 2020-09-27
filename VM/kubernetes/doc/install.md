@@ -2,7 +2,7 @@
  * @Author: wjn
  * @Date: 2020-09-27 09:30:50
  * @LastEditors: wjn
- * @LastEditTime: 2020-09-27 11:56:04
+ * @LastEditTime: 2020-09-27 13:45:56
 -->
 [参考](https://blog.csdn.net/JENREY/article/details/84205838?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param#3.1%E3%80%81%E4%BC%A0%E7%BB%9F%E7%9A%84%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F%EF%BC%9A%EF%BC%88%E6%9C%AC%E6%96%87%E4%B8%8D%E4%BD%BF%E7%94%A8%E8%BF%99%E7%A7%8D%EF%BC%8C%E5%BE%80%E4%B8%8B%E7%9C%8B%EF%BC%89)
 
@@ -112,6 +112,13 @@ vim /etc/kubernetes/manifests/kube-controller-manager.yaml
 将port=0去掉
 然后systemctl restart kubelet
 
+
+
+
+技术	应用场景	资源占用情况
+Docker	单机部署简单应用	低
+Docker-Compose	单机/少数机器部署应用	低
+k8s	集群部署高可用应用	高
 
 
 
