@@ -2,7 +2,7 @@
  * @Author: wjn
  * @Date: 2020-01-31 10:00:10
  * @LastEditors: wjn
- * @LastEditTime: 2020-09-25 15:39:23
+ * @LastEditTime: 2020-09-25 17:00:04
  -->
 # 创建工程
 
@@ -106,3 +106,12 @@ com.webank.wedatasphere.linkis.server.restful.RestfulCatchAOP 83 apply - operati
 * 获取结果集失败
 
 查看linkis-resourcemanager  看enginemanager是否注册上了，没有重启服务
+
+* java.lang.ClassNotFoundException: org.apache.spark.SparkConf
+
+将spark* jar包拷贝到 linkis-ujes-hive-enginemanager/lib
+cp hive-kryo-registrator-2.1.1-cdh6.1.1.jar /home/linkis/linkis-ujes-hive-enginemanager/lib
+
+* 10905
+
+https://github.com/WeBankFinTech/DataSphereStudio/issues/110
