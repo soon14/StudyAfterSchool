@@ -2,7 +2,7 @@
  * @Author: wjn
  * @Date: 2020-03-03 09:39:31
  * @LastEditors: wjn
- * @LastEditTime: 2020-03-05 13:03:12
+ * @LastEditTime: 2020-09-27 15:26:42
  -->
 
 https://docs.docker.com/compose/gettingstarted/
@@ -40,3 +40,11 @@ https://docs.docker.com/compose/gettingstarted/
 **管理多个服务**
 
 直接在docker-compose.yml 中定义即可
+
+# 添加环境变量
+    environment:
+      LINKIS_GATEWAY_URL: http://192.168.10.190:9101
+
+# 指定网络模式
+
+network_mode: "host"
