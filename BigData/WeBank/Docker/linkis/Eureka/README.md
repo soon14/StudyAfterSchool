@@ -2,8 +2,11 @@
  * @Author: wjn
  * @Date: 2020-03-11 10:40:31
  * @LastEditors: wjn
- * @LastEditTime: 2020-03-11 10:44:21
+ * @LastEditTime: 2020-09-27 13:51:11
  -->
+
+
+docker build -t webank-eureka .
 
 
 **Eureka部署**
