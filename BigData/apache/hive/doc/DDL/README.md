@@ -1,3 +1,7 @@
+# 创建数据库
+
+
+
 ```
 CREATE EXTERNAL TABLE t_dic_list(
 id int,
