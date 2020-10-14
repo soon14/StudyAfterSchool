@@ -2,7 +2,7 @@
  * @Author: wjn
  * @Date: 2020-09-10 13:55:33
  * @LastEditors: wjn
- * @LastEditTime: 2020-10-14 11:35:53
+ * @LastEditTime: 2020-10-14 11:39:53
 -->
 # 自动生成requirements.txt
 
@@ -17,4 +17,4 @@
 
 # 安装
 
-    pip install [-r] requirements.txt
+    pip install -r requirements.txt
