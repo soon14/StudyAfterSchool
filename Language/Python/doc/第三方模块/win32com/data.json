@@ -1,0 +1,247 @@
+[
+    {
+        "no": "3.6.4",
+        "title": "增量增加单个菜单的单个对象授权（用户组、用户）",
+        "api": "/openapi/v2/dataportal/{dataportalId}/menu/{menuId}/singleAuthorize  （POST）",
+        "desc": "为用户或用户组添加菜单授权，单次请求只能提交单个对象。",
+        "params": [{
+            "name": "dataportalIdstring",
+            "type": "string",
+            "desc": "路径参数，数据⻔户id",
+            "required": "是"
+        }, {
+            "name": "menuIdstring",
+            "type": "string",
+            "desc": "路径参数，菜单id",
+            "required": "是"
+        }, {
+            "name": "worksTypes",
+            "type": "string",
+            "desc": "查询参数，所查询报表类型（TreeTypeEnum）",
+            "required": "是"
+        }],
+        "body": [{
+            "name": "menuId",
+            "type": "String",
+            "desc": "菜单ID，默认和路径中的menuId一致",
+            "required": "是"
+        }, {
+            "name": "receivers",
+            "type": "List",
+            "desc": "接收者List",
+            "required": ""
+        }, {
+            "name": "receivers",
+            "type": "List",
+            "desc": "接收者List",
+            "required": ""
+        }, {
+            "name": "     receiverId",
+            "type": "string",
+            "desc": "接收者Id",
+            "required": "是"
+        }, {
+            "name": "     receiverType",
+            "type": "string",
+            "desc": "用户类型, \"0\"代表用户, \"1\"代表用户组",
+            "required": ""
+        }],
+        "returnVaule": "{    \"traceId\": \"1e816347-fa21-431e-a08a-d5c01a5c7d89\",    \"code\": null,    \"message\": null,    \"data\": true,    \"success\": true}"
+    },
+    {
+        "no": "3.6.4",
+        "title": "增量增加单个菜单的单个对象授权（用户组、用户）",
+        "api": "/openapi/v2/dataportal/{dataportalId}/menu/{menuId}/singleAuthorize  （POST）",
+        "desc": "为用户或用户组添加菜单授权，单次请求只能提交单个对象。",
+        "params": [{
+            "name": "dataportalIdstring",
+            "type": "string",
+            "desc": "路径参数，数据⻔户id",
+            "required": "是"
+        }, {
+            "name": "menuIdstring",
+            "type": "string",
+            "desc": "路径参数，菜单id",
+            "required": "是"
+        }, {
+            "name": "worksTypes",
+            "type": "string",
+            "desc": "查询参数，所查询报表类型（TreeTypeEnum）",
+            "required": "是"
+        }],
+        "body": [{
+            "name": "menuId",
+            "type": "String",
+            "desc": "菜单ID，默认和路径中的menuId一致",
+            "required": "是"
+        }, {
+            "name": "receivers",
+            "type": "List",
+            "desc": "接收者List",
+            "required": ""
+        }, {
+            "name": "receivers",
+            "type": "List",
+            "desc": "接收者List",
+            "required": ""
+        }, {
+            "name": "     receiverId",
+            "type": "string",
+            "desc": "接收者Id",
+            "required": "是"
+        }, {
+            "name": "     receiverType",
+            "type": "string",
+            "desc": "用户类型, \"0\"代表用户, \"1\"代表用户组",
+            "required": ""
+        }],
+        "returnVaule": "{    \"traceId\": \"1e816347-fa21-431e-a08a-d5c01a5c7d89\",    \"code\": null,    \"message\": null,    \"data\": true,    \"success\": true}"
+    },
+    {
+        "no": "3.6.4",
+        "title": "增量增加单个菜单的单个对象授权（用户组、用户）",
+        "api": "/openapi/v2/dataportal/{dataportalId}/menu/{menuId}/singleAuthorize  （POST）",
+        "desc": "为用户或用户组添加菜单授权，单次请求只能提交单个对象。",
+        "params": [{
+            "name": "dataportalIdstring",
+            "type": "string",
+            "desc": "路径参数，数据⻔户id",
+            "required": "是"
+        }, {
+            "name": "menuIdstring",
+            "type": "string",
+            "desc": "路径参数，菜单id",
+            "required": "是"
+        }, {
+            "name": "worksTypes",
+            "type": "string",
+            "desc": "查询参数，所查询报表类型（TreeTypeEnum）",
+            "required": "是"
+        }],
+        "body": [{
+            "name": "menuId",
+            "type": "String",
+            "desc": "菜单ID，默认和路径中的menuId一致",
+            "required": "是"
+        }, {
+            "name": "receivers",
+            "type": "List",
+            "desc": "接收者List",
+            "required": ""
+        }, {
+            "name": "receivers",
+            "type": "List",
+            "desc": "接收者List",
+            "required": ""
+        }, {
+            "name": "     receiverId",
+            "type": "string",
+            "desc": "接收者Id",
+            "required": "是"
+        }, {
+            "name": "     receiverType",
+            "type": "string",
+            "desc": "用户类型, \"0\"代表用户, \"1\"代表用户组",
+            "required": ""
+        }],
+        "returnVaule": "{    \"traceId\": \"1e816347-fa21-431e-a08a-d5c01a5c7d89\",    \"code\": null,    \"message\": null,    \"data\": true,    \"success\": true}"
+    },
+    {
+        "no": "3.6.4",
+        "title": "增量增加单个菜单的单个对象授权（用户组、用户）",
+        "api": "/openapi/v2/dataportal/{dataportalId}/menu/{menuId}/singleAuthorize  （POST）",
+        "desc": "为用户或用户组添加菜单授权，单次请求只能提交单个对象。",
+        "params": [{
+            "name": "dataportalIdstring",
+            "type": "string",
+            "desc": "路径参数，数据⻔户id",
+            "required": "是"
+        }, {
+            "name": "menuIdstring",
+            "type": "string",
+            "desc": "路径参数，菜单id",
+            "required": "是"
+        }, {
+            "name": "worksTypes",
+            "type": "string",
+            "desc": "查询参数，所查询报表类型（TreeTypeEnum）",
+            "required": "是"
+        }],
+        "body": [{
+            "name": "menuId",
+            "type": "String",
+            "desc": "菜单ID，默认和路径中的menuId一致",
+            "required": "是"
+        }, {
+            "name": "receivers",
+            "type": "List",
+            "desc": "接收者List",
+            "required": ""
+        }, {
+            "name": "receivers",
+            "type": "List",
+            "desc": "接收者List",
+            "required": ""
+        }, {
+            "name": "     receiverId",
+            "type": "string",
+            "desc": "接收者Id",
+            "required": "是"
+        }, {
+            "name": "     receiverType",
+            "type": "string",
+            "desc": "用户类型, \"0\"代表用户, \"1\"代表用户组",
+            "required": ""
+        }],
+        "returnVaule": "{    \"traceId\": \"1e816347-fa21-431e-a08a-d5c01a5c7d89\",    \"code\": null,    \"message\": null,    \"data\": true,    \"success\": true}"
+    },
+    {
+        "no": "3.6.4",
+        "title": "增量增加单个菜单的单个对象授权（用户组、用户）",
+        "api": "/openapi/v2/dataportal/{dataportalId}/menu/{menuId}/singleAuthorize  （POST）",
+        "desc": "为用户或用户组添加菜单授权，单次请求只能提交单个对象。",
+        "params": [{
+            "name": "dataportalIdstring",
+            "type": "string",
+            "desc": "路径参数，数据⻔户id",
+            "required": "是"
+        }, {
+            "name": "menuIdstring",
+            "type": "string",
+            "desc": "路径参数，菜单id",
+            "required": "是"
+        }, {
+            "name": "worksTypes",
+            "type": "string",
+            "desc": "查询参数，所查询报表类型（TreeTypeEnum）",
+            "required": "是"
+        }],
+        "body": [{
+            "name": "menuId",
+            "type": "String",
+            "desc": "菜单ID，默认和路径中的menuId一致",
+            "required": "是"
+        }, {
+            "name": "receivers",
+            "type": "List",
+            "desc": "接收者List",
+            "required": ""
+        }, {
+            "name": "receivers",
+            "type": "List",
+            "desc": "接收者List",
+            "required": ""
+        }, {
+            "name": "     receiverId",
+            "type": "string",
+            "desc": "接收者Id",
+            "required": "是"
+        }, {
+            "name": "     receiverType",
+            "type": "string",
+            "desc": "用户类型, \"0\"代表用户, \"1\"代表用户组",
+            "required": ""
+        }],
+        "returnVaule": "{    \"traceId\": \"1e816347-fa21-431e-a08a-d5c01a5c7d89\",    \"code\": null,    \"message\": null,    \"data\": true,    \"success\": true}"
+    }
+]

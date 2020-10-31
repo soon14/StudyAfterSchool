@@ -42,14 +42,14 @@ more /var/log/mysqld.log | grep root@localhost
 more /var/log/mysqld.log | grep root@localhost | awk -F 'root@localhost: ' '{print $2}'
 
 
-    ALTER USER USER() IDENTIFIED BY 'Wjn@@1234';
-    set global validate_password_policy=0;
-    set global validate_password_length=1;
-    set global validate_password_mixed_case_count=0;
-    set global validate_password_number_count=3;
-    ALTER USER USER() IDENTIFIED BY '123456';
-    grant all on *.* to root@'%' identified by '123456' with grant option;
-    flush privileges;
+ALTER USER USER() IDENTIFIED BY 'Wjn@@1234';
+set global validate_password_policy=0;
+set global validate_password_length=1;
+set global validate_password_mixed_case_count=0;
+set global validate_password_number_count=3;
+ALTER USER USER() IDENTIFIED BY '123456';
+grant all on *.* to root@'%' identified by '123456' with grant option;
+flush privileges;
 
 
 # 创建数据库和用户
@@ -125,4 +125,6 @@ flush privileges;
 
 1. /usr/bin/perl is needed by mysql-community-server
 
-        yum -y install perl
+    yum -y install perl
+    yum install -y libaio
+    yum install -y net-tools
