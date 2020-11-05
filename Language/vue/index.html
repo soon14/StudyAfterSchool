@@ -1,0 +1,107 @@
+<!--
+ * @Author: wjn
+ * @Date: 2020-11-02 15:52:34
+ * @LastEditors: wjn
+ * @LastEditTime: 2020-11-03 09:46:42
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.8.0/jquery-1.8.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+
+
+
+
+    <style>
+        .table {}
+
+        .column {}
+    </style>
+</head>
+
+
+
+<body>
+    <div id="app">
+        <div>
+            <p>选择表</p>
+
+            <select v-model="selectTable" @change="tableChange">
+                <option v-for="(table,i ) in tables" :value="table.TABLE_NAME" :key="i">
+                    {{ table.TABLE_NAME }} {{ table.COMMENTS }}
+                </option>
+
+            </select>
+        </div>
+
+        <div>
+            <p>选择过滤字段</p>
+            <ul>
+                <li v-for="(column,i ) in columns" :key="i" @click="addColumn(column)">{{column.COLUMN_NAME}}
+                    {{column.COMMENTS}}</li>
+            </ul>
+        </div>
+
+
+        <div>
+            <p>已选择过滤字段</p>
+            <ul>
+                <li v-for="(column,i ) in filters" :key="i">{{column.COLUMN_NAME}} {{column.COMMENTS}}</li>
+            </ul>
+        </div>
+    </div>
+
+
+</body>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        components: {
+        },
+        data: {
+            checked: false,
+            checkedNames: [],
+            tables: [],
+            selectTable: '',
+            columns: [],
+            filters: []
+        },
+        mounted() {
+            // 防止当前对象被冲掉
+            var that = this 
+            $.getJSON("data.json", function (data) {
+                that.tables = data
+            })
+        },
+        methods: {
+            tableChange() {
+                let currentTable = _.find(this.tables, {
+                    TABLE_NAME: this.selectTable
+                })
+                if (currentTable) {
+                    console.log(currentTable)
+                    this.columns = currentTable.COLUMN_INFO_LIST
+                }
+            },
+            addColumn(column) {
+                console.log({ ...column })
+                this.filters.push(column)
+            }
+        }
+    })
+
+</script>
+
+
+
+
+</html>

@@ -1,0 +1,72 @@
+<!--
+ * @Author: wjn
+ * @Date: 2020-10-31 17:00:07
+ * @LastEditors: wjn
+ * @LastEditTime: 2020-11-02 15:32:19
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript"src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+
+    <style>
+        .active {
+            width: 100%;
+            height: 50%;
+            background: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <form id="cs">
+                <p>多个复选框：</p>
+                <input type="checkbox" id="runoob" value="Runoob" v-model="checkedNames">
+                <label for="runoob">Runoob</label>
+                <input type="checkbox" id="google" value="Google" v-model="checkedNames">
+                <label for="google">Google</label>
+                <input type="checkbox" id="taobao" value="Taobao" v-model="checkedNames">
+                <label for="taobao">taobao</label>
+                <p>
+                    <span>选择的值为: {{ checkedNames }}</span>
+                </p>
+
+        </form>
+
+        <p>
+            <button @click="select_all">全选</button>
+        </p>
+        
+    </div>
+    <script>
+            new Vue({
+              el: '#app',
+              data: {
+                checked : false,
+                checkedNames: []
+              },
+              computed: {
+                select_all: function(){
+                    console.log(1)
+                    $("input").attr( "checked","checked")
+                }
+              }
+            })
+            </script>
+    <script>
+        new Vue({
+            el: "input",
+
+        })
+    </script>
+</body>
+
+</html>

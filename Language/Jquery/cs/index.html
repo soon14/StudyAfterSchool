@@ -1,0 +1,39 @@
+<!--
+ * @Author: wjn
+ * @Date: 2020-10-31 09:53:09
+ * @LastEditors: wjn
+ * @LastEditTime: 2020-10-31 12:51:49
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="data.js"></script>
+
+
+<body>
+        <div class="nav-img" style="background-image: url(&quot;https://morgana.oss-cn-hangzhou.aliyuncs.com/top_img2.jpg&quot;);"><!----></div>
+</body>
+<script type="text/javascript">
+    $(function () {
+        $.getJSON("data.json", function (data) {
+            var fields = data.data.fields
+            $.each(fields,function(i,field){
+                console.log(field.comment)
+                $("body").prepend("<button>"+ field.comment +"</button>")
+            })
+        })
+    })
+</script>
+<script type="text/javascript">
+    $(function () {
+        
+    })
+</script>
+</html>
